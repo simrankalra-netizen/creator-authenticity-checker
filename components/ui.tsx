@@ -2,6 +2,7 @@
 // Colours come from the theme in app/globals.css.
 import { useId, type ReactNode } from "react";
 import type { Goal, Level } from "@/lib/creatorScores";
+import { useCountUp } from "@/components/motion";
 
 // ---------- Icons (inline, no icon library) ----------
 const Svg = ({ children, size = 16 }: { children: ReactNode; size?: number }) => (
@@ -48,6 +49,7 @@ export function ScoreDial({ value, label, tone, gradient = false, size = 64, chi
   const r = 26, c = 2 * Math.PI * r;
   const pct = value === null ? 0 : Math.max(0, Math.min(100, value));
   const id = useId();
+  const shown = useCountUp(value); // the number counts up while the ring fills
   return (
     <div className="flex items-center gap-2.5">
       <svg width={size} height={size} viewBox="0 0 64 64" role="img" aria-label={`${label}: ${value === null ? "not enough data" : `${value} out of 100`}`}>
@@ -62,6 +64,7 @@ export function ScoreDial({ value, label, tone, gradient = false, size = 64, chi
         <circle cx="32" cy="32" r={r} fill="none" stroke="var(--color-line)" strokeWidth="6" />
         {value !== null && (
           <circle
+            className="cg-dial"
             cx="32" cy="32" r={r} fill="none" strokeWidth="6" strokeLinecap="round"
             stroke={gradient ? `url(#${id})` : TONE_STROKE[tone]}
             strokeDasharray={`${(pct / 100) * c} ${c}`}
@@ -69,7 +72,7 @@ export function ScoreDial({ value, label, tone, gradient = false, size = 64, chi
           />
         )}
         <text x="32" y="37" textAnchor="middle" className="font-display" fontSize={value === null ? 12 : 17} fontWeight="800" fill="var(--color-ink)">
-          {value === null ? "N/A" : value}
+          {value === null ? "N/A" : shown}
         </text>
       </svg>
       <div className="leading-tight">

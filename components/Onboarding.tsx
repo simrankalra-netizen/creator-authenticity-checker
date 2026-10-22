@@ -2,7 +2,7 @@
 
 // The 6 onboarding questions, one at a time, then "Your brief is ready".
 // Every answer lives in the Brief object, so Back never loses anything.
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   AGE_RANGES, FOLLOWER_RANGES, GOALS, NICHES, PLATFORMS,
   goalLabel, locationLabel, nicheLabel, platformLabel, rangeLabel,
@@ -12,6 +12,8 @@ import { COUNTRIES, checkPhone, dialCode } from "@/lib/phone";
 import { RESEND_WAIT_SECONDS } from "@/lib/otpSettings";
 import { WEBSITE_PROFILE_ENABLED } from "@/lib/features";
 import Logo from "@/components/Logo";
+import { Confetti, DoneArt, PhoneArt, SearchArt, ShieldArt, StoreArt, TagArt, TargetArt } from "@/components/StepArt";
+import { prefersReducedMotion } from "@/components/motion";
 import {
   NOT_CLEAR, PROFILE_FIELDS, nicheName, suggestFollowerRange, suggestNiche,
   type BrandProfile, type Confidence, type FieldKey,
@@ -38,10 +40,10 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
   if (brief.step === 7) return <BriefReady brief={brief} setBrief={setBrief} />;
 
   return (
-    <Page>
+    <Page wide>
       <BrandHeader />
       {brief.step === 1 && (
-        <div className="cg-rise mt-10 text-center sm:mt-12">
+        <div className="cg-rise mx-auto mt-10 max-w-xl text-center sm:mt-12">
           <p className="font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">Fake followers don&apos;t buy.</p>
           <p className="brand-gradient-text font-display text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl">Real creators do.</p>
           <p className="mx-auto mt-4 max-w-md text-ink-soft">
@@ -54,37 +56,55 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
           </div>
         </div>
       )}
-      <div className="mt-8">
-        <div className="flex items-center justify-between text-sm">
-          <p className="font-medium text-ink-soft">
-            Step {brief.step} of {TOTAL_STEPS}
-          </p>
-          <p className="text-ink-muted">{Math.round((brief.step / TOTAL_STEPS) * 100)}%</p>
+      <div className="mt-8 grid items-start gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12">
+        {/* Illustration: beside the card on a laptop, above it on a phone */}
+        <div key={`art-${brief.step}`} className="cg-fade mx-auto h-36 w-36 sm:h-44 sm:w-44 lg:sticky lg:top-24 lg:mt-12 lg:h-80 lg:w-80">
+          <StepIllustration brief={brief} />
         </div>
-        <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-white shadow-inner ring-1 ring-line" aria-hidden>
-          <div className="brand-gradient cg-progress-bar h-full rounded-full" style={{ width: `${(brief.step / TOTAL_STEPS) * 100}%` }} />
+        <div className="min-w-0">
+          <div className="flex items-center justify-between text-sm">
+            <p className="font-medium text-ink-soft">
+              Step {brief.step} of {TOTAL_STEPS}
+            </p>
+            <p className="text-ink-muted">{Math.round((brief.step / TOTAL_STEPS) * 100)}%</p>
+          </div>
+          <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-white shadow-inner ring-1 ring-line" aria-hidden>
+            <div className="brand-gradient cg-progress-bar h-full rounded-full" style={{ width: `${(brief.step / TOTAL_STEPS) * 100}%` }} />
+          </div>
+          <div key={brief.step} className="cg-card cg-step-in mt-6 p-6 sm:p-8">
+            {brief.step === 1 && <PhoneStep {...props} />}
+            {brief.step === 2 && <CodeStep {...props} />}
+            {brief.step === 3 && <BrandNameStep {...props} />}
+            {brief.step === 4 && (WEBSITE_PROFILE_ENABLED ? <LinkStep {...props} /> : <BrandAboutStep {...props} />)}
+            {brief.step === 5 && <NicheStep {...props} />}
+            {brief.step === 6 && <InfluencerStep {...props} />}
+          </div>
+          <button type="button" onClick={back} disabled={brief.step === 1} className="cg-btn-secondary mt-5 text-sm">
+            ← Back
+          </button>
         </div>
       </div>
-      <div key={brief.step} className="cg-card cg-step-in mt-6 p-6 sm:p-8">
-        {brief.step === 1 && <PhoneStep {...props} />}
-        {brief.step === 2 && <CodeStep {...props} />}
-        {brief.step === 3 && <BrandNameStep {...props} />}
-        {brief.step === 4 && (WEBSITE_PROFILE_ENABLED ? <LinkStep {...props} /> : <BrandAboutStep {...props} />)}
-        {brief.step === 5 && <NicheStep {...props} />}
-        {brief.step === 6 && <InfluencerStep {...props} />}
-      </div>
-      <button type="button" onClick={back} disabled={brief.step === 1} className="cg-btn-secondary mt-5 text-sm">
-        ← Back
-      </button>
     </Page>
   );
 }
 
+// Each step's illustration (decoration only)
+function StepIllustration({ brief }: { brief: Brief }) {
+  switch (brief.step) {
+    case 1: return <PhoneArt />;
+    case 2: return <ShieldArt verified={Boolean(brief.verifiedPhone) && brief.verifiedPhone === brief.phoneE164} />;
+    case 3: return <StoreArt name={brief.brandName} />;
+    case 4: return <SearchArt />;
+    case 5: return <TagArt />;
+    default: return <TargetArt />;
+  }
+}
+
 // The soft background and centred column every onboarding screen sits in
-function Page({ children }: { children: ReactNode }) {
+function Page({ children, wide = false }: { children: ReactNode; wide?: boolean }) {
   return (
     <div className="header-band min-h-screen w-full">
-      <main className="mx-auto w-full max-w-xl px-4 pb-16 pt-8 text-ink sm:pt-12">{children}</main>
+      <main className={`mx-auto w-full px-4 pb-16 pt-8 text-ink sm:pt-12 ${wide ? "max-w-xl lg:max-w-5xl" : "max-w-xl"}`}>{children}</main>
     </div>
   );
 }
@@ -224,21 +244,32 @@ function CodeStep({ brief, update, next }: StepProps) {
   const [busy, setBusy] = useState(false);
   const [now, setNow] = useState(() => Date.now());
   const verified = brief.verifiedPhone === brief.phoneE164;
+  // The short "verified" pause before moving on; cancelled if the user moves on first
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(t);
+    return () => {
+      clearInterval(t);
+      clearTimeout(advanceTimer.current);
+    };
   }, []);
   const waitLeft = Math.max(0, RESEND_WAIT_SECONDS - Math.floor((now - brief.codeSentAt) / 1000));
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (verified) return next();
+    if (verified) {
+      clearTimeout(advanceTimer.current);
+      return next();
+    }
     setBusy(true);
     const { status, data } = await post("/api/otp/verify", { phone: brief.phoneE164, code });
     setBusy(false);
     if (status !== 200) return setError(data.error);
-    next({ verifiedPhone: brief.phoneE164 });
+    // Mark verified first so the shield turns green with its tick, then move on.
+    // The short pause is skipped when motion is reduced; "Continue" also works at once.
+    update({ verifiedPhone: brief.phoneE164 });
+    advanceTimer.current = setTimeout(() => next({ verifiedPhone: brief.phoneE164 }), prefersReducedMotion() ? 0 : 600);
   }
 
   async function resend() {
@@ -773,8 +804,10 @@ function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: SetBrief }) {
   return (
     <Page>
       <BrandHeader />
-      <div className="cg-rise mt-10 text-center">
-        <span className="cg-pill bg-good-bg text-good">✓ All 6 steps done</span>
+      <Confetti />
+      <div className="cg-rise mt-8 flex flex-col items-center text-center">
+        <DoneArt />
+        <span className="cg-pill mt-2 bg-good-bg text-good">✓ All 6 steps done</span>
         <h1 className="mt-3 text-3xl font-extrabold sm:text-4xl">Your brief is ready</h1>
         <p className="mt-2 text-ink-soft">Check your answers. You can edit any of them.</p>
       </div>

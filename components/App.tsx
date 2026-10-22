@@ -6,11 +6,22 @@ import { useState } from "react";
 import Onboarding, { briefRows } from "@/components/Onboarding";
 import CreatorChecker from "@/components/CreatorChecker";
 import TopCreators from "@/components/TopCreators";
+import Welcome from "@/components/Welcome";
 import { loadBrief, saveBrief, type Brief } from "@/lib/brief";
+
+const WELCOME_KEY = "collabgram-welcome-seen";
+const welcomeSeen = () => {
+  try {
+    return sessionStorage.getItem(WELCOME_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
 
 export default function App() {
   // Runs in the browser only (see app/page.tsx), so saved answers can load at once
   const [brief, setBriefState] = useState<Brief>(loadBrief);
+  const [showWelcome, setShowWelcome] = useState(() => brief.step === 1 && !welcomeSeen());
 
   // Accepts new answers, or a function of the latest answers (safe after a slow request)
   const setBrief = (change: Brief | ((latest: Brief) => Brief)) => {
@@ -22,6 +33,21 @@ export default function App() {
     });
   };
 
+  if (showWelcome) {
+    return (
+      <Welcome
+        onStart={() => {
+          try {
+            sessionStorage.setItem(WELCOME_KEY, "1");
+          } catch {
+            // storage blocked: the welcome may show again next visit, which is fine
+          }
+          setShowWelcome(false);
+          window.scrollTo(0, 0);
+        }}
+      />
+    );
+  }
   if (brief.step <= 7) return <Onboarding brief={brief} setBrief={setBrief} />;
   if (brief.step === 8) {
     return (

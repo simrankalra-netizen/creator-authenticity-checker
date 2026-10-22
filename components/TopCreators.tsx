@@ -2,7 +2,8 @@
 
 // "Your top 10 creators": the 10 demo creators best suited to the brand's brief.
 // All scoring is plain code (lib/creatorScores.ts, lib/ranking.ts); no AI, no API key.
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { motionMs, prefersReducedMotion } from "@/components/motion";
 import Logo from "@/components/Logo";
 import CreatorDetail from "@/components/CreatorDetail";
 import { getCreators, SOURCE_LABEL, SOURCE_NOTE, type Creator } from "@/lib/creatorSource";
@@ -28,13 +29,46 @@ export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { bri
   const [goal, setGoal] = useState<Goal>(goalFromBrief(brief));
   const [openId, setOpenId] = useState<string | null>(null);
 
+  const [loaderDone, setLoaderDone] = useState(false);
+
   useEffect(() => {
     getCreators().then(setCreators); // the data source can be swapped in lib/creatorSource.ts
+    // "Scanning creators…" shows for at least --motion-loader-min so it feels intentional
+    const t = setTimeout(() => setLoaderDone(true), motionMs("--motion-loader-min", 1200));
+    return () => clearTimeout(t);
   }, []);
 
-  const list = useMemo(() => (creators ? topCreators(creators, brief, goal) : null), [creators, brief, goal]);
+  const computed = useMemo(() => (creators ? topCreators(creators, brief, goal) : null), [creators, brief, goal]);
+  const list = loaderDone ? computed : null;
   const briefGoal = goalFromBrief(brief);
   const open = list?.top.find((s) => s.creator.id === openId) ?? null;
+
+  // Smooth re-ranking: when the order changes, each card glides from its old spot to its new one
+  const cardEls = useRef(new Map<string, HTMLLIElement>());
+  const lastRects = useRef(new Map<string, DOMRect>());
+  const order = list?.top.map((s) => s.creator.id).join() ?? "";
+  useLayoutEffect(() => {
+    const rects = new Map<string, DOMRect>();
+    cardEls.current.forEach((el, id) => rects.set(id, el.getBoundingClientRect()));
+    if (!prefersReducedMotion()) {
+      rects.forEach((rect, id) => {
+        const old = lastRects.current.get(id);
+        const dx = old ? old.left - rect.left : 0;
+        const dy = old ? old.top - rect.top : 0;
+        if (dx || dy) {
+          cardEls.current.get(id)?.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }], {
+            duration: motionMs("--motion-rerank", 450),
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          });
+        }
+      });
+    }
+    lastRects.current = rects;
+  }, [order]);
+  const trackCard = (id: string) => (el: HTMLLIElement | null) => {
+    if (el) cardEls.current.set(id, el);
+    else cardEls.current.delete(id);
+  };
 
   return (
     <div className="min-h-screen w-full">
@@ -97,19 +131,7 @@ export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { bri
         )}
 
         {!list ? (
-          <ul className="mt-6 grid gap-5 md:grid-cols-2" aria-label="Loading creators">
-            {Array.from({ length: 4 }, (_, i) => (
-              <li key={i} className="cg-card p-5">
-                <div className="flex items-center gap-3">
-                  <div className="cg-skeleton h-12 w-12 rounded-full" />
-                  <div className="flex-1 space-y-2"><div className="cg-skeleton h-4 w-1/2" /><div className="cg-skeleton h-3 w-3/4" /></div>
-                </div>
-                <div className="cg-skeleton mt-5 h-16" />
-                <div className="cg-skeleton mt-3 h-8" />
-              </li>
-            ))}
-            <li className="sr-only">Loading creators…</li>
-          </ul>
+          <ScanningLoader />
         ) : list.top.length === 0 ? (
           <div className="cg-card mt-6 p-8 text-center">
             <p className="font-display text-xl font-bold">No creators to show yet</p>
@@ -117,9 +139,9 @@ export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { bri
             <button type="button" onClick={onEditBrief} className="cg-btn-primary mt-5">Edit brief</button>
           </div>
         ) : (
-          <ol key={goal} className="mt-6 grid gap-5 md:grid-cols-2">
+          <ol className="mt-6 grid gap-5 md:grid-cols-2">
             {list.top.map((s, i) => (
-              <CreatorCard key={s.creator.id} rank={i + 1} s={s} goal={goal} onOpen={() => setOpenId(s.creator.id)} />
+              <CreatorCard key={s.creator.id} liRef={trackCard(s.creator.id)} rank={i + 1} s={s} goal={goal} onOpen={() => setOpenId(s.creator.id)} />
             ))}
           </ol>
         )}
@@ -147,7 +169,7 @@ function Rating({ goal, label, level }: { goal: Goal; label: string; level: Leve
   );
 }
 
-function CreatorCard({ rank, s, goal, onOpen }: { rank: number; s: Scored; goal: Goal; onOpen: () => void }) {
+function CreatorCard({ rank, s, goal, onOpen, liRef }: { rank: number; s: Scored; goal: Goal; onOpen: () => void; liRef: (el: HTMLLIElement | null) => void }) {
   const c = s.creator;
   const auth = authBadge(s);
   const BestIcon = GOAL_ICON[s.ret.bestFor];
@@ -247,8 +269,43 @@ function CreatorCard({ rank, s, goal, onOpen }: { rank: number; s: Scored; goal:
   );
 
   return (
-    <li className="cg-rise" style={{ animationDelay: `${Math.min(rank - 1, 9) * 40}ms` }}>
+    <li ref={liRef} className="cg-rise" style={{ animationDelay: `calc(var(--motion-stagger) * ${Math.min(rank - 1, 9)})` }}>
       {top ? <div className="brand-gradient h-full rounded-[22px] p-[2px]">{body}</div> : body}
     </li>
+  );
+}
+
+// "Scanning creators…": a light line sweeps over placeholder cards while the list is prepared
+function ScanningLoader() {
+  return (
+    <div className="mt-6" role="status" aria-live="polite">
+      <p className="flex items-center gap-2 font-display text-lg font-bold">
+        Scanning creators
+        <span aria-hidden className="inline-flex gap-1">
+          {[0, 1, 2].map((i) => (
+            <span key={i} className="cg-dot inline-block h-1.5 w-1.5 rounded-full bg-brand-purple" style={{ animationDelay: `${i * 0.2}s` }} />
+          ))}
+        </span>
+      </p>
+      <p className="text-sm text-ink-soft">Checking engagement, comments and growth for 100 demo creators.</p>
+      <div className="relative mt-4 overflow-hidden rounded-[22px]">
+        <ul className="grid gap-5 md:grid-cols-2" aria-hidden>
+          {Array.from({ length: 4 }, (_, i) => (
+            <li key={i} className={`cg-card p-5 ${i > 1 ? "hidden md:block" : ""}`}>
+              <div className="flex items-center gap-3">
+                <div className="cg-skeleton h-12 w-12 rounded-full" />
+                <div className="flex-1 space-y-2"><div className="cg-skeleton h-4 w-1/2" /><div className="cg-skeleton h-3 w-3/4" /></div>
+              </div>
+              <div className="cg-skeleton mt-5 h-16" />
+              <div className="cg-skeleton mt-3 h-8" />
+            </li>
+          ))}
+        </ul>
+        <div aria-hidden className="cg-scan pointer-events-none absolute inset-x-0 top-0 h-10">
+          <div className="h-full w-full bg-gradient-to-b from-transparent via-logo-violet/15 to-transparent" />
+          <div className="brand-gradient h-0.5 w-full opacity-70" />
+        </div>
+      </div>
+    </div>
   );
 }
