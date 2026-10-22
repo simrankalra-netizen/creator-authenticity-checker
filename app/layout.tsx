@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://creator-authenticity-checker.vercel.app"), // for the link-preview image
   title: "Collabgram",
   description: "Collabgram: find genuine influencers for your brand, with authenticity scores and reasons",
 };

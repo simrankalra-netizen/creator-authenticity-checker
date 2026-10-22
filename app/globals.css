@@ -1,12 +1,36 @@
 @import "tailwindcss";
 
+/* Collabgram brand colours, measured from the logo and banner. Use them as
+   Tailwind classes: text-ink, bg-ink, text-ink-soft, border-brand-purple,
+   bg-lavender, bg-mint-tint, bg-lime-tint, text-brand-teal and so on. */
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-ink: #16352d; /* headings, main buttons */
+  --color-ink-soft: #455854; /* body text */
+  --color-brand-purple: #7a5cde; /* start of the "gram" gradient */
+  --color-brand-teal: #129a82; /* end of the "gram" gradient */
+  --color-brand-mint: #31bda0; /* chart bar */
+  --color-brand-lime: #b9d930; /* chart bar */
+  --color-lavender: #ebe8fb; /* soft tint: "Detect fakes" pill */
+  --color-mint-tint: #dbf7eb; /* soft tint: "Score credibility" pill */
+  --color-lime-tint: #f5fbdf; /* soft tint: "Match creators" pill */
 }
 
 body {
   background: #ffffff;
-  color: #18181b;
+  color: var(--color-ink);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Purple-to-teal, as in "gram" and "Real creators do." */
+.brand-gradient {
+  background-image: linear-gradient(90deg, var(--color-brand-purple), var(--color-brand-teal));
+}
+.brand-gradient-text {
+  background-image: linear-gradient(90deg, var(--color-brand-purple), var(--color-brand-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

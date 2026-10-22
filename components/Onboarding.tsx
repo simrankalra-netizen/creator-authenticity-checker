@@ -10,6 +10,7 @@ import {
 } from "@/lib/brief";
 import { COUNTRIES, checkPhone, dialCode } from "@/lib/phone";
 import { RESEND_WAIT_SECONDS } from "@/lib/otpSettings";
+import Logo from "@/components/Logo";
 
 type StepProps = {
   brief: Brief;
@@ -29,14 +30,28 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
   if (brief.step === 7) return <BriefReady brief={brief} setBrief={setBrief} />;
 
   return (
-    <main className="mx-auto w-full max-w-xl px-4 py-8 text-zinc-900">
-      <p className="text-lg font-semibold">Collabgram</p>
+    <main className="mx-auto w-full max-w-xl px-4 py-8 text-ink">
+      <BrandHeader />
+      {brief.step === 1 && (
+        <div className="mt-8">
+          <p className="text-3xl font-extrabold leading-tight tracking-tight">Fake followers don&apos;t buy.</p>
+          <p className="brand-gradient-text text-3xl font-extrabold leading-tight tracking-tight">Real creators do.</p>
+          <p className="mt-3 text-ink-soft">
+            Detect fake engagement, check creator credibility, and find the right voices for your next launch.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2 text-sm">
+            <span className="rounded-full bg-lavender px-3 py-1">Detect fakes</span>
+            <span className="rounded-full bg-mint-tint px-3 py-1">Score credibility</span>
+            <span className="rounded-full bg-lime-tint px-3 py-1">Match creators</span>
+          </div>
+        </div>
+      )}
       <div className="mt-6">
-        <p className="text-sm font-medium text-zinc-600">
+        <p className="text-sm font-medium text-ink-soft">
           Step {brief.step} of {TOTAL_STEPS}
         </p>
         <div className="mt-2 h-1.5 w-full rounded-full bg-zinc-200" aria-hidden>
-          <div className="h-1.5 rounded-full bg-zinc-900" style={{ width: `${(brief.step / TOTAL_STEPS) * 100}%` }} />
+          <div className="brand-gradient h-1.5 rounded-full" style={{ width: `${(brief.step / TOTAL_STEPS) * 100}%` }} />
         </div>
       </div>
       <div className="mt-6 rounded-xl border border-zinc-200 p-6">
@@ -61,11 +76,20 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
 
 // ---------- small building blocks ----------
 
+function BrandHeader() {
+  return (
+    <header>
+      <Logo className="h-9 w-auto" />
+      <p className="mt-1 text-sm text-ink-soft">Verified creators, real results.</p>
+    </header>
+  );
+}
+
 function Question({ title, hint }: { title: string; hint?: string }) {
   return (
     <>
       <h1 className="text-xl font-semibold">{title}</h1>
-      {hint && <p className="mt-1 text-sm text-zinc-600">{hint}</p>}
+      {hint && <p className="mt-1 text-sm text-ink-soft">{hint}</p>}
     </>
   );
 }
@@ -84,21 +108,21 @@ function Continue({ label = "Continue", busy, disabled }: { label?: string; busy
     <button
       type="submit"
       disabled={busy || disabled}
-      className="mt-5 w-full rounded-lg bg-zinc-900 px-4 py-2.5 font-medium text-white disabled:opacity-50"
+      className="mt-5 w-full rounded-lg bg-ink px-4 py-2.5 font-medium text-white disabled:opacity-50"
     >
       {busy ? "Please wait…" : label}
     </button>
   );
 }
 
-const inputClass = "mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2";
+const inputClass = "mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 focus:border-brand-purple focus:outline-none focus:ring-2 focus:ring-lavender";
 
 function Choice({ name, value, checked, onChange, children }: {
   name: string; value: string; checked: boolean; onChange: (v: string) => void; children: ReactNode;
 }) {
   return (
-    <label className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${checked ? "border-zinc-900 bg-zinc-50" : "border-zinc-300"}`}>
-      <input type="radio" name={name} value={value} checked={checked} onChange={() => onChange(value)} />
+    <label className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${checked ? "border-brand-purple bg-lavender" : "border-zinc-300"}`}>
+      <input type="radio" className="accent-brand-purple" name={name} value={value} checked={checked} onChange={() => onChange(value)} />
       {children}
     </label>
   );
@@ -231,7 +255,7 @@ function CodeStep({ brief, update, next }: StepProps) {
             type="button"
             onClick={resend}
             disabled={waitLeft > 0}
-            className="mt-3 text-sm font-medium text-zinc-900 underline disabled:text-zinc-400 disabled:no-underline"
+            className="mt-3 text-sm font-medium text-ink underline disabled:text-zinc-400 disabled:no-underline"
           >
             {waitLeft > 0 ? `Resend code in ${waitLeft}s` : "Resend code"}
           </button>
@@ -333,7 +357,7 @@ function LinkStep({ brief, update, next }: StepProps) {
             setShowBox(true);
             update({ summarySource: "manual" });
           }}
-          className="ml-3 text-sm text-zinc-600 underline"
+          className="ml-3 text-sm text-ink-soft underline"
         >
           No website? Describe your brand instead
         </button>
@@ -472,7 +496,7 @@ function InfluencerStep({ brief, update, next }: StepProps) {
       <fieldset>
         <legend className="text-sm font-medium">What is your budget per creator? <span className="font-normal text-zinc-500">(optional)</span></legend>
         <div className="mt-1 flex items-center gap-2">
-          <span className="text-zinc-600">₹</span>
+          <span className="text-ink-soft">₹</span>
           <input aria-label="Budget per creator in rupees" inputMode="numeric" placeholder="e.g. 15000" value={brief.budget} onChange={(e) => update({ budget: e.target.value })} className="w-full rounded-lg border border-zinc-300 px-3 py-2" />
         </div>
       </fieldset>
@@ -515,16 +539,16 @@ export function briefRows(b: Brief): [string, string, number][] {
 
 function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: (b: Brief) => void }) {
   return (
-    <main className="mx-auto w-full max-w-xl px-4 py-8 text-zinc-900">
-      <p className="text-lg font-semibold">Collabgram</p>
+    <main className="mx-auto w-full max-w-xl px-4 py-8 text-ink">
+      <BrandHeader />
       <h1 className="mt-6 text-2xl font-semibold">Your brief is ready</h1>
-      <p className="mt-1 text-sm text-zinc-600">Check your answers. You can edit any of them.</p>
+      <p className="mt-1 text-sm text-ink-soft">Check your answers. You can edit any of them.</p>
       <dl className="mt-5 divide-y divide-zinc-200 rounded-xl border border-zinc-200">
         {briefRows(brief).map(([label, value, step]) => (
           <div key={label} className="flex gap-3 p-3 text-sm">
-            <dt className="w-36 shrink-0 font-medium text-zinc-600">{label}</dt>
+            <dt className="w-36 shrink-0 font-medium text-ink-soft">{label}</dt>
             <dd className="flex-1 whitespace-pre-line">{value}</dd>
-            <button type="button" onClick={() => setBrief({ ...brief, step, returnToBrief: true })} className="text-xs text-zinc-600 underline">
+            <button type="button" onClick={() => setBrief({ ...brief, step, returnToBrief: true })} className="text-xs text-ink-soft underline">
               Edit
             </button>
           </div>
@@ -533,7 +557,7 @@ function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: (b: Brief) =>
       <button
         type="button"
         onClick={() => setBrief({ ...brief, step: 8 })}
-        className="mt-5 w-full rounded-lg bg-zinc-900 px-4 py-2.5 font-medium text-white"
+        className="mt-5 w-full rounded-lg bg-ink px-4 py-2.5 font-medium text-white"
       >
         Continue to creator check
       </button>

@@ -6,6 +6,7 @@ import { parseCreators, parseSales, handleKey, type SalesRow } from "@/lib/parse
 import { scoreCreator, type CreatorResult, type ScoredCreator } from "@/lib/score";
 import { scoreSalesMatch, ordersByHandle } from "@/lib/predict";
 import { checkAiReply, type AiCreator, type Verdict } from "@/lib/checkAi";
+import Logo from "@/components/Logo";
 
 type AiStatus =
   | { state: "idle" }
@@ -68,9 +69,11 @@ export default function CreatorChecker() {
   const orders = sales ? ordersByHandle(sales) : null;
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 text-zinc-900">
-      <h1 className="text-2xl font-semibold">Collabgram</h1>
-      <p className="mt-1 max-w-2xl text-sm text-zinc-600">
+    <main className="mx-auto w-full max-w-6xl px-4 py-8 text-ink">
+      <h1>
+        <Logo className="h-9 w-auto" />
+      </h1>
+      <p className="mt-1 max-w-2xl text-sm text-ink-soft">
         Upload creator numbers to get an authenticity score (0–100) with reasons. Scores are calculated by fixed
         rules, not AI. AI only rewrites the reasons in plain words. Files stay in your browser.
       </p>
@@ -96,7 +99,7 @@ export default function CreatorChecker() {
       <ErrorBox title="This sales file can't be used. Scores are unchanged." errors={salesErrors} />
 
       {notes.length > 0 && (
-        <ul className="mt-6 list-disc rounded-lg border border-sky-200 bg-sky-50 p-3 pl-8 text-sm text-sky-900">
+        <ul className="mt-6 list-disc rounded-lg border border-brand-purple/30 bg-lavender p-3 pl-8 text-sm text-ink">
           {notes.map((n) => (
             <li key={n}>{n}</li>
           ))}
@@ -104,19 +107,19 @@ export default function CreatorChecker() {
       )}
 
       {match && (
-        <div className="mt-6 rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+        <div className="mt-6 rounded-lg border border-brand-lime/50 bg-lime-tint p-4">
           {match.ok ? (
             <>
               <p className="text-lg font-semibold">
                 Score–sales match: {match.value.toFixed(2)} ({match.label})
               </p>
-              <p className="text-sm text-zinc-600">
+              <p className="text-sm text-ink-soft">
                 Compared {match.compared} creators, skipped {match.skipped} (no sales row or not enough data). 1 means
                 higher scores always sold more; 0 means no link. With this few creators it&apos;s a rough signal.
               </p>
             </>
           ) : (
-            <p className="text-sm text-zinc-700">{match.message}</p>
+            <p className="text-sm text-ink">{match.message}</p>
           )}
         </div>
       )}
@@ -138,7 +141,7 @@ export default function CreatorChecker() {
       {results && (
         <div className="mt-6 overflow-x-auto rounded-lg border border-zinc-200">
           <table className="w-full min-w-[900px] text-left text-sm">
-            <thead className="bg-zinc-100 text-xs uppercase text-zinc-600">
+            <thead className="bg-mint-tint text-xs uppercase text-ink-soft">
               <tr>
                 <th className="p-3">Creator</th>
                 <th className="p-3 text-right">Followers</th>
@@ -208,7 +211,7 @@ function UploadBox(props: {
   return (
     <label
       className={`block rounded-lg border-2 border-dashed p-4 ${
-        props.disabled ? "border-zinc-200 opacity-50" : "cursor-pointer border-zinc-300 hover:border-zinc-500"
+        props.disabled ? "border-zinc-200 opacity-50" : "cursor-pointer border-zinc-300 hover:border-brand-purple"
       }`}
     >
       <span className="font-medium">
@@ -274,7 +277,7 @@ function Row({
         <td className="p-3 text-right">{result.followers?.toLocaleString("en-IN") ?? "—"}</td>
         <td className="p-3 text-right font-medium text-zinc-500">Not enough data</td>
         <td className="p-3 text-zinc-400">—</td>
-        <td className="p-3 text-zinc-600" colSpan={2}>
+        <td className="p-3 text-ink-soft" colSpan={2}>
           {result.why}. Not scored, so this creator isn&apos;t flagged. Check them by hand.
         </td>
         {ordersCell}
@@ -296,7 +299,7 @@ function Row({
             </span>
             {verdict?.ok ? verdict.texts[i] : reason.text}
             {verdict?.ok && (
-              <span className="ml-1 rounded bg-violet-100 px-1 text-[10px] font-medium text-violet-800">AI wording</span>
+              <span className="ml-1 rounded bg-lavender px-1 text-[10px] font-medium text-brand-purple">AI wording</span>
             )}
           </p>
           <p className="mt-1 text-xs text-zinc-500">{reason.evidence}</p>
