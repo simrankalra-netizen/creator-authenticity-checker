@@ -4,7 +4,9 @@
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
 
-export type PageText = { ok: true; url: string; title: string; text: string } | { ok: false; reason: string; message: string };
+export type PageText =
+  | { ok: true; url: string; title: string; text: string; html: string }
+  | { ok: false; reason: string; message: string };
 
 const TIMEOUT_MS = 8_000;
 const MAX_BYTES = 1_500_000;
@@ -78,7 +80,7 @@ async function checkHost(host: string) {
   }
 }
 
-export async function readPage(input: string): Promise<PageText> {
+export async function readPage(input: string, timeoutMs = TIMEOUT_MS): Promise<PageText> {
   let url = normaliseUrl(input);
   if (!url) return fail("invalid", "That doesn't look like a website address. Try something like mybrand.in.");
   if (isInstagram(url.hostname)) {
@@ -94,8 +96,8 @@ export async function readPage(input: string): Promise<PageText> {
     try {
       res = await fetch(url, {
         redirect: "manual",
-        signal: AbortSignal.timeout(TIMEOUT_MS),
-        headers: { "User-Agent": "Mozilla/5.0 (compatible; CollabgramBot/1.0; brand summary)", Accept: "text/html" },
+        signal: AbortSignal.timeout(timeoutMs),
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; CollabgramBot/1.0; brand profile)", Accept: "text/html" },
       });
     } catch {
       return fail("unreachable", "We couldn't reach that website (it may be down, slow or blocking us). Describe your brand below instead.");
@@ -130,9 +132,10 @@ export async function readPage(input: string): Promise<PageText> {
       break;
     }
   }
-  const { title, text } = extractText(new TextDecoder().decode(Buffer.concat(chunks)));
+  const html = new TextDecoder().decode(Buffer.concat(chunks));
+  const { title, text } = extractText(html);
   if (text.length < MIN_TEXT_CHARS) {
     return fail("too_little_text", "That website has too little readable text (it may need JavaScript or a login). Describe your brand below instead.");
   }
-  return { ok: true, url: url.toString(), title, text };
+  return { ok: true, url: url.toString(), title, text, html };
 }

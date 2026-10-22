@@ -11,10 +11,14 @@ export default function App() {
   // Runs in the browser only (see app/page.tsx), so saved answers can load at once
   const [brief, setBriefState] = useState<Brief>(loadBrief);
 
-  const setBrief = (b: Brief) => {
-    setBriefState(b);
-    saveBrief(b);
-    window.scrollTo(0, 0);
+  // Accepts new answers, or a function of the latest answers (safe after a slow request)
+  const setBrief = (change: Brief | ((latest: Brief) => Brief)) => {
+    setBriefState((latest) => {
+      const b = typeof change === "function" ? change(latest) : change;
+      saveBrief(b);
+      if (b.step !== latest.step) window.scrollTo(0, 0); // new screen: start at the top
+      return b;
+    });
   };
 
   if (brief.step <= 7) return <Onboarding brief={brief} setBrief={setBrief} />;

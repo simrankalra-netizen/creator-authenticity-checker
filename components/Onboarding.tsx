@@ -11,6 +11,10 @@ import {
 import { COUNTRIES, checkPhone, dialCode } from "@/lib/phone";
 import { RESEND_WAIT_SECONDS } from "@/lib/otpSettings";
 import Logo from "@/components/Logo";
+import {
+  NOT_CLEAR, PROFILE_FIELDS, nicheName, suggestFollowerRange, suggestNiche,
+  type BrandProfile, type Confidence, type FieldKey,
+} from "@/lib/brandProfile";
 
 type StepProps = {
   brief: Brief;
@@ -20,11 +24,14 @@ type StepProps = {
 
 const TOTAL_STEPS = 6;
 
-export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief: (b: Brief) => void }) {
-  const update = (patch: Partial<Brief>) => setBrief({ ...brief, ...patch });
+type SetBrief = (change: Brief | ((latest: Brief) => Brief)) => void;
+
+export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief: SetBrief }) {
+  // Always build on the latest answers, so a slow website read never overwrites newer typing
+  const update = (patch: Partial<Brief>) => setBrief((b) => ({ ...b, ...patch }));
   const next = (patch: Partial<Brief> = {}) =>
-    setBrief({ ...brief, ...patch, step: brief.returnToBrief ? 7 : brief.step + 1, returnToBrief: false });
-  const back = () => setBrief({ ...brief, step: Math.max(1, brief.step - 1), returnToBrief: false });
+    setBrief((b) => ({ ...b, ...patch, step: b.returnToBrief ? 7 : b.step + 1, returnToBrief: false }));
+  const back = () => setBrief((b) => ({ ...b, step: Math.max(1, b.step - 1), returnToBrief: false }));
 
   const props = { brief, update, next };
   if (brief.step === 7) return <BriefReady brief={brief} setBrief={setBrief} />;
@@ -296,78 +303,104 @@ function BrandNameStep({ brief, update, next }: StepProps) {
   );
 }
 
-// ---------- Step 4: website + summary ----------
+// ---------- Step 4: website -> Brand Profile ----------
+
+const PROFILE_TIMEOUT_MS = 45_000;
 
 function LinkStep({ brief, update, next }: StepProps) {
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState("");
   const [readError, setReadError] = useState("");
   const [error, setError] = useState("");
-  // Show the description box once there is a summary, a read error, or the user chose to type
-  const [showBox, setShowBox] = useState(Boolean(brief.summary));
+  // Typing a description: when the user chose to, or the website couldn't be read
+  const [describing, setDescribing] = useState(brief.summarySource === "manual" && !brief.profile);
 
-  async function readWebsite() {
+  async function buildProfile(body: { link: string } | { description: string }) {
     setReadError("");
     setError("");
-    if (!brief.link.trim()) return setError("Enter your website address, or describe your brand instead.");
-    setBusy(true);
-    const { status, data } = await post("/api/brand-summary", { link: brief.link });
-    setBusy(false);
-    if (status === 200) {
-      update({ summary: data.summary, summarySource: "website" });
-    } else {
-      setReadError(data.error);
-      update({ summary: "", summarySource: "manual" });
+    setBusy("link" in body ? "Reading your website (up to 5 pages)…" : "Building your brand profile…");
+    const later = setTimeout(() => setBusy("Building your brand profile…"), 6_000);
+    let result: { status: number; data: { profile?: BrandProfile; error?: string } };
+    try {
+      const res = await fetch("/api/brand-profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(PROFILE_TIMEOUT_MS),
+      });
+      result = { status: res.status, data: await res.json() };
+    } catch {
+      result = { status: 0, data: { error: "That took too long. Try again, or describe your brand instead." } };
     }
-    setShowBox(true);
+    clearTimeout(later);
+    setBusy("");
+    if (result.status === 200 && result.data.profile) {
+      update({ profile: result.data.profile, summarySource: "link" in body ? "website" : "manual" });
+      setDescribing(false);
+    } else {
+      setReadError(result.data.error ?? "Something went wrong. Describe your brand instead.");
+      update({ profile: null, summarySource: "manual" });
+      setDescribing(true); // never show a made-up profile: ask for a description instead
+    }
+  }
+
+  function confirm() {
+    if (!brief.profile) return;
+    // Pre-fill Step 5 from the profile, unless the user already chose a niche
+    const suggested = brief.niche ? null : suggestNiche(brief.profile);
+    next({ ...(suggested ?? {}) });
   }
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (!showBox) return void readWebsite();
-        if (brief.summary.trim().length < 10) return setError("Write at least a short sentence about what your brand sells.");
-        next({ summary: brief.summary.trim() });
+        if (busy) return;
+        if (brief.profile) return confirm();
+        if (describing) return void buildProfile({ description: brief.summary });
+        if (!brief.link.trim()) return setError("Enter your website address, or describe your brand instead.");
+        void buildProfile({ link: brief.link });
       }}
       noValidate
     >
       <Question
         title="Share your brand's website or Instagram link."
-        hint="So we can read what your brand is about. Your website works best: Instagram pages can't be read automatically."
+        hint="We read your website to build a Brand Profile. Your website works best: Instagram pages can't be read automatically."
       />
       <input
         aria-label="Website or Instagram link"
         placeholder="e.g. masalabox.in"
         value={brief.link}
-        onChange={(e) => update({ link: e.target.value })}
+        onChange={(e) => {
+          setError("");
+          update({ link: e.target.value });
+        }}
         className={`${inputClass} mt-4`}
       />
-      <button
-        type="button"
-        onClick={readWebsite}
-        disabled={busy}
-        className="mt-2 rounded-lg border border-zinc-300 px-3 py-1.5 text-sm disabled:opacity-50"
-      >
-        {busy ? "Reading your website…" : showBox ? "Read again" : "Read my website"}
-      </button>
-      {!showBox && (
+      {(brief.profile || describing) && (
         <button
           type="button"
           onClick={() => {
-            setShowBox(true);
-            update({ summarySource: "manual" });
+            if (!brief.link.trim()) return setError("Enter your website address first.");
+            update({ profile: null });
+            void buildProfile({ link: brief.link });
           }}
-          className="ml-3 text-sm text-ink-soft underline"
+          disabled={Boolean(busy)}
+          className="mt-2 rounded-lg border border-zinc-300 px-3 py-1.5 text-sm disabled:opacity-50"
         >
+          Read my website again
+        </button>
+      )}
+      {!brief.profile && !describing && (
+        <button type="button" onClick={() => setDescribing(true)} className="mt-2 block text-sm text-ink-soft underline">
           No website? Describe your brand instead
         </button>
       )}
       <ErrorText>{readError}</ErrorText>
 
-      {showBox && (
+      {describing && !brief.profile && (
         <div className="mt-4">
           <label className="text-sm font-medium" htmlFor="summary">
-            {brief.summarySource === "website" ? "Here's what we understood. Confirm or edit it:" : "Describe your brand in a sentence or two:"}
+            Describe your brand in a sentence or two: what you sell, and who buys it.
           </label>
           <textarea
             id="summary"
@@ -376,18 +409,109 @@ function LinkStep({ brief, update, next }: StepProps) {
             value={brief.summary}
             onChange={(e) => {
               setError("");
-              update({ summary: e.target.value, summarySource: brief.summarySource || "manual" });
+              update({ summary: e.target.value });
             }}
             className={inputClass}
           />
-          {brief.summarySource === "website" && (
-            <p className="text-xs text-zinc-500">Written by AI from your website&apos;s text only.</p>
-          )}
+          <p className="text-xs text-zinc-500">We&apos;ll build your Brand Profile from these words only.</p>
         </div>
       )}
+
+      {busy && <p className="mt-4 text-sm text-ink-soft" role="status">{busy} This usually takes 10–20 seconds.</p>}
+
+      {brief.profile && <ProfileCard profile={brief.profile} onChange={(profile) => update({ profile })} />}
+
       <ErrorText>{error}</ErrorText>
-      <Continue label={showBox ? (brief.summarySource === "website" ? "Looks right, continue" : "Continue") : "Read my website"} busy={busy} />
+      <Continue
+        label={brief.profile ? "Confirm profile" : describing ? "Build profile from my description" : "Read my website"}
+        busy={Boolean(busy)}
+      />
     </form>
+  );
+}
+
+const CONFIDENCE_STYLE: Record<Confidence, string> = {
+  high: "bg-mint-tint text-brand-teal",
+  medium: "bg-lavender text-brand-purple",
+  low: "bg-amber-100 text-amber-900",
+};
+
+function ProfileCard({ profile, onChange }: { profile: BrandProfile; onChange: (p: BrandProfile) => void }) {
+  const [editing, setEditing] = useState<FieldKey | null>(null);
+  const [draft, setDraft] = useState("");
+  const notClearText = profile.source === "website" ? NOT_CLEAR : "Not clear from your description";
+
+  function save(key: FieldKey) {
+    const value = draft.trim();
+    const field = value
+      ? { value, evidence: "Edited by you", confidence: "high" as Confidence, clear: true, edited: true }
+      : { value: NOT_CLEAR, evidence: "Cleared by you", confidence: "low" as Confidence, clear: false, edited: true };
+    onChange({ ...profile, fields: { ...profile.fields, [key]: field } });
+    setEditing(null);
+  }
+
+  return (
+    <section className="mt-5 rounded-xl border border-brand-purple/30 bg-white" aria-label="Brand Profile">
+      <div className="rounded-t-xl bg-lavender px-4 py-3">
+        <p className="font-semibold">Your Brand Profile</p>
+        <p className="text-xs text-ink-soft">
+          {profile.source === "website" ? `Built from your website: ${profile.pagesRead.join(", ")}.` : "Built from your description."}{" "}
+          Check each answer, edit anything that&apos;s wrong, then confirm.
+        </p>
+      </div>
+      {profile.thin && (
+        <p className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-900">
+          Thin website: we could only read a little, so some answers are low confidence. Please check them.
+        </p>
+      )}
+      <dl className="divide-y divide-zinc-100">
+        {PROFILE_FIELDS.map(({ key, label }) => {
+          const f = profile.fields[key];
+          return (
+            <div key={key} className="px-4 py-3 text-sm">
+              <div className="flex items-start justify-between gap-3">
+                <dt className="font-medium">{label}</dt>
+                <div className="flex shrink-0 items-center gap-2">
+                  {f.edited ? (
+                    <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-ink-soft">Edited by you</span>
+                  ) : f.clear ? (
+                    <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${CONFIDENCE_STYLE[f.confidence]}`}>
+                      {f.confidence[0].toUpperCase() + f.confidence.slice(1)} confidence
+                    </span>
+                  ) : null}
+                  {editing !== key && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditing(key);
+                        setDraft(f.clear ? f.value : "");
+                      }}
+                      className="text-xs text-ink-soft underline"
+                    >
+                      Edit
+                    </button>
+                  )}
+                </div>
+              </div>
+              {editing === key ? (
+                <div className="mt-2">
+                  <textarea aria-label={label} rows={2} value={draft} onChange={(e) => setDraft(e.target.value)} className={inputClass} />
+                  <div className="mt-1 flex gap-3 text-xs">
+                    <button type="button" onClick={() => save(key)} className="font-medium text-brand-purple underline">Save</button>
+                    <button type="button" onClick={() => setEditing(null)} className="text-ink-soft underline">Cancel</button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <dd className={`mt-1 ${f.clear ? "" : "italic text-zinc-500"}`}>{f.clear ? f.value : notClearText}</dd>
+                  {!f.edited && <dd className="mt-0.5 text-xs text-zinc-500">{f.evidence}</dd>}
+                </>
+              )}
+            </div>
+          );
+        })}
+      </dl>
+    </section>
   );
 }
 
@@ -406,6 +530,11 @@ function NicheStep({ brief, update, next }: StepProps) {
       noValidate
     >
       <Question title="What is your brand's niche?" />
+      {brief.profile && nicheName(brief.profile) && (
+        <p className="mt-2 rounded-lg bg-lavender px-3 py-2 text-sm">
+          Suggested from your Brand Profile: <strong>{brief.profile.fields.niche.value}</strong>. Confirm it or pick another.
+        </p>
+      )}
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
         {NICHES.map((n) => (
           <Choice key={n} name="niche" value={n} checked={brief.niche === n} onChange={(v) => { setError(""); update({ niche: v }); }}>
@@ -432,11 +561,21 @@ function NicheStep({ brief, update, next }: StepProps) {
 
 function InfluencerStep({ brief, update, next }: StepProps) {
   const [error, setError] = useState("");
-  // Start with the brand's own niche as the influencer niche
+  const profile = brief.profile;
+  // Pre-fill from the Brand Profile (or the chosen niche) where it makes sense; the user can change anything
   useEffect(() => {
-    if (!brief.influencerNiche) update({ influencerNiche: nicheLabel(brief) });
+    const patch: Partial<Brief> = {};
+    if (!brief.influencerNiche) patch.influencerNiche = (profile && nicheName(profile)) || nicheLabel(brief);
+    if (!brief.followerRange && profile && suggestFollowerRange(profile)) {
+      patch.followerRange = suggestFollowerRange(profile);
+      patch.followerRangeSuggested = true;
+    }
+    if (Object.keys(patch).length) update(patch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const audience = profile
+    ? [profile.fields.age, profile.fields.gender].filter((f) => f.clear).map((f) => f.value).join(" · ")
+    : "";
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -456,6 +595,11 @@ function InfluencerStep({ brief, update, next }: StepProps) {
   return (
     <form onSubmit={submit} noValidate className="space-y-5">
       <Question title="Tell us about the influencers you want to work with." />
+      {audience && (
+        <p className="rounded-lg bg-mint-tint px-3 py-2 text-sm">
+          Your audience (from your Brand Profile): <strong>{audience}</strong>. Pick creators who reach these people.
+        </p>
+      )}
 
       <fieldset>
         <legend className="text-sm font-medium">Which niche should the influencer be in?</legend>
@@ -486,11 +630,16 @@ function InfluencerStep({ brief, update, next }: StepProps) {
         <legend className="text-sm font-medium">What follower range suits your category?</legend>
         <div className="mt-1 grid grid-cols-2 gap-2">
           {FOLLOWER_RANGES.map((r) => (
-            <Choice key={r.value} name="range" value={r.value} checked={brief.followerRange === r.value} onChange={(v) => update({ followerRange: v })}>
+            <Choice key={r.value} name="range" value={r.value} checked={brief.followerRange === r.value} onChange={(v) => update({ followerRange: v, followerRangeSuggested: false })}>
               {r.label} <span className="text-zinc-500">({r.detail})</span>
             </Choice>
           ))}
         </div>
+        {brief.followerRangeSuggested && profile?.fields.price.clear && (
+          <p className="mt-1 text-xs text-ink-soft">
+            Suggested from your {profile.fields.price.value.toLowerCase()} price positioning. Change it if another range suits you better.
+          </p>
+        )}
       </fieldset>
 
       <fieldset>
@@ -521,12 +670,22 @@ function InfluencerStep({ brief, update, next }: StepProps) {
 
 // ---------- "Your brief is ready" ----------
 
+// The confirmed Brand Profile, one row per field ("Not clear" rows included, so nothing looks invented)
+function profileRows(b: Brief): [string, string, number][] {
+  if (!b.profile) return [["About the brand", b.summary || "Not given", 4]];
+  const from = b.profile.source === "website" ? "from your website" : "from your description";
+  return PROFILE_FIELDS.map(({ key, label }) => {
+    const f = b.profile!.fields[key];
+    return [label, f.clear ? f.value : `Not clear ${from}`, 4] as [string, string, number];
+  });
+}
+
 export function briefRows(b: Brief): [string, string, number][] {
   return [
     ["Phone", `${b.phoneE164} (verified${b.smsMode === "demo" ? " in demo mode" : ""})`, 1],
     ["Brand", b.brandName, 3],
     ["Website or link", b.link || "Not given", 4],
-    ["About the brand", b.summary + (b.summarySource === "website" ? " (from your website)" : ""), 4],
+    ...profileRows(b),
     ["Brand niche", nicheLabel(b), 5],
     ["Influencer niche", b.influencerNiche, 6],
     ["Location", locationLabel(b), 6],
@@ -537,7 +696,7 @@ export function briefRows(b: Brief): [string, string, number][] {
   ];
 }
 
-function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: (b: Brief) => void }) {
+function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: SetBrief }) {
   return (
     <main className="mx-auto w-full max-w-xl px-4 py-8 text-ink">
       <BrandHeader />

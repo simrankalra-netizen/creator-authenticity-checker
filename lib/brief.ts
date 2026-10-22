@@ -1,6 +1,7 @@
 // The onboarding answers. Kept in this browser tab's sessionStorage only:
 // they survive a refresh and disappear when the tab is closed. No database.
 import type { CountryCode } from "libphonenumber-js";
+import type { BrandProfile } from "./brandProfile";
 
 export const NICHES = ["Fashion", "Beauty", "Food", "Fitness", "Tech", "Home", "Other"] as const;
 export const GOALS = [
@@ -27,8 +28,10 @@ export type Brief = {
   verifiedPhone: string; // the number that passed the code check ("" = not verified)
   brandName: string;
   link: string;
-  summary: string;
+  summary: string; // the user's own description, used when the website can't be read
   summarySource: "" | "website" | "manual";
+  profile: BrandProfile | null; // the confirmed Brand Profile from Step 4
+  followerRangeSuggested: boolean; // follower range was pre-filled from the profile
   niche: string;
   nicheOther: string;
   influencerNiche: string;
@@ -54,6 +57,8 @@ export const EMPTY_BRIEF: Brief = {
   link: "",
   summary: "",
   summarySource: "",
+  profile: null,
+  followerRangeSuggested: false,
   niche: "",
   nicheOther: "",
   influencerNiche: "",
