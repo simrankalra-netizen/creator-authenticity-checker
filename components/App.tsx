@@ -1,10 +1,11 @@
 "use client";
 
-// The app: opens on the onboarding questions; once the brief is ready, shows the
-// existing creator authenticity screen with the brief above it as context.
+// The app: opens on the onboarding questions; once the brief is ready, shows
+// "Your top 10 creators", with the existing CSV creator check one click away.
 import { useState } from "react";
 import Onboarding, { briefRows } from "@/components/Onboarding";
 import CreatorChecker from "@/components/CreatorChecker";
+import TopCreators from "@/components/TopCreators";
 import { loadBrief, saveBrief, type Brief } from "@/lib/brief";
 
 export default function App() {
@@ -22,9 +23,24 @@ export default function App() {
   };
 
   if (brief.step <= 7) return <Onboarding brief={brief} setBrief={setBrief} />;
+  if (brief.step === 8) {
+    return (
+      <TopCreators
+        brief={brief}
+        onEditBrief={() => setBrief((b) => ({ ...b, step: 7 }))}
+        onOpenChecker={() => setBrief((b) => ({ ...b, step: 9 }))}
+      />
+    );
+  }
 
+  // Step 9: the existing CSV creator check, with the brief as context
   return (
     <>
+      <div className="mx-auto mt-6 w-full max-w-6xl px-4">
+        <button type="button" onClick={() => setBrief((b) => ({ ...b, step: 8 }))} className="text-sm text-ink-soft underline">
+          ← Back to your top 10 creators
+        </button>
+      </div>
       <BriefPanel brief={brief} onEdit={() => setBrief({ ...brief, step: 7 })} />
       <CreatorChecker />
     </>

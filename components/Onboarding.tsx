@@ -4,12 +4,13 @@
 // Every answer lives in the Brief object, so Back never loses anything.
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  FOLLOWER_RANGES, GOALS, NICHES, PLATFORMS,
+  AGE_RANGES, FOLLOWER_RANGES, GOALS, NICHES, PLATFORMS,
   goalLabel, locationLabel, nicheLabel, platformLabel, rangeLabel,
   type Brief,
 } from "@/lib/brief";
 import { COUNTRIES, checkPhone, dialCode } from "@/lib/phone";
 import { RESEND_WAIT_SECONDS } from "@/lib/otpSettings";
+import { WEBSITE_PROFILE_ENABLED } from "@/lib/features";
 import Logo from "@/components/Logo";
 import {
   NOT_CLEAR, PROFILE_FIELDS, nicheName, suggestFollowerRange, suggestNiche,
@@ -65,7 +66,7 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
         {brief.step === 1 && <PhoneStep {...props} />}
         {brief.step === 2 && <CodeStep {...props} />}
         {brief.step === 3 && <BrandNameStep {...props} />}
-        {brief.step === 4 && <LinkStep {...props} />}
+        {brief.step === 4 && (WEBSITE_PROFILE_ENABLED ? <LinkStep {...props} /> : <BrandAboutStep {...props} />)}
         {brief.step === 5 && <NicheStep {...props} />}
         {brief.step === 6 && <InfluencerStep {...props} />}
       </div>
@@ -303,7 +304,49 @@ function BrandNameStep({ brief, update, next }: StepProps) {
   );
 }
 
-// ---------- Step 4: website -> Brand Profile ----------
+// ---------- Step 4 (while website reading is paused): website + typed description ----------
+
+function BrandAboutStep({ brief, update, next }: StepProps) {
+  const [error, setError] = useState("");
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (brief.summary.trim().length < 10) return setError("Write a short sentence about what your brand sells and who buys it.");
+        next({ summary: brief.summary.trim(), summarySource: "manual", profile: null });
+      }}
+      noValidate
+    >
+      <Question title="Tell us about your brand." hint="A sentence or two: what you sell, and who buys it." />
+      <textarea
+        aria-label="About your brand"
+        rows={4}
+        placeholder="e.g. We sell ready-to-cook spice kits to busy young professionals in Indian cities."
+        value={brief.summary}
+        onChange={(e) => {
+          setError("");
+          update({ summary: e.target.value });
+        }}
+        className={`${inputClass} mt-4`}
+      />
+      <label className="mt-4 block text-sm font-medium" htmlFor="website">
+        Your website <span className="font-normal text-zinc-500">(optional)</span>
+      </label>
+      <input
+        id="website"
+        placeholder="e.g. masalabox.in"
+        value={brief.link}
+        onChange={(e) => update({ link: e.target.value })}
+        className={inputClass}
+      />
+      <p className="mt-1 text-xs text-zinc-500">We save it for later. Reading websites automatically is paused for now.</p>
+      <ErrorText>{error}</ErrorText>
+      <Continue />
+    </form>
+  );
+}
+
+// ---------- Step 4: website -> Brand Profile (paused: see lib/features.ts) ----------
 
 const PROFILE_TIMEOUT_MS = 45_000;
 
@@ -607,6 +650,19 @@ function InfluencerStep({ brief, update, next }: StepProps) {
       </fieldset>
 
       <fieldset>
+        <legend className="text-sm font-medium">
+          What age are your customers? <span className="font-normal text-zinc-500">(optional)</span>
+        </legend>
+        <div className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-5">
+          {[...AGE_RANGES, ""].map((a) => (
+            <Choice key={a || "skip"} name="age" value={a} checked={brief.targetAge === a} onChange={(v) => update({ targetAge: v })}>
+              {a ? a.replace("-", "–") : "Not sure"}
+            </Choice>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
         <legend className="text-sm font-medium">Do you want creators from a specific location, or anywhere?</legend>
         <div className="mt-1 grid grid-cols-2 gap-2">
           <Choice name="loc" value="anywhere" checked={brief.locationMode === "anywhere"} onChange={() => update({ locationMode: "anywhere" })}>Anywhere</Choice>
@@ -688,6 +744,7 @@ export function briefRows(b: Brief): [string, string, number][] {
     ...profileRows(b),
     ["Brand niche", nicheLabel(b), 5],
     ["Influencer niche", b.influencerNiche, 6],
+    ["Customer age", b.targetAge ? b.targetAge.replace("-", "–") : "Not given", 6],
     ["Location", locationLabel(b), 6],
     ["Main goal", goalLabel(b), 6],
     ["Follower range", rangeLabel(b), 6],
@@ -718,7 +775,7 @@ function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: SetBrief }) {
         onClick={() => setBrief({ ...brief, step: 8 })}
         className="mt-5 w-full rounded-lg bg-ink px-4 py-2.5 font-medium text-white"
       >
-        Continue to creator check
+        See your top 10 creators
       </button>
     </main>
   );

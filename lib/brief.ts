@@ -16,9 +16,10 @@ export const FOLLOWER_RANGES = [
   { value: "macro", label: "Macro", detail: "500k+" },
 ] as const;
 export const PLATFORMS = ["Instagram", "YouTube", "Other"] as const;
+export const AGE_RANGES = ["18-24", "25-34", "35-44", "45+"] as const;
 
 export type Brief = {
-  step: number; // 1–6 = onboarding question, 7 = "Your brief is ready", 8 = creator screens
+  step: number; // 1–6 = onboarding question, 7 = "Your brief is ready", 8 = top 10 creators, 9 = CSV creator check
   returnToBrief: boolean; // editing one answer from the brief screen
   country: CountryCode;
   phoneNumber: string;
@@ -35,6 +36,7 @@ export type Brief = {
   niche: string;
   nicheOther: string;
   influencerNiche: string;
+  targetAge: string; // optional: the brand's customers' age range, e.g. "25-34" ("" = not given)
   locationMode: "anywhere" | "specific";
   location: string;
   goal: string;
@@ -62,6 +64,7 @@ export const EMPTY_BRIEF: Brief = {
   niche: "",
   nicheOther: "",
   influencerNiche: "",
+  targetAge: "",
   locationMode: "anywhere",
   location: "",
   goal: "",

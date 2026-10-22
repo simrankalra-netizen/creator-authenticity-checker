@@ -1,0 +1,6701 @@
+[
+ {
+  "id": "c001",
+  "handle": "varun_bakes.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Street food",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 1226000,
+  "avgLikes": 4951,
+  "avgComments": 21,
+  "followerHistory": [
+   1084827,
+   1094376,
+   1101731,
+   1109585,
+   1118309,
+   1133451,
+   1142502,
+   1153701,
+   1160882,
+   1172640,
+   1185348,
+   1199109,
+   1226000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 24,
+   "25-34": 48,
+   "35-44": 21,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 37
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 3
+  },
+  "pastBrands": [],
+  "ratePerPost": 382000,
+  "pastCampaigns": [],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c002",
+  "handle": "priya_nook.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Organising",
+  "city": "Pune",
+  "state": "Maharashtra",
+  "followers": 6600,
+  "avgLikes": 506,
+  "avgComments": 23,
+  "followerHistory": [
+   6117,
+   6173,
+   6199,
+   6235,
+   6262,
+   6312,
+   6348,
+   6388,
+   6417,
+   6457,
+   6501,
+   6533,
+   6600
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 6,
+  "audienceAge": {
+   "18-24": 20,
+   "25-34": 42,
+   "35-44": 30,
+   "45+": 8
+  },
+  "audienceTopCities": [
+   {
+    "city": "Pune",
+    "pct": 48
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 17
+   },
+   {
+    "city": "Kochi",
+    "pct": 5
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 12,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "FitFuel",
+   "Rang Threads"
+  ],
+  "ratePerPost": 2000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c003",
+  "handle": "ayaan_threads.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Sustainable fashion",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 207400,
+  "avgLikes": 5527,
+  "avgComments": 243,
+  "followerHistory": [
+   185613,
+   188130,
+   189436,
+   191736,
+   194238,
+   195544,
+   197680,
+   199221,
+   201352,
+   202937,
+   204137,
+   205771,
+   207400
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 35,
+   "35-44": 15,
+   "45+": 12
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 41
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 10
+   },
+   {
+    "city": "Mumbai",
+    "pct": 7
+   },
+   {
+    "city": "Lucknow",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "FitFuel",
+   "Loom & Lane",
+   "PeakPro"
+  ],
+  "ratePerPost": 53000,
+  "pastCampaigns": [
+   {
+    "brand": "Nimbus Tech",
+    "orders": 79,
+    "method": "link"
+   },
+   {
+    "brand": "PeakPro",
+    "orders": 85,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c004",
+  "handle": "dev_decor.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "DIY",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 63100,
+  "avgLikes": 1604,
+  "avgComments": 87,
+  "followerHistory": [
+   61547,
+   61651,
+   61806,
+   61889,
+   62024,
+   62157,
+   62304,
+   62384,
+   62464,
+   62556,
+   62700,
+   62839,
+   63100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 15,
+   "25-34": 48,
+   "35-44": 27,
+   "45+": 10
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 39
+   },
+   {
+    "city": "Mumbai",
+    "pct": 9
+   },
+   {
+    "city": "Jaipur",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "Glowberry",
+   "PeakPro",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 41000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c005",
+  "handle": "ananya_closet.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "followers": 1452450,
+  "avgLikes": 33295,
+  "avgComments": 863,
+  "followerHistory": [
+   1417693,
+   1420662,
+   1422772,
+   1425560,
+   1427822,
+   1431573,
+   1433314,
+   1435242,
+   1439280,
+   1443112,
+   1446175,
+   1449050,
+   1452450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 45,
+   "25-34": 47,
+   "35-44": 6,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Hyderabad",
+    "pct": 32
+   },
+   {
+    "city": "Mumbai",
+    "pct": 9
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 450000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c006",
+  "handle": "priya_tadka.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Street food",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 75150,
+  "avgLikes": 1705,
+  "avgComments": 42,
+  "followerHistory": [
+   72589,
+   72789,
+   73038,
+   73222,
+   73516,
+   73788,
+   74001,
+   74260,
+   74514,
+   74669,
+   74871,
+   75054,
+   75150
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 8,
+  "audienceAge": {
+   "18-24": 26,
+   "25-34": 34,
+   "35-44": 27,
+   "45+": 13
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 40
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Chai Theory",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 32000,
+  "pastCampaigns": [
+   {
+    "brand": "UrbanKraft",
+    "orders": 13,
+    "method": "link"
+   },
+   {
+    "brand": "Nimbus Tech",
+    "orders": 15,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c007",
+  "handle": "ananya_plants.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Plants",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 81100,
+  "avgLikes": 2928,
+  "avgComments": 113,
+  "followerHistory": [
+   72856,
+   73445,
+   74204,
+   74692,
+   75545,
+   76043,
+   76831,
+   77635,
+   78083,
+   79025,
+   79922,
+   80343,
+   81100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 25,
+   "25-34": 35,
+   "35-44": 19,
+   "45+": 21
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 38
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 44500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c008",
+  "handle": "nikhil_tech61.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Ahmedabad",
+  "state": "Gujarat",
+  "followers": 93650,
+  "avgLikes": 2087,
+  "avgComments": 104,
+  "followerHistory": [
+   87426,
+   87912,
+   88554,
+   89201,
+   89670,
+   90306,
+   90797,
+   91504,
+   91907,
+   92240,
+   92600,
+   93218,
+   93650
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 17,
+  "audienceAge": {
+   "18-24": 46,
+   "25-34": 38,
+   "35-44": 12,
+   "45+": 4
+  },
+  "audienceTopCities": [
+   {
+    "city": "Ahmedabad",
+    "pct": 49
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 14,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "FitFuel",
+   "Nimbus Tech",
+   "Glowberry"
+  ],
+  "ratePerPost": 24500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c009",
+  "handle": "varun_gadgets54.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gaming",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "followers": 54350,
+  "avgLikes": 2823,
+  "avgComments": 140,
+  "followerHistory": [
+   49871,
+   50202,
+   50611,
+   51125,
+   51379,
+   51640,
+   52106,
+   52578,
+   53007,
+   53273,
+   53595,
+   53837,
+   54350
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 8,
+  "audienceAge": {
+   "18-24": 32,
+   "25-34": 39,
+   "35-44": 25,
+   "45+": 4
+  },
+  "audienceTopCities": [
+   {
+    "city": "Hyderabad",
+    "pct": 47
+   },
+   {
+    "city": "Mumbai",
+    "pct": 14
+   },
+   {
+    "city": "Delhi",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "PixelNest",
+   "Lotus Leaf Co.",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 36500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c010",
+  "handle": "meera_foodie62.demo",
+  "platform": "YouTube",
+  "niche": "Food",
+  "subNiche": "Baking",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 4150,
+  "avgLikes": 222,
+  "avgComments": 15,
+  "followerHistory": [
+   4023,
+   4036,
+   4046,
+   4054,
+   4064,
+   4073,
+   4082,
+   4094,
+   4105,
+   4119,
+   4127,
+   4137,
+   4150
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 26,
+   "25-34": 37,
+   "35-44": 24,
+   "45+": 13
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 34
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 10
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Indore",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Glowberry",
+   "PixelNest",
+   "PeakPro"
+  ],
+  "ratePerPost": 2500,
+  "pastCampaigns": [
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 2,
+    "method": "link"
+   },
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 2,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c011",
+  "handle": "vikram_glow.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Makeup",
+  "city": "Indore",
+  "state": "Madhya Pradesh",
+  "followers": 48700,
+  "avgLikes": 1834,
+  "avgComments": 111,
+  "followerHistory": [
+   45253,
+   45428,
+   45740,
+   46016,
+   46259,
+   46466,
+   46795,
+   47058,
+   47443,
+   47766,
+   48153,
+   48382,
+   48700
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 47,
+   "25-34": 27,
+   "35-44": 14,
+   "45+": 12
+  },
+  "audienceTopCities": [
+   {
+    "city": "Indore",
+    "pct": 39
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Pune",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 10000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c012",
+  "handle": "yash_threads.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Goa",
+  "state": "Goa",
+  "followers": 451450,
+  "avgLikes": 7684,
+  "avgComments": 439,
+  "followerHistory": [
+   437055,
+   438193,
+   439497,
+   440755,
+   442109,
+   443583,
+   444586,
+   445510,
+   446692,
+   447634,
+   448448,
+   449954,
+   451450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 53,
+   "25-34": 39,
+   "35-44": 5,
+   "45+": 3
+  },
+  "audienceTopCities": [
+   {
+    "city": "Goa",
+    "pct": 48
+   },
+   {
+    "city": "Mumbai",
+    "pct": 16
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 8,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "PeakPro",
+   "Loom & Lane",
+   "Chai Theory",
+   "Casa Verde"
+  ],
+  "ratePerPost": 123000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c013",
+  "handle": "sana_tadka79.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Baking",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 88500,
+  "avgLikes": 4097,
+  "avgComments": 176,
+  "followerHistory": [
+   79169,
+   79748,
+   80336,
+   81393,
+   81947,
+   82963,
+   83983,
+   85008,
+   85857,
+   86673,
+   87431,
+   88352,
+   88500
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 26,
+   "25-34": 45,
+   "35-44": 24,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 35
+   },
+   {
+    "city": "Mumbai",
+    "pct": 9
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 3
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 8,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "PixelNest",
+   "Rang Threads",
+   "FitFuel"
+  ],
+  "ratePerPost": 23000,
+  "pastCampaigns": [
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 56,
+    "method": "link"
+   },
+   {
+    "brand": "FitFuel",
+    "orders": 39,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c014",
+  "handle": "diya_threads81.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Ethnic wear",
+  "city": "Chandigarh",
+  "state": "Chandigarh",
+  "followers": 548,
+  "avgLikes": 21,
+  "avgComments": 0,
+  "followerHistory": [
+   504,
+   508,
+   513,
+   517,
+   520,
+   525,
+   529,
+   532,
+   535,
+   539,
+   544,
+   547,
+   548
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 50,
+   "35-44": 7,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chandigarh",
+    "pct": 27
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 10
+   },
+   {
+    "city": "Goa",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 5,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "Loom & Lane"
+  ],
+  "ratePerPost": 5000,
+  "pastCampaigns": [],
+  "demoKind": "tiny"
+ },
+ {
+  "id": "c015",
+  "handle": "mira_strong50.demo",
+  "platform": "YouTube",
+  "niche": "Fitness",
+  "subNiche": "Gym training",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 9300,
+  "avgLikes": 121,
+  "avgComments": 5,
+  "followerHistory": [
+   5994,
+   6052,
+   6093,
+   6129,
+   6184,
+   6233,
+   6281,
+   6311,
+   9149,
+   9179,
+   9229,
+   9273,
+   9300
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 44,
+   "35-44": 16,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 27
+   },
+   {
+    "city": "Delhi",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 12
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 5,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Casa Verde"
+  ],
+  "ratePerPost": 3500,
+  "pastCampaigns": [
+   {
+    "brand": "Rang Threads",
+    "orders": 1,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c016",
+  "handle": "ayaan_geek.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gaming",
+  "city": "Pune",
+  "state": "Maharashtra",
+  "followers": 80150,
+  "avgLikes": 2660,
+  "avgComments": 90,
+  "followerHistory": [
+   72502,
+   73169,
+   73693,
+   74532,
+   75319,
+   76031,
+   76878,
+   77732,
+   78163,
+   78979,
+   79422,
+   79876,
+   80150
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 34,
+   "35-44": 20,
+   "45+": 12
+  },
+  "audienceTopCities": [
+   {
+    "city": "Pune",
+    "pct": 39
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Mumbai",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 33500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c017",
+  "handle": "aman_fits.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Sustainable fashion",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 62250,
+  "avgLikes": 375,
+  "avgComments": 26,
+  "followerHistory": [
+   35232,
+   35366,
+   35502,
+   35690,
+   35921,
+   36082,
+   36264,
+   36406,
+   36554,
+   36788,
+   36907,
+   62108,
+   62250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 36,
+   "35-44": 17,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 37
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   },
+   {
+    "city": "Mumbai",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "PixelNest"
+  ],
+  "ratePerPost": 25500,
+  "pastCampaigns": [],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c018",
+  "handle": "neha_eats.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Baking",
+  "city": "Indore",
+  "state": "Madhya Pradesh",
+  "followers": 1294000,
+  "avgLikes": 3456,
+  "avgComments": 7,
+  "followerHistory": [
+   1218375,
+   1222932,
+   1227958,
+   1235366,
+   1239818,
+   1247046,
+   1252168,
+   1260160,
+   1267894,
+   1275988,
+   1283636,
+   1291063,
+   1294000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 21,
+   "25-34": 44,
+   "35-44": 15,
+   "45+": 20
+  },
+  "audienceTopCities": [
+   {
+    "city": "Indore",
+    "pct": 29
+   },
+   {
+    "city": "Mumbai",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "UrbanKraft"
+  ],
+  "ratePerPost": 294000,
+  "pastCampaigns": [],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c019",
+  "handle": "aditya_lifts.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Home workouts",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 7400,
+  "avgLikes": 275,
+  "avgComments": 17,
+  "followerHistory": [
+   6654,
+   6694,
+   6758,
+   6830,
+   6906,
+   6972,
+   7009,
+   7088,
+   7133,
+   7192,
+   7266,
+   7341,
+   7400
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 36,
+   "25-34": 36,
+   "35-44": 19,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 41
+   },
+   {
+    "city": "Delhi",
+    "pct": 17
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 5
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 4000,
+  "pastCampaigns": [
+   {
+    "brand": "Spice Route",
+    "orders": 4,
+    "method": "link"
+   },
+   {
+    "brand": "Rang Threads",
+    "orders": 3,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c020",
+  "handle": "vikram_nook77.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Plants",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 42500,
+  "avgLikes": 1563,
+  "avgComments": 52,
+  "followerHistory": [
+   38111,
+   38563,
+   38899,
+   39248,
+   39733,
+   40031,
+   40378,
+   40781,
+   41260,
+   41741,
+   41989,
+   42345,
+   42500
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 21,
+   "25-34": 36,
+   "35-44": 35,
+   "45+": 8
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 43
+   },
+   {
+    "city": "Mumbai",
+    "pct": 13
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   },
+   {
+    "city": "Lucknow",
+    "pct": 3
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "PeakPro",
+   "PixelNest",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 23000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c021",
+  "handle": "diya_fit.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Yoga",
+  "city": "Chennai",
+  "state": "Tamil Nadu",
+  "followers": 39950,
+  "avgLikes": 1342,
+  "avgComments": 41,
+  "followerHistory": [
+   38650,
+   38744,
+   38848,
+   38994,
+   39099,
+   39221,
+   39305,
+   39384,
+   39454,
+   39521,
+   39669,
+   39818,
+   39950
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 17,
+  "audienceAge": {
+   "18-24": 35,
+   "25-34": 50,
+   "35-44": 9,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chennai",
+    "pct": 43
+   },
+   {
+    "city": "Mumbai",
+    "pct": 9
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Indore",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Casa Verde"
+  ],
+  "ratePerPost": 21500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c022",
+  "handle": "ananya_bakes43.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Street food",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 29150,
+  "avgLikes": 839,
+  "avgComments": 41,
+  "followerHistory": [
+   26376,
+   26567,
+   26759,
+   27009,
+   27172,
+   27341,
+   27517,
+   27660,
+   27972,
+   28116,
+   28371,
+   28664,
+   29150
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 34,
+   "35-44": 21,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 55
+   },
+   {
+    "city": "Mumbai",
+    "pct": 9
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "UrbanKraft",
+   "PeakPro"
+  ],
+  "ratePerPost": 39000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c023",
+  "handle": "kabir_drip.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Menswear",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 212800,
+  "avgLikes": 2547,
+  "avgComments": 156,
+  "followerHistory": [
+   188973,
+   190710,
+   192037,
+   194492,
+   196696,
+   199346,
+   202079,
+   204347,
+   206850,
+   208299,
+   209619,
+   210853,
+   212800
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 43,
+   "25-34": 35,
+   "35-44": 15,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 43
+   },
+   {
+    "city": "Mumbai",
+    "pct": 14
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 10
+   },
+   {
+    "city": "Indore",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 118000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c024",
+  "handle": "sana_geek.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gaming",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 54600,
+  "avgLikes": 1294,
+  "avgComments": 28,
+  "followerHistory": [
+   49231,
+   49708,
+   50231,
+   50806,
+   51370,
+   51639,
+   51931,
+   52343,
+   52650,
+   53268,
+   53737,
+   54026,
+   54600
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 46,
+   "25-34": 35,
+   "35-44": 17,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 32
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Kochi",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 5,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Chai Theory",
+   "Lotus Leaf Co.",
+   "UrbanKraft"
+  ],
+  "ratePerPost": 7000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c025",
+  "handle": "aisha_style.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 25600,
+  "avgLikes": 761,
+  "avgComments": 23,
+  "followerHistory": [
+   24447,
+   24565,
+   24634,
+   24707,
+   24777,
+   24891,
+   24955,
+   25074,
+   25152,
+   25223,
+   25337,
+   25428,
+   25600
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 43,
+   "25-34": 28,
+   "35-44": 20,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 26
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 12
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 14,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Casa Verde"
+  ],
+  "ratePerPost": 23500,
+  "pastCampaigns": [
+   {
+    "brand": "Nimbus Tech",
+    "orders": 11,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c026",
+  "handle": "rahul_drip53.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 8850,
+  "avgLikes": 108,
+  "avgComments": 4,
+  "followerHistory": [
+   5225,
+   5243,
+   5264,
+   5292,
+   5325,
+   5362,
+   5379,
+   5400,
+   5425,
+   5461,
+   5497,
+   8826,
+   8850
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 31,
+   "35-44": 22,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 49
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Lucknow",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Casa Verde",
+   "UrbanKraft",
+   "Glowberry"
+  ],
+  "ratePerPost": 2500,
+  "pastCampaigns": [],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c027",
+  "handle": "simran_fits51.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Sustainable fashion",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 194150,
+  "avgLikes": 5614,
+  "avgComments": 210,
+  "followerHistory": [
+   179766,
+   180720,
+   182256,
+   183229,
+   184369,
+   185092,
+   186284,
+   187097,
+   188402,
+   189259,
+   190825,
+   192328,
+   194150
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 46,
+   "35-44": 12,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 50
+   },
+   {
+    "city": "Delhi",
+    "pct": 14
+   },
+   {
+    "city": "Jaipur",
+    "pct": 7
+   },
+   {
+    "city": "Goa",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Casa Verde",
+   "Rang Threads",
+   "UrbanKraft",
+   "Loom & Lane"
+  ],
+  "ratePerPost": 46000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c028",
+  "handle": "priya_strong83.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Gym training",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 321450,
+  "avgLikes": 12326,
+  "avgComments": 376,
+  "followerHistory": [
+   297596,
+   299819,
+   302341,
+   304389,
+   305834,
+   307449,
+   309982,
+   312738,
+   314302,
+   315541,
+   317515,
+   319428,
+   321450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 35,
+   "25-34": 37,
+   "35-44": 25,
+   "45+": 3
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 37
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Kochi",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "Casa Verde",
+   "Chai Theory"
+  ],
+  "ratePerPost": 148500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c029",
+  "handle": "arjun_decor.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Organising",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 644,
+  "avgLikes": 28,
+  "avgComments": 1,
+  "followerHistory": [
+   577,
+   581,
+   588,
+   593,
+   599,
+   603,
+   609,
+   617,
+   622,
+   627,
+   631,
+   638,
+   644
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 21,
+   "25-34": 34,
+   "35-44": 30,
+   "45+": 15
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 36
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 12
+   },
+   {
+    "city": "Mumbai",
+    "pct": 6
+   },
+   {
+    "city": "Goa",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 2500,
+  "pastCampaigns": [],
+  "demoKind": "tiny"
+ },
+ {
+  "id": "c030",
+  "handle": "arjun_gadgets.demo",
+  "platform": "YouTube",
+  "niche": "Tech",
+  "subNiche": "Smartphones",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 36100,
+  "avgLikes": 0,
+  "avgComments": 0,
+  "followerHistory": [
+   33158,
+   33475,
+   33690,
+   33931,
+   34080,
+   34347,
+   34569,
+   34871,
+   35103,
+   35252,
+   35430,
+   35673,
+   36100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 19,
+  "audienceAge": {
+   "18-24": 39,
+   "25-34": 32,
+   "35-44": 19,
+   "45+": 10
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 35
+   },
+   {
+    "city": "Delhi",
+    "pct": 14
+   },
+   {
+    "city": "Mumbai",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 0,
+   "generic": 0,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Rang Threads",
+   "Casa Verde",
+   "PixelNest"
+  ],
+  "ratePerPost": 19000,
+  "pastCampaigns": [],
+  "demoKind": "blank"
+ },
+ {
+  "id": "c031",
+  "handle": "isha_plants.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Organising",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 4550,
+  "avgLikes": 252,
+  "avgComments": 6,
+  "followerHistory": [
+   4060,
+   4112,
+   4151,
+   4204,
+   4247,
+   4295,
+   4328,
+   4385,
+   4410,
+   4440,
+   4471,
+   4520,
+   4550
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 15,
+   "25-34": 34,
+   "35-44": 33,
+   "45+": 18
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 42
+   },
+   {
+    "city": "Mumbai",
+    "pct": 13
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   },
+   {
+    "city": "Ahmedabad",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "PixelNest"
+  ],
+  "ratePerPost": 5000,
+  "pastCampaigns": [
+   {
+    "brand": "UrbanKraft",
+    "orders": 2,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c032",
+  "handle": "ayaan_fits.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Sustainable fashion",
+  "city": "Kochi",
+  "state": "Kerala",
+  "followers": 54900,
+  "avgLikes": 0,
+  "avgComments": 0,
+  "followerHistory": [
+   49321,
+   49842,
+   50289,
+   50612,
+   50957,
+   51404,
+   51830,
+   52328,
+   52942,
+   53335,
+   53853,
+   54253,
+   54900
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 18,
+  "audienceAge": {
+   "18-24": 43,
+   "25-34": 37,
+   "35-44": 18,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kochi",
+    "pct": 50
+   },
+   {
+    "city": "Mumbai",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 0,
+   "generic": 0,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "FitFuel",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 21000,
+  "pastCampaigns": [],
+  "demoKind": "blank"
+ },
+ {
+  "id": "c033",
+  "handle": "aisha_bytes.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Smartphones",
+  "city": "Goa",
+  "state": "Goa",
+  "followers": 37100,
+  "avgLikes": 2075,
+  "avgComments": 106,
+  "followerHistory": [
+   33842,
+   34053,
+   34347,
+   34708,
+   35087,
+   35335,
+   35633,
+   35974,
+   36317,
+   36571,
+   36818,
+   37167,
+   37100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 42,
+   "25-34": 31,
+   "35-44": 22,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Goa",
+    "pct": 48
+   },
+   {
+    "city": "Mumbai",
+    "pct": 18
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [],
+  "ratePerPost": 34500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c034",
+  "handle": "ayaan_unboxed59.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gaming",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 4050,
+  "avgLikes": 260,
+  "avgComments": 11,
+  "followerHistory": [
+   3553,
+   3599,
+   3637,
+   3689,
+   3722,
+   3772,
+   3815,
+   3869,
+   3921,
+   3956,
+   4000,
+   4046,
+   4050
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 34,
+   "35-44": 17,
+   "45+": 11
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 48
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 9
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Chai Theory",
+   "PeakPro"
+  ],
+  "ratePerPost": 5500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c035",
+  "handle": "mira_plants.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Plants",
+  "city": "Chennai",
+  "state": "Tamil Nadu",
+  "followers": 42100,
+  "avgLikes": 2414,
+  "avgComments": 77,
+  "followerHistory": [
+   39975,
+   40125,
+   40243,
+   40367,
+   40585,
+   40703,
+   40882,
+   41086,
+   41264,
+   41453,
+   41597,
+   41818,
+   42100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 17,
+   "25-34": 35,
+   "35-44": 30,
+   "45+": 18
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chennai",
+    "pct": 42
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 40500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c036",
+  "handle": "zoya_lifts.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Home workouts",
+  "city": "Ahmedabad",
+  "state": "Gujarat",
+  "followers": 4500,
+  "avgLikes": 171,
+  "avgComments": 4,
+  "followerHistory": [
+   4047,
+   4075,
+   4109,
+   4157,
+   4189,
+   4225,
+   4272,
+   4303,
+   4356,
+   4391,
+   4429,
+   4480,
+   4500
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 29,
+   "25-34": 47,
+   "35-44": 22,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Ahmedabad",
+    "pct": 50
+   },
+   {
+    "city": "Delhi",
+    "pct": 10
+   },
+   {
+    "city": "Jaipur",
+    "pct": 7
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "Spice Route",
+   "Rang Threads",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 3000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c037",
+  "handle": "karan_strong22.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Gym training",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 66950,
+  "avgLikes": 4664,
+  "avgComments": 394,
+  "followerHistory": [
+   63437,
+   63816,
+   64205,
+   64590,
+   64909,
+   65173,
+   65424,
+   65786,
+   66035,
+   66258,
+   66519,
+   66845,
+   66950
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 18,
+  "audienceAge": {
+   "18-24": 43,
+   "25-34": 34,
+   "35-44": 12,
+   "45+": 11
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 36
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Indore",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 34,
+   "repeated": 12
+  },
+  "pastBrands": [
+   "Chai Theory"
+  ],
+  "ratePerPost": 28000,
+  "pastCampaigns": [],
+  "demoKind": "repetitive"
+ },
+ {
+  "id": "c038",
+  "handle": "ananya_fit.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Gym training",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 316900,
+  "avgLikes": 11438,
+  "avgComments": 397,
+  "followerHistory": [
+   287498,
+   290768,
+   292323,
+   294388,
+   297113,
+   300197,
+   303116,
+   304849,
+   306626,
+   308345,
+   310025,
+   311631,
+   316900
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 19,
+  "audienceAge": {
+   "18-24": 39,
+   "25-34": 31,
+   "35-44": 18,
+   "45+": 12
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 35
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 17
+   },
+   {
+    "city": "Mumbai",
+    "pct": 6
+   },
+   {
+    "city": "Kolkata",
+    "pct": 3
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Spice Route",
+   "PeakPro",
+   "Chai Theory",
+   "FitFuel"
+  ],
+  "ratePerPost": 118000,
+  "pastCampaigns": [
+   {
+    "brand": "Glowberry",
+    "orders": 164,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c039",
+  "handle": "aman_unboxed25.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "followers": 90250,
+  "avgLikes": 1934,
+  "avgComments": 85,
+  "followerHistory": [
+   88458,
+   88609,
+   88707,
+   88871,
+   88961,
+   89070,
+   89183,
+   89349,
+   89548,
+   89747,
+   89920,
+   90118,
+   90250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 35,
+   "35-44": 29,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Hyderabad",
+    "pct": 42
+   },
+   {
+    "city": "Mumbai",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Casa Verde",
+   "Rang Threads"
+  ],
+  "ratePerPost": 27500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c040",
+  "handle": "kavya_decor.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "DIY",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "followers": 88500,
+  "avgLikes": 4788,
+  "avgComments": 254,
+  "followerHistory": [
+   85915,
+   86076,
+   86266,
+   86510,
+   86773,
+   87023,
+   87284,
+   87486,
+   87636,
+   87862,
+   88050,
+   88343,
+   88500
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 8,
+  "audienceAge": {
+   "18-24": 8,
+   "25-34": 46,
+   "35-44": 25,
+   "45+": 21
+  },
+  "audienceTopCities": [
+   {
+    "city": "Hyderabad",
+    "pct": 46
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 14
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   },
+   {
+    "city": "Mumbai",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 30,
+   "repeated": 15
+  },
+  "pastBrands": [
+   "FitFuel",
+   "Chai Theory"
+  ],
+  "ratePerPost": 20500,
+  "pastCampaigns": [
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 10,
+    "method": "link"
+   },
+   {
+    "brand": "Nimbus Tech",
+    "orders": 8,
+    "method": "promo code"
+   },
+   {
+    "brand": "UrbanKraft",
+    "orders": 8,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "repetitive"
+ },
+ {
+  "id": "c041",
+  "handle": "rohan_fits.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Ethnic wear",
+  "city": "Kochi",
+  "state": "Kerala",
+  "followers": 2950,
+  "avgLikes": 112,
+  "avgComments": 6,
+  "followerHistory": [
+   2715,
+   2739,
+   2754,
+   2769,
+   2791,
+   2814,
+   2831,
+   2852,
+   2866,
+   2887,
+   2910,
+   2930,
+   2950
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 33,
+   "35-44": 10,
+   "45+": 17
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kochi",
+    "pct": 43
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Indore",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 8,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Glowberry"
+  ],
+  "ratePerPost": 2000,
+  "pastCampaigns": [
+   {
+    "brand": "Glowberry",
+    "orders": 2,
+    "method": "promo code"
+   },
+   {
+    "brand": "Spice Route",
+    "orders": 2,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c042",
+  "handle": "sid_foodie.demo",
+  "platform": "YouTube",
+  "niche": "Food",
+  "subNiche": "Home cooking",
+  "city": "Ahmedabad",
+  "state": "Gujarat",
+  "followers": 359000,
+  "avgLikes": 1696,
+  "avgComments": 6,
+  "followerHistory": [
+   346452,
+   347766,
+   348905,
+   350303,
+   351281,
+   352154,
+   352944,
+   354114,
+   355530,
+   356463,
+   357896,
+   358780,
+   359000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 17,
+  "audienceAge": {
+   "18-24": 31,
+   "25-34": 39,
+   "35-44": 20,
+   "45+": 10
+  },
+  "audienceTopCities": [
+   {
+    "city": "Ahmedabad",
+    "pct": 33
+   },
+   {
+    "city": "Delhi",
+    "pct": 15
+   },
+   {
+    "city": "Mumbai",
+    "pct": 11
+   },
+   {
+    "city": "Indore",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Glowberry",
+   "Loom & Lane",
+   "Nimbus Tech",
+   "PeakPro"
+  ],
+  "ratePerPost": 222000,
+  "pastCampaigns": [
+   {
+    "brand": "Chai Theory",
+    "orders": 4,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c043",
+  "handle": "rahul_decor68.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "DIY",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 1307000,
+  "avgLikes": 5863,
+  "avgComments": 10,
+  "followerHistory": [
+   1183726,
+   1193844,
+   1203371,
+   1209867,
+   1220602,
+   1231268,
+   1245392,
+   1255514,
+   1262736,
+   1275458,
+   1284562,
+   1295694,
+   1307000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 17,
+   "25-34": 32,
+   "35-44": 28,
+   "45+": 23
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 41
+   },
+   {
+    "city": "Mumbai",
+    "pct": 11
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   },
+   {
+    "city": "Indore",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 132000,
+  "pastCampaigns": [],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c044",
+  "handle": "kavya_bakes.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Baking",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 7250,
+  "avgLikes": 368,
+  "avgComments": 18,
+  "followerHistory": [
+   6581,
+   6619,
+   6660,
+   6732,
+   6793,
+   6862,
+   6923,
+   6959,
+   7031,
+   7099,
+   7175,
+   7232,
+   7250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 42,
+   "35-44": 15,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 45
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 18
+   },
+   {
+    "city": "Goa",
+    "pct": 7
+   },
+   {
+    "city": "Kochi",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "PixelNest"
+  ],
+  "ratePerPost": 5000,
+  "pastCampaigns": [
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 7,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c045",
+  "handle": "anika_closet.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Ethnic wear",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 941,
+  "avgLikes": 58,
+  "avgComments": 2,
+  "followerHistory": [
+   881,
+   886,
+   892,
+   896,
+   900,
+   905,
+   909,
+   913,
+   916,
+   920,
+   926,
+   932,
+   941
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 6,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 47,
+   "35-44": 11,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 46
+   },
+   {
+    "city": "Mumbai",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 12
+   },
+   {
+    "city": "Delhi",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 14,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Spice Route",
+   "Glowberry"
+  ],
+  "ratePerPost": 2000,
+  "pastCampaigns": [],
+  "demoKind": "tiny"
+ },
+ {
+  "id": "c046",
+  "handle": "rahul_lifts5.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Running",
+  "city": "Chandigarh",
+  "state": "Chandigarh",
+  "followers": 67050,
+  "avgLikes": 3568,
+  "avgComments": 166,
+  "followerHistory": [
+   63434,
+   63699,
+   63941,
+   64215,
+   64585,
+   64939,
+   65332,
+   65668,
+   65971,
+   66156,
+   66392,
+   66580,
+   67050
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 35,
+   "35-44": 22,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chandigarh",
+    "pct": 37
+   },
+   {
+    "city": "Mumbai",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 12,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Rang Threads",
+   "Chai Theory",
+   "Spice Route"
+  ],
+  "ratePerPost": 29000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c047",
+  "handle": "mira_nook.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Organising",
+  "city": "Indore",
+  "state": "Madhya Pradesh",
+  "followers": 87050,
+  "avgLikes": 3519,
+  "avgComments": 206,
+  "followerHistory": [
+   77960,
+   78539,
+   79045,
+   80036,
+   80749,
+   81745,
+   82650,
+   83321,
+   84052,
+   84624,
+   85403,
+   86361,
+   87050
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 12,
+   "25-34": 32,
+   "35-44": 36,
+   "45+": 20
+  },
+  "audienceTopCities": [
+   {
+    "city": "Indore",
+    "pct": 25
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 33000,
+  "pastCampaigns": [
+   {
+    "brand": "FitFuel",
+    "orders": 58,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c048",
+  "handle": "kavya_geek.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gaming",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 2850,
+  "avgLikes": 206,
+  "avgComments": 12,
+  "followerHistory": [
+   2558,
+   2579,
+   2597,
+   2627,
+   2655,
+   2673,
+   2702,
+   2723,
+   2755,
+   2783,
+   2799,
+   2815,
+   2850
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 33,
+   "25-34": 38,
+   "35-44": 15,
+   "45+": 14
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 51
+   },
+   {
+    "city": "Mumbai",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Indore",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 12,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "PixelNest"
+  ],
+  "ratePerPost": 3500,
+  "pastCampaigns": [
+   {
+    "brand": "PeakPro",
+    "orders": 3,
+    "method": "link"
+   },
+   {
+    "brand": "Loom & Lane",
+    "orders": 3,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c049",
+  "handle": "neha_strong.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Yoga",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 3700,
+  "avgLikes": 388,
+  "avgComments": 26,
+  "followerHistory": [
+   3415,
+   3433,
+   3462,
+   3479,
+   3495,
+   3526,
+   3547,
+   3579,
+   3602,
+   3627,
+   3643,
+   3675,
+   3700
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 47,
+   "25-34": 39,
+   "35-44": 12,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 48
+   },
+   {
+    "city": "Mumbai",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 32,
+   "repeated": 14
+  },
+  "pastBrands": [
+   "Glowberry"
+  ],
+  "ratePerPost": 5500,
+  "pastCampaigns": [],
+  "demoKind": "repetitive"
+ },
+ {
+  "id": "c050",
+  "handle": "kabir_geek62.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Chennai",
+  "state": "Tamil Nadu",
+  "followers": 640000,
+  "avgLikes": 2303,
+  "avgComments": 7,
+  "followerHistory": [
+   576231,
+   583165,
+   587624,
+   591741,
+   596757,
+   600284,
+   603709,
+   608439,
+   613565,
+   618332,
+   625115,
+   629479,
+   640000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 41,
+   "35-44": 23,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chennai",
+    "pct": 43
+   },
+   {
+    "city": "Delhi",
+    "pct": 13
+   },
+   {
+    "city": "Mumbai",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 368000,
+  "pastCampaigns": [],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c051",
+  "handle": "pooja_strong.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Yoga",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 89650,
+  "avgLikes": 2036,
+  "avgComments": 41,
+  "followerHistory": [
+   83719,
+   84236,
+   84868,
+   85224,
+   85605,
+   86051,
+   86595,
+   87092,
+   87567,
+   87942,
+   88513,
+   89171,
+   89650
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 40,
+   "35-44": 16,
+   "45+": 4
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 54
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Mumbai",
+    "pct": 5
+   },
+   {
+    "city": "Ahmedabad",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Spice Route",
+   "PixelNest",
+   "UrbanKraft"
+  ],
+  "ratePerPost": 20000,
+  "pastCampaigns": [
+   {
+    "brand": "Loom & Lane",
+    "orders": 24,
+    "method": "promo code"
+   },
+   {
+    "brand": "Rang Threads",
+    "orders": 16,
+    "method": "link"
+   },
+   {
+    "brand": "PixelNest",
+    "orders": 16,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c052",
+  "handle": "diya_style.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Sustainable fashion",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 72400,
+  "avgLikes": 2525,
+  "avgComments": 128,
+  "followerHistory": [
+   64790,
+   65605,
+   66408,
+   66886,
+   67366,
+   68186,
+   68726,
+   69230,
+   69654,
+   70331,
+   71142,
+   71952,
+   72400
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 17,
+  "audienceAge": {
+   "18-24": 48,
+   "25-34": 39,
+   "35-44": 11,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 25
+   },
+   {
+    "city": "Mumbai",
+    "pct": 17
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   },
+   {
+    "city": "Lucknow",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "PixelNest",
+   "Rang Threads",
+   "FitFuel"
+  ],
+  "ratePerPost": 30000,
+  "pastCampaigns": [
+   {
+    "brand": "Chai Theory",
+    "orders": 33,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c053",
+  "handle": "karan_unboxed.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Lucknow",
+  "state": "Uttar Pradesh",
+  "followers": 74150,
+  "avgLikes": 4347,
+  "avgComments": 332,
+  "followerHistory": [
+   65470,
+   66464,
+   67214,
+   67740,
+   68470,
+   69047,
+   69868,
+   70876,
+   71775,
+   72541,
+   73535,
+   74489,
+   74150
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 42,
+   "25-34": 34,
+   "35-44": 20,
+   "45+": 4
+  },
+  "audienceTopCities": [
+   {
+    "city": "Lucknow",
+    "pct": 26
+   },
+   {
+    "city": "Mumbai",
+    "pct": 9
+   },
+   {
+    "city": "Delhi",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 27,
+   "repeated": 10
+  },
+  "pastBrands": [
+   "Rang Threads"
+  ],
+  "ratePerPost": 28000,
+  "pastCampaigns": [],
+  "demoKind": "repetitive"
+ },
+ {
+  "id": "c054",
+  "handle": "zoya_gadgets.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Smartphones",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 49450,
+  "avgLikes": 413,
+  "avgComments": 24,
+  "followerHistory": [
+   28038,
+   28168,
+   28398,
+   28598,
+   28765,
+   28923,
+   29144,
+   29362,
+   29591,
+   29722,
+   29898,
+   49234,
+   49450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 37,
+   "35-44": 16,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 26
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 14
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 11
+   },
+   {
+    "city": "Delhi",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Glowberry"
+  ],
+  "ratePerPost": 15000,
+  "pastCampaigns": [],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c055",
+  "handle": "neha_runs64.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Running",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 648,
+  "avgLikes": 15,
+  "avgComments": 1,
+  "followerHistory": [
+   584,
+   591,
+   597,
+   602,
+   606,
+   612,
+   620,
+   624,
+   629,
+   634,
+   639,
+   647,
+   648
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 8,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 44,
+   "35-44": 13,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 31
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 10
+   },
+   {
+    "city": "Lucknow",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Casa Verde",
+   "PixelNest"
+  ],
+  "ratePerPost": 5000,
+  "pastCampaigns": [],
+  "demoKind": "tiny"
+ },
+ {
+  "id": "c056",
+  "handle": "kabir_gadgets19.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 1800,
+  "avgLikes": 73,
+  "avgComments": 3,
+  "followerHistory": [
+   1649,
+   1658,
+   1672,
+   1680,
+   1692,
+   1703,
+   1714,
+   1732,
+   1749,
+   1762,
+   1775,
+   1789,
+   1800
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 34,
+   "35-44": 16,
+   "45+": 12
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 34
+   },
+   {
+    "city": "Delhi",
+    "pct": 13
+   },
+   {
+    "city": "Mumbai",
+    "pct": 7
+   },
+   {
+    "city": "Goa",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 5,
+   "repeated": 3
+  },
+  "pastBrands": [],
+  "ratePerPost": 3000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c057",
+  "handle": "arjun_drip.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Menswear",
+  "city": "Hyderabad",
+  "state": "Telangana",
+  "followers": 59450,
+  "avgLikes": 2440,
+  "avgComments": 129,
+  "followerHistory": [
+   53245,
+   53621,
+   54321,
+   54697,
+   55319,
+   55697,
+   56155,
+   56863,
+   57329,
+   57759,
+   58324,
+   58937,
+   59450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 36,
+   "35-44": 21,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Hyderabad",
+    "pct": 39
+   },
+   {
+    "city": "Mumbai",
+    "pct": 16
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 12000,
+  "pastCampaigns": [
+   {
+    "brand": "Casa Verde",
+    "orders": 35,
+    "method": "promo code"
+   },
+   {
+    "brand": "PeakPro",
+    "orders": 35,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c058",
+  "handle": "kabir_bakes.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Healthy eating",
+  "city": "Chennai",
+  "state": "Tamil Nadu",
+  "followers": 16500,
+  "avgLikes": 330,
+  "avgComments": 13,
+  "followerHistory": [
+   16500
+  ],
+  "daysOfData": 3,
+  "postsPerMonth": 4,
+  "audienceAge": {
+   "18-24": 31,
+   "25-34": 44,
+   "35-44": 16,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chennai",
+    "pct": 42
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [],
+  "ratePerPost": 34500,
+  "pastCampaigns": [],
+  "demoKind": "new"
+ },
+ {
+  "id": "c059",
+  "handle": "ayaan_unboxed23.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Kochi",
+  "state": "Kerala",
+  "followers": 2900,
+  "avgLikes": 148,
+  "avgComments": 9,
+  "followerHistory": [
+   2688,
+   2706,
+   2727,
+   2741,
+   2759,
+   2777,
+   2789,
+   2812,
+   2824,
+   2842,
+   2861,
+   2876,
+   2900
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 8,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 43,
+   "35-44": 7,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kochi",
+    "pct": 52
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 10
+   },
+   {
+    "city": "Mumbai",
+    "pct": 12
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "PixelNest",
+   "Nimbus Tech",
+   "Glowberry"
+  ],
+  "ratePerPost": 3500,
+  "pastCampaigns": [
+   {
+    "brand": "Glowberry",
+    "orders": 2,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c060",
+  "handle": "simran_style.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 52650,
+  "avgLikes": 1063,
+  "avgComments": 73,
+  "followerHistory": [
+   50307,
+   50537,
+   50790,
+   51033,
+   51189,
+   51434,
+   51584,
+   51720,
+   51885,
+   52094,
+   52311,
+   52554,
+   52650
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 18,
+  "audienceAge": {
+   "18-24": 45,
+   "25-34": 32,
+   "35-44": 21,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 45
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 13
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "Glowberry"
+  ],
+  "ratePerPost": 8500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c061",
+  "handle": "arjun_closet.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Menswear",
+  "city": "Pune",
+  "state": "Maharashtra",
+  "followers": 58100,
+  "avgLikes": 3049,
+  "avgComments": 125,
+  "followerHistory": [
+   52905,
+   53182,
+   53702,
+   53963,
+   54421,
+   54831,
+   55164,
+   55765,
+   56264,
+   56618,
+   56998,
+   57457,
+   58100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 17,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 39,
+   "35-44": 10,
+   "45+": 11
+  },
+  "audienceTopCities": [
+   {
+    "city": "Pune",
+    "pct": 42
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Mumbai",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "Glowberry",
+   "Casa Verde",
+   "Rang Threads"
+  ],
+  "ratePerPost": 34500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c062",
+  "handle": "varun_decor25.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Organising",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 873,
+  "avgLikes": 34,
+  "avgComments": 2,
+  "followerHistory": [
+   800,
+   806,
+   815,
+   819,
+   823,
+   830,
+   834,
+   841,
+   849,
+   857,
+   864,
+   871,
+   873
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 18,
+  "audienceAge": {
+   "18-24": 11,
+   "25-34": 54,
+   "35-44": 26,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 34
+   },
+   {
+    "city": "Mumbai",
+    "pct": 15
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Indore",
+    "pct": 3
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "PixelNest"
+  ],
+  "ratePerPost": 2500,
+  "pastCampaigns": [],
+  "demoKind": "tiny"
+ },
+ {
+  "id": "c063",
+  "handle": "ananya_drip.demo",
+  "platform": "YouTube",
+  "niche": "Fashion",
+  "subNiche": "Sustainable fashion",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 5350,
+  "avgLikes": 85,
+  "avgComments": 4,
+  "followerHistory": [
+   3669,
+   3682,
+   3692,
+   3702,
+   3715,
+   3725,
+   3734,
+   3742,
+   5304,
+   5312,
+   5319,
+   5330,
+   5350
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 7,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 36,
+   "35-44": 18,
+   "45+": 8
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 35
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Kolkata",
+    "pct": 5
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 5,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "Casa Verde",
+   "Nimbus Tech",
+   "Lotus Leaf Co."
+  ],
+  "ratePerPost": 4000,
+  "pastCampaigns": [],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c064",
+  "handle": "meera_gadgets81.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Productivity",
+  "city": "Chandigarh",
+  "state": "Chandigarh",
+  "followers": 35050,
+  "avgLikes": 976,
+  "avgComments": 37,
+  "followerHistory": [
+   32379,
+   32624,
+   32935,
+   33208,
+   33491,
+   33781,
+   33994,
+   34150,
+   34339,
+   34505,
+   34743,
+   34942,
+   35050
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 46,
+   "25-34": 37,
+   "35-44": 15,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chandigarh",
+    "pct": 32
+   },
+   {
+    "city": "Mumbai",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 1
+  },
+  "pastBrands": [],
+  "ratePerPost": 31500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c065",
+  "handle": "simran_geek46.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Smartphones",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 6800,
+  "avgLikes": 109,
+  "avgComments": 5,
+  "followerHistory": [
+   6800
+  ],
+  "daysOfData": 5,
+  "postsPerMonth": 3,
+  "audienceAge": {
+   "18-24": 42,
+   "25-34": 40,
+   "35-44": 16,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 40
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 17
+   },
+   {
+    "city": "Mumbai",
+    "pct": 7
+   },
+   {
+    "city": "Delhi",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "Loom & Lane",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 6000,
+  "pastCampaigns": [],
+  "demoKind": "new"
+ },
+ {
+  "id": "c066",
+  "handle": "varun_style.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Menswear",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 9650,
+  "avgLikes": 523,
+  "avgComments": 34,
+  "followerHistory": [
+   8963,
+   9010,
+   9052,
+   9109,
+   9145,
+   9191,
+   9252,
+   9323,
+   9370,
+   9408,
+   9453,
+   9520,
+   9650
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 43,
+   "25-34": 37,
+   "35-44": 15,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 31
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 7
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [],
+  "ratePerPost": 2000,
+  "pastCampaigns": [
+   {
+    "brand": "PeakPro",
+    "orders": 10,
+    "method": "promo code"
+   },
+   {
+    "brand": "FitFuel",
+    "orders": 13,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c067",
+  "handle": "kabir_kitchen.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Baking",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 16550,
+  "avgLikes": 151,
+  "avgComments": 9,
+  "followerHistory": [
+   11011,
+   11120,
+   11197,
+   11315,
+   11388,
+   11504,
+   11572,
+   11643,
+   16235,
+   16331,
+   16447,
+   16564,
+   16550
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 29,
+   "25-34": 38,
+   "35-44": 18,
+   "45+": 15
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 44
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 12
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Indore",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Rang Threads",
+   "Casa Verde"
+  ],
+  "ratePerPost": 22500,
+  "pastCampaigns": [],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c068",
+  "handle": "kavya_fit72.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Gym training",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 140700,
+  "avgLikes": 2572,
+  "avgComments": 171,
+  "followerHistory": [
+   130850,
+   131981,
+   132969,
+   134073,
+   134895,
+   135868,
+   136511,
+   137364,
+   138151,
+   138670,
+   139664,
+   140268,
+   140700
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 42,
+   "25-34": 34,
+   "35-44": 22,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 45
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Mumbai",
+    "pct": 7
+   },
+   {
+    "city": "Indore",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Glowberry",
+   "PeakPro",
+   "Chai Theory"
+  ],
+  "ratePerPost": 101000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c069",
+  "handle": "priya_runs.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Running",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 107450,
+  "avgLikes": 3731,
+  "avgComments": 129,
+  "followerHistory": [
+   100621,
+   101133,
+   101565,
+   102258,
+   102950,
+   103356,
+   104060,
+   104628,
+   105284,
+   105691,
+   106233,
+   106738,
+   107450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 16,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 34,
+   "35-44": 15,
+   "45+": 10
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 42
+   },
+   {
+    "city": "Mumbai",
+    "pct": 12
+   },
+   {
+    "city": "Delhi",
+    "pct": 5
+   },
+   {
+    "city": "Indore",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 8,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 82000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c070",
+  "handle": "aisha_home.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Organising",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 107500,
+  "avgLikes": 1559,
+  "avgComments": 45,
+  "followerHistory": [
+   96313,
+   97507,
+   98242,
+   98806,
+   99854,
+   100783,
+   101697,
+   102873,
+   103688,
+   104327,
+   105104,
+   105951,
+   107500
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 26,
+   "25-34": 37,
+   "35-44": 30,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 31
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Indore",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Loom & Lane",
+   "UrbanKraft"
+  ],
+  "ratePerPost": 94500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c071",
+  "handle": "simran_runs.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Yoga",
+  "city": "Goa",
+  "state": "Goa",
+  "followers": 8250,
+  "avgLikes": 677,
+  "avgComments": 29,
+  "followerHistory": [
+   7286,
+   7386,
+   7470,
+   7532,
+   7622,
+   7689,
+   7763,
+   7820,
+   7870,
+   7975,
+   8047,
+   8140,
+   8250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 37,
+   "25-34": 41,
+   "35-44": 20,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Goa",
+    "pct": 55
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 16
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Jaipur",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Spice Route"
+  ],
+  "ratePerPost": 5000,
+  "pastCampaigns": [
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 7,
+    "method": "promo code"
+   },
+   {
+    "brand": "Casa Verde",
+    "orders": 6,
+    "method": "link"
+   },
+   {
+    "brand": "PeakPro",
+    "orders": 7,
+    "method": "link"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c072",
+  "handle": "meera_unboxed.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Productivity",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 469850,
+  "avgLikes": 9308,
+  "avgComments": 341,
+  "followerHistory": [
+   425308,
+   429201,
+   432987,
+   436716,
+   439968,
+   442768,
+   447392,
+   452232,
+   455883,
+   461026,
+   464199,
+   468126,
+   469850
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 6,
+  "audienceAge": {
+   "18-24": 44,
+   "25-34": 42,
+   "35-44": 8,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 27
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Mumbai",
+    "pct": 7
+   },
+   {
+    "city": "Pune",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Loom & Lane",
+   "FitFuel",
+   "Chai Theory"
+  ],
+  "ratePerPost": 115500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c073",
+  "handle": "diya_unboxed.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Smartphones",
+  "city": "Jaipur",
+  "state": "Rajasthan",
+  "followers": 11000,
+  "avgLikes": 890,
+  "avgComments": 48,
+  "followerHistory": [
+   11000
+  ],
+  "daysOfData": 2,
+  "postsPerMonth": 5,
+  "audienceAge": {
+   "18-24": 35,
+   "25-34": 32,
+   "35-44": 20,
+   "45+": 13
+  },
+  "audienceTopCities": [
+   {
+    "city": "Jaipur",
+    "pct": 41
+   },
+   {
+    "city": "Mumbai",
+    "pct": 16
+   },
+   {
+    "city": "Ahmedabad",
+    "pct": 6
+   },
+   {
+    "city": "Delhi",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Lotus Leaf Co."
+  ],
+  "ratePerPost": 11000,
+  "pastCampaigns": [],
+  "demoKind": "new"
+ },
+ {
+  "id": "c074",
+  "handle": "sid_dewy.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Skincare",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 440750,
+  "avgLikes": 7931,
+  "avgComments": 167,
+  "followerHistory": [
+   427395,
+   428625,
+   429790,
+   430539,
+   431538,
+   432479,
+   433597,
+   435021,
+   436479,
+   437753,
+   438690,
+   440048,
+   440750
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 48,
+   "25-34": 38,
+   "35-44": 9,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 29
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 9
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Chandigarh",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 0
+  },
+  "pastBrands": [],
+  "ratePerPost": 73000,
+  "pastCampaigns": [
+   {
+    "brand": "PeakPro",
+    "orders": 66,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c075",
+  "handle": "priya_lifts9.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Home workouts",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 298250,
+  "avgLikes": 10308,
+  "avgComments": 909,
+  "followerHistory": [
+   290890,
+   291585,
+   292323,
+   293029,
+   293750,
+   294316,
+   294889,
+   295648,
+   296107,
+   296591,
+   297029,
+   297474,
+   298250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 17,
+  "audienceAge": {
+   "18-24": 29,
+   "25-34": 40,
+   "35-44": 19,
+   "45+": 12
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 31
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Pune",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 28,
+   "repeated": 13
+  },
+  "pastBrands": [],
+  "ratePerPost": 67500,
+  "pastCampaigns": [],
+  "demoKind": "repetitive"
+ },
+ {
+  "id": "c076",
+  "handle": "ananya_blush.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Makeup",
+  "city": "Chennai",
+  "state": "Tamil Nadu",
+  "followers": 1104000,
+  "avgLikes": 4967,
+  "avgComments": 8,
+  "followerHistory": [
+   988963,
+   1000493,
+   1007629,
+   1015164,
+   1021110,
+   1030645,
+   1038736,
+   1050041,
+   1058786,
+   1066530,
+   1077789,
+   1085531,
+   1104000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 42,
+   "25-34": 40,
+   "35-44": 16,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chennai",
+    "pct": 27
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "UrbanKraft"
+  ],
+  "ratePerPost": 312000,
+  "pastCampaigns": [
+   {
+    "brand": "PeakPro",
+    "orders": 5,
+    "method": "promo code"
+   },
+   {
+    "brand": "Rang Threads",
+    "orders": 4,
+    "method": "link"
+   }
+  ],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c077",
+  "handle": "nikhil_fit.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Running",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 4850,
+  "avgLikes": 341,
+  "avgComments": 13,
+  "followerHistory": [
+   4656,
+   4673,
+   4688,
+   4709,
+   4722,
+   4739,
+   4756,
+   4774,
+   4793,
+   4815,
+   4837,
+   4855,
+   4850
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 15,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 34,
+   "35-44": 8,
+   "45+": 17
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 41
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 16
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Goa",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 14,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Glowberry"
+  ],
+  "ratePerPost": 5000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c078",
+  "handle": "simran_beauty18.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Clean beauty",
+  "city": "Chandigarh",
+  "state": "Chandigarh",
+  "followers": 2000,
+  "avgLikes": 73,
+  "avgComments": 3,
+  "followerHistory": [
+   1765,
+   1786,
+   1801,
+   1823,
+   1841,
+   1854,
+   1878,
+   1901,
+   1929,
+   1941,
+   1968,
+   1991,
+   2000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 45,
+   "25-34": 32,
+   "35-44": 19,
+   "45+": 4
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chandigarh",
+    "pct": 40
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 9
+   },
+   {
+    "city": "Mumbai",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Casa Verde"
+  ],
+  "ratePerPost": 3500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c079",
+  "handle": "vikram_eats34.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Home cooking",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 2900,
+  "avgLikes": 159,
+  "avgComments": 10,
+  "followerHistory": [
+   2690,
+   2703,
+   2716,
+   2733,
+   2754,
+   2765,
+   2786,
+   2808,
+   2829,
+   2844,
+   2868,
+   2886,
+   2900
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 27,
+   "25-34": 42,
+   "35-44": 16,
+   "45+": 15
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 36
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Indore",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "Loom & Lane"
+  ],
+  "ratePerPost": 2000,
+  "pastCampaigns": [
+   {
+    "brand": "Casa Verde",
+    "orders": 2,
+    "method": "promo code"
+   },
+   {
+    "brand": "UrbanKraft",
+    "orders": 1,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c080",
+  "handle": "isha_drip42.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 33250,
+  "avgLikes": 1857,
+  "avgComments": 65,
+  "followerHistory": [
+   31675,
+   31822,
+   31987,
+   32080,
+   32178,
+   32304,
+   32460,
+   32594,
+   32672,
+   32828,
+   32990,
+   33118,
+   33250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 39,
+   "35-44": 17,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 45
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Indore",
+    "pct": 7
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 3
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "FitFuel",
+   "Rang Threads"
+  ],
+  "ratePerPost": 14000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c081",
+  "handle": "isha_threads18.demo",
+  "platform": "Instagram",
+  "niche": "Fashion",
+  "subNiche": "Streetwear",
+  "city": "Jaipur",
+  "state": "Rajasthan",
+  "followers": 36900,
+  "avgLikes": 2105,
+  "avgComments": 93,
+  "followerHistory": [
+   32954,
+   33263,
+   33660,
+   34055,
+   34294,
+   34572,
+   34848,
+   35290,
+   35742,
+   36076,
+   36341,
+   36763,
+   36900
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 38,
+   "35-44": 10,
+   "45+": 11
+  },
+  "audienceTopCities": [
+   {
+    "city": "Jaipur",
+    "pct": 49
+   },
+   {
+    "city": "Mumbai",
+    "pct": 16
+   },
+   {
+    "city": "Ahmedabad",
+    "pct": 9
+   },
+   {
+    "city": "Delhi",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "FitFuel",
+   "Rang Threads"
+  ],
+  "ratePerPost": 18000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c082",
+  "handle": "kabir_nook.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Home decor",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 8200,
+  "avgLikes": 0,
+  "avgComments": 0,
+  "followerHistory": [
+   7899,
+   7934,
+   7957,
+   7989,
+   8010,
+   8026,
+   8049,
+   8077,
+   8100,
+   8124,
+   8141,
+   8158,
+   8200
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 16,
+   "25-34": 36,
+   "35-44": 26,
+   "45+": 22
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 39
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   },
+   {
+    "city": "Indore",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 0,
+   "generic": 0,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Lotus Leaf Co."
+  ],
+  "ratePerPost": 5500,
+  "pastCampaigns": [],
+  "demoKind": "blank"
+ },
+ {
+  "id": "c083",
+  "handle": "isha_skin.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Makeup",
+  "city": "Lucknow",
+  "state": "Uttar Pradesh",
+  "followers": 51700,
+  "avgLikes": 1450,
+  "avgComments": 55,
+  "followerHistory": [
+   48007,
+   48211,
+   48555,
+   48971,
+   49167,
+   49449,
+   49850,
+   50124,
+   50357,
+   50727,
+   51064,
+   51404,
+   51700
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 52,
+   "25-34": 34,
+   "35-44": 11,
+   "45+": 3
+  },
+  "audienceTopCities": [
+   {
+    "city": "Lucknow",
+    "pct": 36
+   },
+   {
+    "city": "Delhi",
+    "pct": 13
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 4
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "Rang Threads",
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 28000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c084",
+  "handle": "arjun_eats25.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Street food",
+  "city": "Pune",
+  "state": "Maharashtra",
+  "followers": 381700,
+  "avgLikes": 5978,
+  "avgComments": 167,
+  "followerHistory": [
+   340733,
+   344941,
+   347819,
+   351941,
+   355837,
+   357983,
+   360283,
+   364409,
+   367624,
+   369964,
+   372116,
+   375862,
+   381700
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 31,
+   "25-34": 34,
+   "35-44": 25,
+   "45+": 10
+  },
+  "audienceTopCities": [
+   {
+    "city": "Pune",
+    "pct": 36
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Delhi",
+    "pct": 6
+   },
+   {
+    "city": "Goa",
+    "pct": 3
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "PeakPro",
+   "PixelNest"
+  ],
+  "ratePerPost": 155500,
+  "pastCampaigns": [
+   {
+    "brand": "Glowberry",
+    "orders": 57,
+    "method": "promo code"
+   },
+   {
+    "brand": "PixelNest",
+    "orders": 73,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c085",
+  "handle": "pooja_home.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Home decor",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 28950,
+  "avgLikes": 1288,
+  "avgComments": 70,
+  "followerHistory": [
+   27342,
+   27459,
+   27554,
+   27656,
+   27750,
+   27911,
+   28004,
+   28166,
+   28299,
+   28444,
+   28546,
+   28703,
+   28950
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 18,
+  "audienceAge": {
+   "18-24": 24,
+   "25-34": 42,
+   "35-44": 20,
+   "45+": 14
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 37
+   },
+   {
+    "city": "Mumbai",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 7
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 5,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "Rang Threads",
+   "Spice Route"
+  ],
+  "ratePerPost": 16000,
+  "pastCampaigns": [
+   {
+    "brand": "Nimbus Tech",
+    "orders": 12,
+    "method": "promo code"
+   },
+   {
+    "brand": "Loom & Lane",
+    "orders": 10,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c086",
+  "handle": "arjun_bytes.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Chandigarh",
+  "state": "Chandigarh",
+  "followers": 50450,
+  "avgLikes": 0,
+  "avgComments": 0,
+  "followerHistory": [
+   48989,
+   49125,
+   49224,
+   49352,
+   49480,
+   49615,
+   49709,
+   49836,
+   49920,
+   50082,
+   50209,
+   50343,
+   50450
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 36,
+   "25-34": 38,
+   "35-44": 23,
+   "45+": 3
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chandigarh",
+    "pct": 44
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 16
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Mumbai",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 0,
+   "generic": 0,
+   "repeated": 0
+  },
+  "pastBrands": [],
+  "ratePerPost": 19500,
+  "pastCampaigns": [],
+  "demoKind": "blank"
+ },
+ {
+  "id": "c087",
+  "handle": "diya_bakes.demo",
+  "platform": "Instagram",
+  "niche": "Food",
+  "subNiche": "Baking",
+  "city": "Kochi",
+  "state": "Kerala",
+  "followers": 2750,
+  "avgLikes": 186,
+  "avgComments": 12,
+  "followerHistory": [
+   2570,
+   2588,
+   2607,
+   2624,
+   2640,
+   2653,
+   2665,
+   2680,
+   2701,
+   2720,
+   2740,
+   2760,
+   2750
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 11,
+  "audienceAge": {
+   "18-24": 32,
+   "25-34": 45,
+   "35-44": 18,
+   "45+": 5
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kochi",
+    "pct": 32
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 11
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Spice Route",
+   "Loom & Lane"
+  ],
+  "ratePerPost": 3000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c088",
+  "handle": "neha_glow.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Haircare",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 5700,
+  "avgLikes": 332,
+  "avgComments": 12,
+  "followerHistory": [
+   5056,
+   5119,
+   5181,
+   5233,
+   5272,
+   5345,
+   5418,
+   5480,
+   5538,
+   5589,
+   5633,
+   5692,
+   5700
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 12,
+  "audienceAge": {
+   "18-24": 56,
+   "25-34": 29,
+   "35-44": 8,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 34
+   },
+   {
+    "city": "Delhi",
+    "pct": 18
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 10,
+   "repeated": 1
+  },
+  "pastBrands": [],
+  "ratePerPost": 1500,
+  "pastCampaigns": [
+   {
+    "brand": "Spice Route",
+    "orders": 3,
+    "method": "promo code"
+   },
+   {
+    "brand": "PixelNest",
+    "orders": 3,
+    "method": "promo code"
+   },
+   {
+    "brand": "PixelNest",
+    "orders": 3,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c089",
+  "handle": "mira_gadgets.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Smartphones",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 72500,
+  "avgLikes": 4570,
+  "avgComments": 427,
+  "followerHistory": [
+   70644,
+   70785,
+   70961,
+   71085,
+   71193,
+   71342,
+   71514,
+   71653,
+   71763,
+   71958,
+   72140,
+   72326,
+   72500
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 18,
+  "audienceAge": {
+   "18-24": 46,
+   "25-34": 27,
+   "35-44": 13,
+   "45+": 14
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 27
+   },
+   {
+    "city": "Delhi",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 7
+   },
+   {
+    "city": "Mumbai",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 30,
+   "repeated": 15
+  },
+  "pastBrands": [],
+  "ratePerPost": 19000,
+  "pastCampaigns": [
+   {
+    "brand": "Rang Threads",
+    "orders": 4,
+    "method": "promo code"
+   }
+  ],
+  "demoKind": "repetitive"
+ },
+ {
+  "id": "c090",
+  "handle": "rahul_runs.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Yoga",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 54950,
+  "avgLikes": 2297,
+  "avgComments": 104,
+  "followerHistory": [
+   48273,
+   48747,
+   49428,
+   50141,
+   50578,
+   51181,
+   51667,
+   52139,
+   52791,
+   53294,
+   53957,
+   54344,
+   54950
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 49,
+   "25-34": 42,
+   "35-44": 7,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 34
+   },
+   {
+    "city": "Mumbai",
+    "pct": 12
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Lucknow",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Chai Theory",
+   "UrbanKraft",
+   "PixelNest"
+  ],
+  "ratePerPost": 29000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c091",
+  "handle": "kavya_nest.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Home decor",
+  "city": "Delhi",
+  "state": "Delhi",
+  "followers": 19300,
+  "avgLikes": 0,
+  "avgComments": 0,
+  "followerHistory": [
+   18816,
+   18870,
+   18918,
+   18951,
+   18996,
+   19036,
+   19077,
+   19122,
+   19171,
+   19216,
+   19243,
+   19281,
+   19300
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 25,
+   "25-34": 35,
+   "35-44": 22,
+   "45+": 18
+  },
+  "audienceTopCities": [
+   {
+    "city": "Delhi",
+    "pct": 53
+   },
+   {
+    "city": "Mumbai",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 8
+   },
+   {
+    "city": "Goa",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 0,
+   "generic": 0,
+   "repeated": 0
+  },
+  "pastBrands": [
+   "Spice Route",
+   "PixelNest"
+  ],
+  "ratePerPost": 24500,
+  "pastCampaigns": [],
+  "demoKind": "blank"
+ },
+ {
+  "id": "c092",
+  "handle": "dev_tech.demo",
+  "platform": "YouTube",
+  "niche": "Tech",
+  "subNiche": "Productivity",
+  "city": "Bengaluru",
+  "state": "Karnataka",
+  "followers": 6300,
+  "avgLikes": 231,
+  "avgComments": 11,
+  "followerHistory": [
+   5580,
+   5647,
+   5704,
+   5753,
+   5817,
+   5894,
+   5959,
+   6023,
+   6097,
+   6133,
+   6188,
+   6261,
+   6300
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 14,
+  "audienceAge": {
+   "18-24": 41,
+   "25-34": 35,
+   "35-44": 15,
+   "45+": 9
+  },
+  "audienceTopCities": [
+   {
+    "city": "Bengaluru",
+    "pct": 53
+   },
+   {
+    "city": "Delhi",
+    "pct": 15
+   },
+   {
+    "city": "Mumbai",
+    "pct": 12
+   },
+   {
+    "city": "Hyderabad",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 7,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Glowberry",
+   "Lotus Leaf Co.",
+   "PixelNest"
+  ],
+  "ratePerPost": 3500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c093",
+  "handle": "nikhil_strong47.demo",
+  "platform": "YouTube",
+  "niche": "Fitness",
+  "subNiche": "Home workouts",
+  "city": "Indore",
+  "state": "Madhya Pradesh",
+  "followers": 980250,
+  "avgLikes": 14412,
+  "avgComments": 407,
+  "followerHistory": [
+   948386,
+   950005,
+   951853,
+   953878,
+   956645,
+   958625,
+   961953,
+   964526,
+   967034,
+   969062,
+   972530,
+   975205,
+   980250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 20,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 41,
+   "35-44": 15,
+   "45+": 10
+  },
+  "audienceTopCities": [
+   {
+    "city": "Indore",
+    "pct": 42
+   },
+   {
+    "city": "Mumbai",
+    "pct": 15
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 9,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Casa Verde"
+  ],
+  "ratePerPost": 591500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c094",
+  "handle": "sana_tech.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gaming",
+  "city": "Indore",
+  "state": "Madhya Pradesh",
+  "followers": 6100,
+  "avgLikes": 315,
+  "avgComments": 7,
+  "followerHistory": [
+   5960,
+   5968,
+   5979,
+   5988,
+   6001,
+   6010,
+   6020,
+   6036,
+   6052,
+   6065,
+   6079,
+   6091,
+   6100
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 9,
+  "audienceAge": {
+   "18-24": 46,
+   "25-34": 36,
+   "35-44": 12,
+   "45+": 6
+  },
+  "audienceTopCities": [
+   {
+    "city": "Indore",
+    "pct": 40
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 10
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Glowberry",
+   "Lotus Leaf Co.",
+   "Spice Route"
+  ],
+  "ratePerPost": 2000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c095",
+  "handle": "simran_bytes.demo",
+  "platform": "YouTube",
+  "niche": "Tech",
+  "subNiche": "Productivity",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 2250,
+  "avgLikes": 77,
+  "avgComments": 2,
+  "followerHistory": [
+   2035,
+   2048,
+   2064,
+   2084,
+   2098,
+   2122,
+   2138,
+   2155,
+   2173,
+   2195,
+   2207,
+   2224,
+   2250
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 45,
+   "25-34": 37,
+   "35-44": 10,
+   "45+": 8
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 43
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 12
+   },
+   {
+    "city": "Kolkata",
+    "pct": 7
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "PeakPro"
+  ],
+  "ratePerPost": 4000,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c096",
+  "handle": "arjun_beauty.demo",
+  "platform": "Instagram",
+  "niche": "Beauty",
+  "subNiche": "Clean beauty",
+  "city": "Kolkata",
+  "state": "West Bengal",
+  "followers": 20250,
+  "avgLikes": 560,
+  "avgComments": 17,
+  "followerHistory": [
+   20250
+  ],
+  "daysOfData": 6,
+  "postsPerMonth": 3,
+  "audienceAge": {
+   "18-24": 40,
+   "25-34": 44,
+   "35-44": 9,
+   "45+": 7
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kolkata",
+    "pct": 31
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 10
+   },
+   {
+    "city": "Delhi",
+    "pct": 5
+   },
+   {
+    "city": "Mumbai",
+    "pct": 5
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 4,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "FitFuel"
+  ],
+  "ratePerPost": 25500,
+  "pastCampaigns": [],
+  "demoKind": "new"
+ },
+ {
+  "id": "c097",
+  "handle": "rohan_tech.demo",
+  "platform": "Instagram",
+  "niche": "Tech",
+  "subNiche": "Gadget reviews",
+  "city": "Chandigarh",
+  "state": "Chandigarh",
+  "followers": 66850,
+  "avgLikes": 1630,
+  "avgComments": 98,
+  "followerHistory": [
+   59385,
+   60252,
+   60942,
+   61725,
+   62267,
+   63069,
+   63881,
+   64474,
+   65128,
+   65777,
+   66460,
+   67180,
+   66850
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 13,
+  "audienceAge": {
+   "18-24": 33,
+   "25-34": 43,
+   "35-44": 21,
+   "45+": 3
+  },
+  "audienceTopCities": [
+   {
+    "city": "Chandigarh",
+    "pct": 28
+   },
+   {
+    "city": "Delhi",
+    "pct": 15
+   },
+   {
+    "city": "Mumbai",
+    "pct": 5
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 13,
+   "repeated": 2
+  },
+  "pastBrands": [
+   "Lotus Leaf Co.",
+   "Chai Theory"
+  ],
+  "ratePerPost": 13500,
+  "pastCampaigns": [],
+  "demoKind": "honest"
+ },
+ {
+  "id": "c098",
+  "handle": "rahul_strong.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Home workouts",
+  "city": "Ahmedabad",
+  "state": "Gujarat",
+  "followers": 82900,
+  "avgLikes": 693,
+  "avgComments": 25,
+  "followerHistory": [
+   44725,
+   45164,
+   45576,
+   45930,
+   46440,
+   46851,
+   47158,
+   47548,
+   47778,
+   81790,
+   82259,
+   82757,
+   82900
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 19,
+  "audienceAge": {
+   "18-24": 38,
+   "25-34": 47,
+   "35-44": 13,
+   "45+": 2
+  },
+  "audienceTopCities": [
+   {
+    "city": "Ahmedabad",
+    "pct": 33
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 16
+   },
+   {
+    "city": "Kochi",
+    "pct": 7
+   },
+   {
+    "city": "Delhi",
+    "pct": 8
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 1
+  },
+  "pastBrands": [
+   "Spice Route",
+   "UrbanKraft",
+   "Glowberry"
+  ],
+  "ratePerPost": 33500,
+  "pastCampaigns": [],
+  "demoKind": "jump"
+ },
+ {
+  "id": "c099",
+  "handle": "sid_fit18.demo",
+  "platform": "Instagram",
+  "niche": "Fitness",
+  "subNiche": "Running",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "followers": 1281000,
+  "avgLikes": 6306,
+  "avgComments": 17,
+  "followerHistory": [
+   1149503,
+   1163107,
+   1177388,
+   1185252,
+   1200256,
+   1214794,
+   1227692,
+   1241961,
+   1252992,
+   1267711,
+   1278036,
+   1284897,
+   1281000
+  ],
+  "daysOfData": 90,
+  "postsPerMonth": 10,
+  "audienceAge": {
+   "18-24": 34,
+   "25-34": 37,
+   "35-44": 18,
+   "45+": 11
+  },
+  "audienceTopCities": [
+   {
+    "city": "Mumbai",
+    "pct": 46
+   },
+   {
+    "city": "Delhi",
+    "pct": 15
+   },
+   {
+    "city": "Jaipur",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 6
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 6,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Nimbus Tech",
+   "FitFuel"
+  ],
+  "ratePerPost": 332000,
+  "pastCampaigns": [
+   {
+    "brand": "Lotus Leaf Co.",
+    "orders": 9,
+    "method": "link"
+   },
+   {
+    "brand": "PixelNest",
+    "orders": 10,
+    "method": "promo code"
+   },
+   {
+    "brand": "PeakPro",
+    "orders": 13,
+    "method": "link"
+   }
+  ],
+  "demoKind": "fewcomments"
+ },
+ {
+  "id": "c100",
+  "handle": "simran_nest9.demo",
+  "platform": "Instagram",
+  "niche": "Home",
+  "subNiche": "Plants",
+  "city": "Kochi",
+  "state": "Kerala",
+  "followers": 12750,
+  "avgLikes": 369,
+  "avgComments": 8,
+  "followerHistory": [
+   12750
+  ],
+  "daysOfData": 6,
+  "postsPerMonth": 5,
+  "audienceAge": {
+   "18-24": 11,
+   "25-34": 40,
+   "35-44": 27,
+   "45+": 22
+  },
+  "audienceTopCities": [
+   {
+    "city": "Kochi",
+    "pct": 49
+   },
+   {
+    "city": "Mumbai",
+    "pct": 8
+   },
+   {
+    "city": "Delhi",
+    "pct": 11
+   },
+   {
+    "city": "Bengaluru",
+    "pct": 4
+   }
+  ],
+  "commentSample": {
+   "checked": 50,
+   "generic": 11,
+   "repeated": 3
+  },
+  "pastBrands": [
+   "Nimbus Tech"
+  ],
+  "ratePerPost": 12500,
+  "pastCampaigns": [],
+  "demoKind": "new"
+ }
+]
