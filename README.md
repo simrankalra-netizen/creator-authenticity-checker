@@ -2,6 +2,8 @@
 
 A one-screen web app that helps a small brand decide, in minutes, whether an influencer's audience is real before paying them.
 
+**Live app:** https://creator-authenticity-checker.vercel.app
+
 Upload a CSV of creators and each one gets an **authenticity score (0–100)**, a **confidence level** and **2 plain-language reasons**. Upload past campaign sales and you see the scores next to real orders, plus **one number** showing how well the scores predicted sales.
 
 Hackathon MVP. Built with Next.js, deployable to Vercel. Uses the Claude API only to reword reasons.

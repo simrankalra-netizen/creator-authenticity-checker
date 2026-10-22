@@ -1,0 +1,5 @@
+# Never upload local secrets or tooling to Vercel. Add the API key in Vercel's
+# Project → Settings → Environment Variables instead.
+.env*
+!.env.example
+.claude
