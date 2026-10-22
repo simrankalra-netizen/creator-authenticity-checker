@@ -54,7 +54,7 @@ function BriefPanel({ brief, onEdit }: { brief: Brief; onEdit: () => void }) {
   );
   return (
     <section className="mx-auto mt-6 w-full max-w-6xl px-4 text-ink">
-      <div className="rounded-lg border border-brand-mint/40 bg-mint-tint p-4 text-sm">
+      <div className="cg-card border-brand-mint/40 bg-mint-tint p-4 text-sm">
         <div className="flex items-center justify-between">
           <p className="font-semibold">Your brief</p>
           <button type="button" onClick={onEdit} className="text-xs text-ink-soft underline">

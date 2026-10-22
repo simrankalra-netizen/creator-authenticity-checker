@@ -38,31 +38,34 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
   if (brief.step === 7) return <BriefReady brief={brief} setBrief={setBrief} />;
 
   return (
-    <main className="mx-auto w-full max-w-xl px-4 py-8 text-ink">
+    <Page>
       <BrandHeader />
       {brief.step === 1 && (
-        <div className="mt-8">
-          <p className="text-3xl font-extrabold leading-tight tracking-tight">Fake followers don&apos;t buy.</p>
-          <p className="brand-gradient-text text-3xl font-extrabold leading-tight tracking-tight">Real creators do.</p>
-          <p className="mt-3 text-ink-soft">
+        <div className="cg-rise mt-10 text-center sm:mt-12">
+          <p className="font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">Fake followers don&apos;t buy.</p>
+          <p className="brand-gradient-text font-display text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl">Real creators do.</p>
+          <p className="mx-auto mt-4 max-w-md text-ink-soft">
             Detect fake engagement, check creator credibility, and find the right voices for your next launch.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2 text-sm">
-            <span className="rounded-full bg-lavender px-3 py-1">Detect fakes</span>
-            <span className="rounded-full bg-mint-tint px-3 py-1">Score credibility</span>
-            <span className="rounded-full bg-lime-tint px-3 py-1">Match creators</span>
+          <div className="mt-5 flex flex-wrap justify-center gap-2 text-sm font-medium">
+            <span className="rounded-full bg-lavender px-3 py-1 text-fit">Detect fakes</span>
+            <span className="rounded-full bg-mint-tint px-3 py-1 text-reach">Score credibility</span>
+            <span className="rounded-full bg-lime-tint px-3 py-1 text-ink">Match creators</span>
           </div>
         </div>
       )}
-      <div className="mt-6">
-        <p className="text-sm font-medium text-ink-soft">
-          Step {brief.step} of {TOTAL_STEPS}
-        </p>
-        <div className="mt-2 h-1.5 w-full rounded-full bg-zinc-200" aria-hidden>
-          <div className="brand-gradient h-1.5 rounded-full" style={{ width: `${(brief.step / TOTAL_STEPS) * 100}%` }} />
+      <div className="mt-8">
+        <div className="flex items-center justify-between text-sm">
+          <p className="font-medium text-ink-soft">
+            Step {brief.step} of {TOTAL_STEPS}
+          </p>
+          <p className="text-ink-muted">{Math.round((brief.step / TOTAL_STEPS) * 100)}%</p>
+        </div>
+        <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-white shadow-inner ring-1 ring-line" aria-hidden>
+          <div className="brand-gradient cg-progress-bar h-full rounded-full" style={{ width: `${(brief.step / TOTAL_STEPS) * 100}%` }} />
         </div>
       </div>
-      <div className="mt-6 rounded-xl border border-zinc-200 p-6">
+      <div key={brief.step} className="cg-card cg-step-in mt-6 p-6 sm:p-8">
         {brief.step === 1 && <PhoneStep {...props} />}
         {brief.step === 2 && <CodeStep {...props} />}
         {brief.step === 3 && <BrandNameStep {...props} />}
@@ -70,15 +73,19 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
         {brief.step === 5 && <NicheStep {...props} />}
         {brief.step === 6 && <InfluencerStep {...props} />}
       </div>
-      <button
-        type="button"
-        onClick={back}
-        disabled={brief.step === 1}
-        className="mt-4 rounded-lg border border-zinc-300 px-4 py-2 text-sm disabled:opacity-40"
-      >
+      <button type="button" onClick={back} disabled={brief.step === 1} className="cg-btn-secondary mt-5 text-sm">
         ← Back
       </button>
-    </main>
+    </Page>
+  );
+}
+
+// The soft background and centred column every onboarding screen sits in
+function Page({ children }: { children: ReactNode }) {
+  return (
+    <div className="header-band min-h-screen w-full">
+      <main className="mx-auto w-full max-w-xl px-4 pb-16 pt-8 text-ink sm:pt-12">{children}</main>
+    </div>
   );
 }
 
@@ -86,8 +93,8 @@ export default function Onboarding({ brief, setBrief }: { brief: Brief; setBrief
 
 function BrandHeader() {
   return (
-    <header>
-      <Logo className="h-9 w-auto" />
+    <header className="flex flex-col items-center text-center">
+      <Logo />
       <p className="mt-1 text-sm text-ink-soft">Verified creators, real results.</p>
     </header>
   );
@@ -96,8 +103,8 @@ function BrandHeader() {
 function Question({ title, hint }: { title: string; hint?: string }) {
   return (
     <>
-      <h1 className="text-xl font-semibold">{title}</h1>
-      {hint && <p className="mt-1 text-sm text-ink-soft">{hint}</p>}
+      <h1 className="text-2xl font-extrabold leading-tight sm:text-[1.75rem]">{title}</h1>
+      {hint && <p className="mt-2 text-ink-soft">{hint}</p>}
     </>
   );
 }
@@ -105,32 +112,41 @@ function Question({ title, hint }: { title: string; hint?: string }) {
 function ErrorText({ children }: { children: ReactNode }) {
   if (!children) return null;
   return (
-    <p role="alert" className="mt-3 rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-900">
-      {children}
+    <p role="alert" className="cg-rise mt-4 flex gap-2 rounded-xl border border-bad/20 bg-bad-bg p-3 text-sm text-bad">
+      <span aria-hidden>⚠</span>
+      <span>{children}</span>
     </p>
   );
 }
 
+export function Spinner() {
+  return <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden />;
+}
+
 function Continue({ label = "Continue", busy, disabled }: { label?: string; busy?: boolean; disabled?: boolean }) {
   return (
-    <button
-      type="submit"
-      disabled={busy || disabled}
-      className="mt-5 w-full rounded-lg bg-ink px-4 py-2.5 font-medium text-white disabled:opacity-50"
-    >
-      {busy ? "Please wait…" : label}
+    <button type="submit" disabled={busy || disabled} className="cg-btn-primary mt-6 w-full text-base">
+      {busy ? (
+        <>
+          <Spinner /> Please wait…
+        </>
+      ) : (
+        <>
+          {label} <span aria-hidden>→</span>
+        </>
+      )}
     </button>
   );
 }
 
-const inputClass = "mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 focus:border-brand-purple focus:outline-none focus:ring-2 focus:ring-lavender";
+const inputClass = "cg-input mt-2";
 
 function Choice({ name, value, checked, onChange, children }: {
   name: string; value: string; checked: boolean; onChange: (v: string) => void; children: ReactNode;
 }) {
   return (
-    <label className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${checked ? "border-brand-purple bg-lavender" : "border-zinc-300"}`}>
-      <input type="radio" className="accent-brand-purple" name={name} value={value} checked={checked} onChange={() => onChange(value)} />
+    <label className="cg-choice" data-checked={checked}>
+      <input type="radio" name={name} value={value} checked={checked} onChange={() => onChange(value)} />
       {children}
     </label>
   );
@@ -172,7 +188,7 @@ function PhoneStep({ brief, update, next }: StepProps) {
           aria-label="Country code"
           value={brief.country}
           onChange={(e) => update({ country: e.target.value as Brief["country"] })}
-          className="rounded-lg border border-zinc-300 px-2 py-2"
+          className="cg-input w-auto max-w-[45%] shrink-0 px-3 text-base sm:max-w-none"
         >
           {COUNTRIES.map((c) => (
             <option key={c.code} value={c.code}>
@@ -191,7 +207,7 @@ function PhoneStep({ brief, update, next }: StepProps) {
             setError("");
             update({ phoneNumber: e.target.value });
           }}
-          className="w-full rounded-lg border border-zinc-300 px-3 py-2"
+          className="cg-input min-w-0 flex-1"
         />
       </div>
       <ErrorText>{error}</ErrorText>
@@ -237,12 +253,12 @@ function CodeStep({ brief, update, next }: StepProps) {
     <form onSubmit={submit} noValidate>
       <Question title="Enter the verification code we sent you." hint={`Sent to ${brief.phoneE164}`} />
       {brief.smsMode === "demo" && !verified && (
-        <p className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+        <p className="mt-4 rounded-xl border border-check/20 bg-check-bg p-3 text-sm text-check">
           <strong>Demo mode:</strong> no SMS is sent. Use code <strong>123456</strong>.
         </p>
       )}
       {verified ? (
-        <p className="mt-4 rounded-lg border border-green-300 bg-green-50 p-3 text-sm text-green-900">✓ This number is verified.</p>
+        <p className="mt-4 rounded-xl border border-good/20 bg-good-bg p-3 text-sm font-medium text-good">✓ This number is verified.</p>
       ) : (
         <>
           <input
@@ -263,7 +279,7 @@ function CodeStep({ brief, update, next }: StepProps) {
             type="button"
             onClick={resend}
             disabled={waitLeft > 0}
-            className="mt-3 text-sm font-medium text-ink underline disabled:text-zinc-400 disabled:no-underline"
+            className="cg-link mt-4 text-sm disabled:cursor-not-allowed disabled:text-ink-muted disabled:no-underline"
           >
             {waitLeft > 0 ? `Resend code in ${waitLeft}s` : "Resend code"}
           </button>
@@ -330,7 +346,7 @@ function BrandAboutStep({ brief, update, next }: StepProps) {
         className={`${inputClass} mt-4`}
       />
       <label className="mt-4 block text-sm font-medium" htmlFor="website">
-        Your website <span className="font-normal text-zinc-500">(optional)</span>
+        Your website <span className="font-normal text-ink-muted">(optional)</span>
       </label>
       <input
         id="website"
@@ -339,7 +355,7 @@ function BrandAboutStep({ brief, update, next }: StepProps) {
         onChange={(e) => update({ link: e.target.value })}
         className={inputClass}
       />
-      <p className="mt-1 text-xs text-zinc-500">We save it for later. Reading websites automatically is paused for now.</p>
+      <p className="mt-1 text-xs text-ink-muted">We save it for later. Reading websites automatically is paused for now.</p>
       <ErrorText>{error}</ErrorText>
       <Continue />
     </form>
@@ -428,13 +444,13 @@ function LinkStep({ brief, update, next }: StepProps) {
             void buildProfile({ link: brief.link });
           }}
           disabled={Boolean(busy)}
-          className="mt-2 rounded-lg border border-zinc-300 px-3 py-1.5 text-sm disabled:opacity-50"
+          className="cg-btn-secondary mt-3 text-sm"
         >
           Read my website again
         </button>
       )}
       {!brief.profile && !describing && (
-        <button type="button" onClick={() => setDescribing(true)} className="mt-2 block text-sm text-ink-soft underline">
+        <button type="button" onClick={() => setDescribing(true)} className="cg-link mt-3 block text-sm">
           No website? Describe your brand instead
         </button>
       )}
@@ -456,7 +472,7 @@ function LinkStep({ brief, update, next }: StepProps) {
             }}
             className={inputClass}
           />
-          <p className="text-xs text-zinc-500">We&apos;ll build your Brand Profile from these words only.</p>
+          <p className="text-xs text-ink-muted">We&apos;ll build your Brand Profile from these words only.</p>
         </div>
       )}
 
@@ -476,7 +492,7 @@ function LinkStep({ brief, update, next }: StepProps) {
 const CONFIDENCE_STYLE: Record<Confidence, string> = {
   high: "bg-mint-tint text-brand-teal",
   medium: "bg-lavender text-brand-purple",
-  low: "bg-amber-100 text-amber-900",
+  low: "bg-check-bg text-check",
 };
 
 function ProfileCard({ profile, onChange }: { profile: BrandProfile; onChange: (p: BrandProfile) => void }) {
@@ -503,11 +519,11 @@ function ProfileCard({ profile, onChange }: { profile: BrandProfile; onChange: (
         </p>
       </div>
       {profile.thin && (
-        <p className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-900">
+        <p className="border-b border-check/20 bg-check-bg px-4 py-2 text-xs text-check">
           Thin website: we could only read a little, so some answers are low confidence. Please check them.
         </p>
       )}
-      <dl className="divide-y divide-zinc-100">
+      <dl className="divide-y divide-line">
         {PROFILE_FIELDS.map(({ key, label }) => {
           const f = profile.fields[key];
           return (
@@ -516,7 +532,7 @@ function ProfileCard({ profile, onChange }: { profile: BrandProfile; onChange: (
                 <dt className="font-medium">{label}</dt>
                 <div className="flex shrink-0 items-center gap-2">
                   {f.edited ? (
-                    <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-ink-soft">Edited by you</span>
+                    <span className="rounded-full bg-none-bg px-2 py-0.5 text-[11px] font-medium text-none">Edited by you</span>
                   ) : f.clear ? (
                     <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${CONFIDENCE_STYLE[f.confidence]}`}>
                       {f.confidence[0].toUpperCase() + f.confidence.slice(1)} confidence
@@ -546,8 +562,8 @@ function ProfileCard({ profile, onChange }: { profile: BrandProfile; onChange: (
                 </div>
               ) : (
                 <>
-                  <dd className={`mt-1 ${f.clear ? "" : "italic text-zinc-500"}`}>{f.clear ? f.value : notClearText}</dd>
-                  {!f.edited && <dd className="mt-0.5 text-xs text-zinc-500">{f.evidence}</dd>}
+                  <dd className={`mt-1 ${f.clear ? "" : "italic text-ink-muted"}`}>{f.clear ? f.value : notClearText}</dd>
+                  {!f.edited && <dd className="mt-0.5 text-xs text-ink-muted">{f.evidence}</dd>}
                 </>
               )}
             </div>
@@ -574,7 +590,7 @@ function NicheStep({ brief, update, next }: StepProps) {
     >
       <Question title="What is your brand's niche?" />
       {brief.profile && nicheName(brief.profile) && (
-        <p className="mt-2 rounded-lg bg-lavender px-3 py-2 text-sm">
+        <p className="mt-3 rounded-xl bg-lavender px-3 py-2 text-sm text-fit">
           Suggested from your Brand Profile: <strong>{brief.profile.fields.niche.value}</strong>. Confirm it or pick another.
         </p>
       )}
@@ -639,7 +655,7 @@ function InfluencerStep({ brief, update, next }: StepProps) {
     <form onSubmit={submit} noValidate className="space-y-5">
       <Question title="Tell us about the influencers you want to work with." />
       {audience && (
-        <p className="rounded-lg bg-mint-tint px-3 py-2 text-sm">
+        <p className="rounded-xl bg-mint-tint px-3 py-2 text-sm text-reach">
           Your audience (from your Brand Profile): <strong>{audience}</strong>. Pick creators who reach these people.
         </p>
       )}
@@ -651,7 +667,7 @@ function InfluencerStep({ brief, update, next }: StepProps) {
 
       <fieldset>
         <legend className="text-sm font-medium">
-          What age are your customers? <span className="font-normal text-zinc-500">(optional)</span>
+          What age are your customers? <span className="font-normal text-ink-muted">(optional)</span>
         </legend>
         <div className="mt-1 grid grid-cols-2 gap-2 sm:grid-cols-5">
           {[...AGE_RANGES, ""].map((a) => (
@@ -687,7 +703,7 @@ function InfluencerStep({ brief, update, next }: StepProps) {
         <div className="mt-1 grid grid-cols-2 gap-2">
           {FOLLOWER_RANGES.map((r) => (
             <Choice key={r.value} name="range" value={r.value} checked={brief.followerRange === r.value} onChange={(v) => update({ followerRange: v, followerRangeSuggested: false })}>
-              {r.label} <span className="text-zinc-500">({r.detail})</span>
+              {r.label} <span className="text-ink-muted">({r.detail})</span>
             </Choice>
           ))}
         </div>
@@ -699,10 +715,10 @@ function InfluencerStep({ brief, update, next }: StepProps) {
       </fieldset>
 
       <fieldset>
-        <legend className="text-sm font-medium">What is your budget per creator? <span className="font-normal text-zinc-500">(optional)</span></legend>
+        <legend className="text-sm font-medium">What is your budget per creator? <span className="font-normal text-ink-muted">(optional)</span></legend>
         <div className="mt-1 flex items-center gap-2">
           <span className="text-ink-soft">₹</span>
-          <input aria-label="Budget per creator in rupees" inputMode="numeric" placeholder="e.g. 15000" value={brief.budget} onChange={(e) => update({ budget: e.target.value })} className="w-full rounded-lg border border-zinc-300 px-3 py-2" />
+          <input aria-label="Budget per creator in rupees" inputMode="numeric" placeholder="e.g. 15000" value={brief.budget} onChange={(e) => update({ budget: e.target.value })} className="cg-input" />
         </div>
       </fieldset>
 
@@ -755,16 +771,19 @@ export function briefRows(b: Brief): [string, string, number][] {
 
 function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: SetBrief }) {
   return (
-    <main className="mx-auto w-full max-w-xl px-4 py-8 text-ink">
+    <Page>
       <BrandHeader />
-      <h1 className="mt-6 text-2xl font-semibold">Your brief is ready</h1>
-      <p className="mt-1 text-sm text-ink-soft">Check your answers. You can edit any of them.</p>
-      <dl className="mt-5 divide-y divide-zinc-200 rounded-xl border border-zinc-200">
+      <div className="cg-rise mt-10 text-center">
+        <span className="cg-pill bg-good-bg text-good">✓ All 6 steps done</span>
+        <h1 className="mt-3 text-3xl font-extrabold sm:text-4xl">Your brief is ready</h1>
+        <p className="mt-2 text-ink-soft">Check your answers. You can edit any of them.</p>
+      </div>
+      <dl className="cg-card cg-rise mt-6 divide-y divide-line overflow-hidden">
         {briefRows(brief).map(([label, value, step]) => (
-          <div key={label} className="flex gap-3 p-3 text-sm">
-            <dt className="w-36 shrink-0 font-medium text-ink-soft">{label}</dt>
-            <dd className="flex-1 whitespace-pre-line">{value}</dd>
-            <button type="button" onClick={() => setBrief({ ...brief, step, returnToBrief: true })} className="text-xs text-ink-soft underline">
+          <div key={label} className="flex flex-wrap gap-x-3 gap-y-1 px-4 py-3 text-sm sm:flex-nowrap sm:px-5">
+            <dt className="w-full shrink-0 text-xs font-semibold uppercase tracking-wide text-ink-muted sm:w-40 sm:text-sm sm:font-medium sm:normal-case sm:tracking-normal">{label}</dt>
+            <dd className="min-w-0 flex-1 whitespace-pre-line">{value}</dd>
+            <button type="button" onClick={() => setBrief({ ...brief, step, returnToBrief: true })} className="cg-link shrink-0 text-xs">
               Edit
             </button>
           </div>
@@ -773,10 +792,10 @@ function BriefReady({ brief, setBrief }: { brief: Brief; setBrief: SetBrief }) {
       <button
         type="button"
         onClick={() => setBrief({ ...brief, step: 8 })}
-        className="mt-5 w-full rounded-lg bg-ink px-4 py-2.5 font-medium text-white"
+        className="cg-btn-primary mt-6 w-full text-base"
       >
-        See your top 10 creators
+        See your top 10 creators <span aria-hidden>→</span>
       </button>
-    </main>
+    </Page>
   );
 }

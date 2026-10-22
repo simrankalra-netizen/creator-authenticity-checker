@@ -1,36 +1,163 @@
 @import "tailwindcss";
 
-/* Collabgram brand colours, measured from the logo and banner. Use them as
-   Tailwind classes: text-ink, bg-ink, text-ink-soft, border-brand-purple,
-   bg-lavender, bg-mint-tint, bg-lime-tint, text-brand-teal and so on. */
+/* ==========================================================================
+   COLLABGRAM THEME — every colour lives here. Change a value and the whole
+   app follows. Each colour is also a Tailwind class, e.g. text-ink,
+   bg-good-bg, border-line, text-sales. Fonts are chosen in app/fonts.ts.
+   Text colours below were picked to pass contrast checks (4.5:1 or more).
+   ========================================================================== */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), var(--font-body), ui-sans-serif, sans-serif;
 
-  --color-ink: #16352d; /* headings, main buttons */
+  /* Brand */
+  --color-brand-purple: #6d4fd8; /* primary violet: buttons, links, selected items */
+  --color-brand-teal: #0f7f6b; /* accent teal: text-safe version of the logo teal */
+  --color-logo-violet: #7a5cde; /* logo and decorative gradient start */
+  --color-logo-teal: #129a82; /* logo and decorative gradient end */
+  --color-brand-mint: #31bda0; /* logo chart bar */
+  --color-brand-lime: #b9d930; /* logo chart bar; sparkles only, never behind text */
+
+  /* Text */
+  --color-ink: #16352d; /* headings and main text */
   --color-ink-soft: #455854; /* body text */
-  --color-brand-purple: #7a5cde; /* start of the "gram" gradient */
-  --color-brand-teal: #129a82; /* end of the "gram" gradient */
-  --color-brand-mint: #31bda0; /* chart bar */
-  --color-brand-lime: #b9d930; /* chart bar */
-  --color-lavender: #ebe8fb; /* soft tint: "Detect fakes" pill */
-  --color-mint-tint: #dbf7eb; /* soft tint: "Score credibility" pill */
-  --color-lime-tint: #f5fbdf; /* soft tint: "Match creators" pill */
+  --color-ink-muted: #5f6e6a; /* small labels */
+
+  /* Surfaces */
+  --color-page: #f7f6fd; /* page background */
+  --color-line: #e7e4f3; /* borders */
+  --color-lavender: #ebe8fb; /* soft violet tint */
+  --color-mint-tint: #dbf7eb; /* soft teal tint */
+  --color-lime-tint: #f5fbdf; /* soft lime tint */
+
+  /* Scores: the same meaning on every screen */
+  --color-good: #15803d; /* strong, genuine */
+  --color-good-bg: #dcfce7;
+  --color-check: #92400e; /* medium, needs checking */
+  --color-check-bg: #fef3c7;
+  --color-bad: #b91c1c; /* warnings, suspicious signs */
+  --color-bad-bg: #fee2e2;
+  --color-none: #52525b; /* not enough data */
+  --color-none-bg: #f1f1f4;
+
+  /* "Best for" tags */
+  --color-sales: #be185d;
+  --color-sales-bg: #fce7f1;
+  --color-reach: #0f6e5c;
+  --color-reach-bg: #dff5ef;
+  --color-fit: #5b3fc4;
+  --color-fit-bg: #ede9fe;
+
+  /* Creator avatars by niche (initials on a soft colour) */
+  --color-tech: #1d4e89;
+  --color-tech-bg: #e3edfb;
 }
 
-body {
-  background: #ffffff;
-  color: var(--color-ink);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+:root {
+  --gradient-brand: linear-gradient(90deg, var(--color-logo-violet), var(--color-logo-teal)); /* logo, progress bar */
+  --gradient-button: linear-gradient(90deg, var(--color-brand-purple), var(--color-brand-teal)); /* darker: white text stays readable */
+  --gradient-header: linear-gradient(135deg, #efeafd 0%, #e6f6f1 60%, #f4f9e3 100%);
+  --shadow-card: 0 1px 2px rgb(22 53 45 / 0.06), 0 8px 24px rgb(109 79 216 / 0.08);
+  --shadow-card-hover: 0 2px 4px rgb(22 53 45 / 0.08), 0 14px 34px rgb(109 79 216 / 0.16);
+  --radius-card: 20px;
 }
 
-/* Purple-to-teal, as in "gram" and "Real creators do." */
-.brand-gradient {
-  background-image: linear-gradient(90deg, var(--color-brand-purple), var(--color-brand-teal));
+@layer base {
+  body {
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "tnum" 1; /* numbers line up */
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-heading), var(--font-body), ui-sans-serif, sans-serif;
+    letter-spacing: -0.01em;
+  }
 }
-.brand-gradient-text {
-  background-image: linear-gradient(90deg, var(--color-brand-purple), var(--color-brand-teal));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+
+@layer components {
+  /* ---------- Gradients ---------- */
+  .brand-gradient { background-image: var(--gradient-brand); }
+  .brand-gradient-text {
+    background-image: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .header-band { background-image: var(--gradient-header); }
+  
+  /* ---------- Building blocks ---------- */
+  .cg-card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+  .cg-card-hover { transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
+  .cg-card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); border-color: #d6d0f3; }
+  
+  .cg-btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background-image: var(--gradient-button); color: #fff;
+    border-radius: 999px; padding: 0.8rem 1.5rem; font-weight: 600;
+    box-shadow: 0 6px 16px rgb(109 79 216 / 0.25);
+    transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+  }
+  .cg-btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 10px 24px rgb(109 79 216 / 0.32); filter: saturate(1.1); }
+  .cg-btn-primary:active:not(:disabled) { transform: translateY(0); }
+  .cg-btn-primary:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+  
+  .cg-btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    background: #fff; color: var(--color-ink); border: 1px solid var(--color-line);
+    border-radius: 999px; padding: 0.55rem 1.1rem; font-weight: 500;
+    transition: border-color 140ms ease, background-color 140ms ease;
+  }
+  .cg-btn-secondary:hover:not(:disabled) { border-color: var(--color-brand-purple); background: var(--color-lavender); }
+  .cg-btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
+  
+  .cg-link { color: var(--color-brand-purple); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+  .cg-link:hover { color: var(--color-brand-teal); }
+  
+  .cg-input {
+    width: 100%; background: #fff; border: 1.5px solid var(--color-line); border-radius: 14px;
+    padding: 0.85rem 1rem; font-size: 1.05rem; color: var(--color-ink);
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+  }
+  .cg-input::placeholder { color: #8b9895; }
+  .cg-input:focus { outline: none; border-color: var(--color-brand-purple); box-shadow: 0 0 0 4px var(--color-lavender); }
+  
+  .cg-choice {
+    display: flex; align-items: center; gap: 0.6rem; cursor: pointer;
+    background: #fff; border: 1.5px solid var(--color-line); border-radius: 14px;
+    padding: 0.7rem 0.9rem; font-size: 0.95rem;
+    transition: border-color 140ms ease, background-color 140ms ease, transform 140ms ease;
+  }
+  .cg-choice:hover { border-color: #c9bff2; }
+  .cg-choice[data-checked="true"] { border-color: var(--color-brand-purple); background: var(--color-lavender); font-weight: 500; }
+  .cg-choice input { accent-color: var(--color-brand-purple); }
+  
+  .cg-pill { display: inline-flex; align-items: center; gap: 0.3rem; border-radius: 999px; padding: 0.2rem 0.65rem; font-size: 0.75rem; font-weight: 600; }
+  
+  /* Focus rings for keyboard users */
+  button:focus-visible, a:focus-visible, [role="dialog"]:focus-visible { outline: 3px solid var(--color-brand-purple); outline-offset: 2px; }
+}
+
+/* ---------- Motion (short, and off for people who prefer less motion) ---------- */
+@keyframes cg-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes cg-slide-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes cg-sheet { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes cg-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+.cg-step-in { animation: cg-slide-in 260ms ease both; }
+.cg-rise { animation: cg-rise 320ms ease both; }
+.cg-sheet { animation: cg-sheet 240ms ease both; }
+.cg-progress-bar { transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1); }
+.cg-skeleton {
+  background: linear-gradient(90deg, #efedf8 0%, #f8f7fd 50%, #efedf8 100%);
+  background-size: 800px 100%; animation: cg-shimmer 1.2s linear infinite; border-radius: 12px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cg-step-in, .cg-rise, .cg-sheet, .cg-skeleton { animation: none; }
+  .cg-card-hover, .cg-btn-primary, .cg-progress-bar { transition: none; }
 }

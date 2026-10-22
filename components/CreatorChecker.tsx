@@ -71,7 +71,7 @@ export default function CreatorChecker() {
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-8 text-ink">
       <h1>
-        <Logo className="h-9 w-auto" />
+        <Logo />
       </h1>
       <p className="mt-1 max-w-2xl text-sm text-ink-soft">
         Upload creator numbers to get an authenticity score (0–100) with reasons. Scores are calculated by fixed
@@ -99,7 +99,7 @@ export default function CreatorChecker() {
       <ErrorBox title="This sales file can't be used. Scores are unchanged." errors={salesErrors} />
 
       {notes.length > 0 && (
-        <ul className="mt-6 list-disc rounded-lg border border-brand-purple/30 bg-lavender p-3 pl-8 text-sm text-ink">
+        <ul className="mt-6 list-disc rounded-2xl border border-brand-purple/20 bg-lavender p-3 pl-8 text-sm text-ink">
           {notes.map((n) => (
             <li key={n}>{n}</li>
           ))}
@@ -107,7 +107,7 @@ export default function CreatorChecker() {
       )}
 
       {match && (
-        <div className="mt-6 rounded-lg border border-brand-lime/50 bg-lime-tint p-4">
+        <div className="cg-card mt-6 border-brand-lime/50 bg-lime-tint p-5">
           {match.ok ? (
             <>
               <p className="text-lg font-semibold">
@@ -125,21 +125,21 @@ export default function CreatorChecker() {
       )}
 
       {ai.state === "loading" && (
-        <p className="mt-6 text-sm text-zinc-500">Getting plain-language wording from AI… scores are final already.</p>
+        <p className="mt-6 text-sm text-ink-muted">Getting plain-language wording from AI… scores are final already.</p>
       )}
       {ai.state === "failed" && (
-        <p className="mt-6 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+        <p className="mt-6 rounded-2xl border border-check/20 bg-check-bg p-3 text-sm text-check">
           AI wording unavailable ({ai.why}): showing standard reasons. Scores are not affected.
         </p>
       )}
       {ai.state === "done" && ai.extras > 0 && (
-        <p className="mt-6 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+        <p className="mt-6 rounded-2xl border border-check/20 bg-check-bg p-3 text-sm text-check">
           The AI reply also mentioned {ai.extras} creator(s) that aren&apos;t in your file; those were ignored.
         </p>
       )}
 
       {results && (
-        <div className="mt-6 overflow-x-auto rounded-lg border border-zinc-200">
+        <div className="cg-card mt-6 overflow-x-auto">
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead className="bg-mint-tint text-xs uppercase text-ink-soft">
               <tr>
@@ -210,15 +210,15 @@ function UploadBox(props: {
 }) {
   return (
     <label
-      className={`block rounded-lg border-2 border-dashed p-4 ${
-        props.disabled ? "border-zinc-200 opacity-50" : "cursor-pointer border-zinc-300 hover:border-brand-purple"
+      className={`cg-card-hover block rounded-2xl border-2 border-dashed bg-white p-5 ${
+        props.disabled ? "border-line opacity-50" : "cursor-pointer border-[#cfc7ee] hover:border-brand-purple"
       }`}
     >
       <span className="font-medium">
         {props.step}. {props.title}
       </span>
-      <span className="mt-1 block text-xs text-zinc-500">Columns: {props.columns}</span>
-      {props.disabled && <span className="mt-1 block text-xs text-zinc-500">{props.disabledNote}</span>}
+      <span className="mt-1 block text-xs text-ink-muted">Columns: {props.columns}</span>
+      {props.disabled && <span className="mt-1 block text-xs text-ink-muted">{props.disabledNote}</span>}
       <input
         type="file"
         accept=".csv,text/csv"
@@ -238,7 +238,7 @@ function ErrorBox({ title, errors }: { title: string; errors: string[] }) {
   if (errors.length === 0) return null;
   const shown = errors.slice(0, 5);
   return (
-    <div role="alert" className="mt-6 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900">
+    <div role="alert" className="mt-6 rounded-2xl border border-bad/20 bg-bad-bg p-4 text-sm text-bad">
       <p className="font-semibold">{title}</p>
       <ul className="mt-2 list-disc pl-5">
         {shown.map((e) => (
@@ -251,9 +251,9 @@ function ErrorBox({ title, errors }: { title: string; errors: string[] }) {
 }
 
 function scoreColor(score: number) {
-  if (score >= 70) return "text-green-700";
-  if (score >= 40) return "text-amber-700";
-  return "text-red-700";
+  if (score >= 70) return "text-good";
+  if (score >= 40) return "text-check";
+  return "text-bad";
 }
 
 function Row({
@@ -267,16 +267,16 @@ function Row({
 }) {
   const ordersCell =
     orders === undefined ? null : (
-      <td className="p-3 text-right">{orders === null ? <span className="text-zinc-400">no row</span> : orders}</td>
+      <td className="p-3 text-right">{orders === null ? <span className="text-ink-muted">no row</span> : orders}</td>
     );
 
   if (result.status === "not_enough_data") {
     return (
-      <tr className="border-t border-zinc-200 align-top">
+      <tr className="border-t border-line align-top">
         <td className="p-3 font-medium">@{result.handle}</td>
         <td className="p-3 text-right">{result.followers?.toLocaleString("en-IN") ?? "—"}</td>
-        <td className="p-3 text-right font-medium text-zinc-500">Not enough data</td>
-        <td className="p-3 text-zinc-400">—</td>
+        <td className="p-3 text-right font-medium text-ink-muted">Not enough data</td>
+        <td className="p-3 text-ink-muted">—</td>
         <td className="p-3 text-ink-soft" colSpan={2}>
           {result.why}. Not scored, so this creator isn&apos;t flagged. Check them by hand.
         </td>
@@ -286,7 +286,7 @@ function Row({
   }
 
   return (
-    <tr className="border-t border-zinc-200 align-top">
+    <tr className="border-t border-line align-top">
       <td className="p-3 font-medium">@{result.handle}</td>
       <td className="p-3 text-right">{result.followers.toLocaleString("en-IN")}</td>
       <td className={`p-3 text-right text-lg font-semibold ${scoreColor(result.score)}`}>{result.score}</td>
@@ -294,7 +294,7 @@ function Row({
       {result.reasons.map((reason, i) => (
         <td key={reason.code} className="p-3">
           <p>
-            <span className={reason.direction === "good" ? "text-green-700" : "text-red-700"}>
+            <span className={reason.direction === "good" ? "text-good" : "text-bad"}>
               {reason.direction === "good" ? "✓ " : "⚠ "}
             </span>
             {verdict?.ok ? verdict.texts[i] : reason.text}
@@ -302,8 +302,8 @@ function Row({
               <span className="ml-1 rounded bg-lavender px-1 text-[10px] font-medium text-brand-purple">AI wording</span>
             )}
           </p>
-          <p className="mt-1 text-xs text-zinc-500">{reason.evidence}</p>
-          {verdict && !verdict.ok && i === 0 && <p className="mt-1 text-xs text-amber-700">{verdict.note}</p>}
+          <p className="mt-1 text-xs text-ink-muted">{reason.evidence}</p>
+          {verdict && !verdict.ok && i === 0 && <p className="mt-1 text-xs text-check">{verdict.note}</p>}
         </td>
       ))}
       {ordersCell}
