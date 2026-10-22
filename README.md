@@ -1,10 +1,10 @@
-# Creator Authenticity Checker
+# Collabgram
 
 A one-screen web app that helps a small brand decide, in minutes, whether an influencer's audience is real before paying them.
 
 **Live app:** https://creator-authenticity-checker.vercel.app
 
-Upload a CSV of creators and each one gets an **authenticity score (0–100)**, a **confidence level** and **2 plain-language reasons**. Upload past campaign sales and you see the scores next to real orders, plus **one number** showing how well the scores predicted sales.
+A short onboarding (phone check, brand details, an influencer brief) comes first. Then you upload a CSV of creators and each one gets an **authenticity score (0–100)**, a **confidence level** and **2 plain-language reasons**. Upload past campaign sales and you see the scores next to real orders, plus **one number** showing how well the scores predicted sales.
 
 Hackathon MVP. Built with Next.js, deployable to Vercel. Uses the Claude API only to reword reasons.
 
@@ -22,7 +22,29 @@ Hackathon MVP. Built with Next.js, deployable to Vercel. Uses the Claude API onl
 2. **Check against real sales.** Upload a second CSV of past campaign results (promo code or link sales per creator). The scores appear next to the sales, plus one number showing how well the scores predicted which creators drove real sales.
 3. **Be honest about bad input.** If the CSV is missing columns or is unreadable, a clear error names what's wrong, and no made-up scores appear. If a creator has too little data, they show "Not enough data" instead of a guess, so honest creators aren't wrongly flagged.
 
-**Out of scope:** login, database, live Instagram or other platform API connections, payments, messaging creators, saved history, multi-brand support.
+**Out of scope:** user accounts, database, live Instagram or other platform API connections, payments, messaging creators, saved history, multi-brand support. (Phone verification was added in onboarding; it is a step in the flow, not an account system.)
+
+---
+
+## Onboarding
+
+When the app opens, it asks one question at a time (Step N of 6, with Back on every step):
+
+1. **Phone number:** a country code selector (default India +91). Only valid mobile numbers are accepted.
+2. **Verification code:** "Resend code" unlocks after 30 seconds. A wrong or expired code shows a clear message and never moves you forward.
+3. **Brand name.**
+4. **Brand website:** the server reads the page, and Claude summarises what the brand sells and who to, using only the page's text. You confirm or edit it. If the page can't be read, or it's an Instagram link (Instagram blocks automated reading), you type a short description instead. A summary is never invented.
+5. **Brand niche:** fashion, beauty, food, fitness, tech, home, or other (free text).
+6. **Influencer brief:** niche, location, main goal, follower range, budget (optional) and platform.
+
+Then **"Your brief is ready"** lists every answer, each with an Edit button, and continues to the creator screens. There the brief is shown above as context. It doesn't change any scores.
+
+**Storage:** the answers are kept in the browser tab's session storage only (they survive a refresh and are cleared when the tab closes). No database.
+
+### SMS codes: demo mode
+- **By default (`SMS_MODE=demo` in `.env.local`), no SMS is sent.** The code is always **123456**, and the screen says "Demo mode".
+- **Expiry and resend still behave for real:** a code expires after 5 minutes, and a resend unlocks after 30 seconds. The server keeps track using a signed cookie.
+- **To send real SMS:** set `SMS_MODE=twilio` and fill `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` and `TWILIO_VERIFY_SERVICE_SID` in `.env.local` (Twilio Verify). The swap point is labelled "REAL SMS" in `lib/otp.ts`. This path is untested until Twilio is set up. Sending SMS to India may also need telecom (DLT) registration.
 
 ---
 
@@ -157,7 +179,7 @@ You need **Node.js 20 or newer** and **git**.
    ```bash
    npm install
    ```
-2. **(Optional) Add your Claude API key** for AI wording. Copy `.env.example` to a new file called `.env.local`, then paste your key after `ANTHROPIC_API_KEY=`. Get a key at console.anthropic.com. `.env.local` is ignored by git, so it never gets committed. Without a key, the app still works with standard wording.
+2. **(Optional) Add your Claude API key** for AI wording. Copy `.env.example` to a new file called `.env.local`, then paste your key after `ANTHROPIC_API_KEY=`. Get a key at console.anthropic.com. `.env.local` is ignored by git, so it never gets committed. Without a key, the app still works with standard wording, and Step 4 always asks you to type your brand description. Also set `OTP_COOKIE_SECRET` to any long random string (the command is in `.env.example`). Leave `SMS_MODE=demo` and sign in with code **123456**.
 3. Start the app:
    ```bash
    npm run dev
@@ -179,7 +201,12 @@ Import the GitHub repo in Vercel, then add `ANTHROPIC_API_KEY` under **Project �
 
 | File | What it does |
 |---|---|
-| `app/page.tsx` | The one screen |
+| `app/page.tsx`, `components/App.tsx` | Shows the onboarding first, then the creator screen with the brief |
+| `components/Onboarding.tsx` | The 6 onboarding steps and "Your brief is ready" |
+| `components/CreatorChecker.tsx` | The creator authenticity screen |
+| `app/api/otp/send`, `app/api/otp/verify` | Send and check verification codes (demo mode by default) |
+| `app/api/brand-summary/route.ts` | Reads the brand website and asks Claude for a summary |
+| `lib/otp.ts`, `lib/phone.ts`, `lib/readPage.ts`, `lib/brief.ts` | Code checks, phone checks, safe website reading, saved answers |
 | `app/api/explain/route.ts` | The only Claude call |
 | `lib/parseCsv.ts` | Reads and validates CSVs, and accepts common column names |
 | `lib/score.ts` | Score, confidence, reasons, "Not enough data", and `SETTINGS` |

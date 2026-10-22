@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Creator Authenticity Checker",
-  description: "Authenticity scores with reasons for influencer creators",
+  title: "Collabgram",
+  description: "Collabgram: find genuine influencers for your brand, with authenticity scores and reasons",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
