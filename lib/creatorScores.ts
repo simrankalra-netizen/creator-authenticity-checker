@@ -3,6 +3,7 @@
 import { scoreCreator, tierFor, type Reason } from "./score";
 import type { Creator } from "./creatorSource";
 import type { Brief } from "./brief";
+import { liveSignals } from "./liveSignals";
 
 export type Goal = "sales" | "reach" | "fit";
 export type Level = "High" | "Medium" | "Low";
@@ -41,7 +42,12 @@ export function biggest30DayGrowth(history: number[]) {
 }
 
 export function authenticity(c: Creator): Authenticity {
+  // Live Instagram data: extra checks on the real posts, or "not enough data" when they're too few
+  const live = c.live ? liveSignals(c) : null;
+  if (live?.thin) return { status: "not_enough_data", why: live.thin };
+
   const growth = biggest30DayGrowth(c.followerHistory);
+  const noGrowthHistory = c.followerHistory.length === 0; // not public, so the growth check is skipped
   const base = scoreCreator({
     row: 0,
     handle: c.handle,
@@ -50,6 +56,7 @@ export function authenticity(c: Creator): Authenticity {
     avgComments: c.avgComments,
     growthPct: c.daysOfData < 7 ? 0 : growth, // a brand-new account is caught by days of data below
     daysOfData: c.daysOfData,
+    noGrowthHistory,
   });
   if (base.status === "not_enough_data") {
     const why = growth === null && c.daysOfData < 7 ? `Only ${c.daysOfData} days of data` : base.why;
@@ -69,7 +76,7 @@ export function authenticity(c: Creator): Authenticity {
       const penalty = Math.round(COMMENT_SETTINGS.maxPenalty * clamp01((share - COMMENT_SETTINGS.suspiciousShare) / 0.4) + 8);
       score = Math.max(0, score - penalty);
       reasons.push({
-        text: `${generic + repeated} of ${checked} recent comments are generic or repeated ("nice 🔥"), a sign of engagement groups or bots.`,
+        text: `${generic + repeated} of ${checked} recent comments are generic or repeated ("nice 🔥"), so signals look unusual (possibly engagement groups or automated accounts).`,
         evidence,
         direction: "warning",
         penalty,
@@ -80,12 +87,24 @@ export function authenticity(c: Creator): Authenticity {
       reasons.push({ text: `Comments read like real conversation (${generic + repeated} of ${checked} generic or repeated).`, evidence, direction: "good", penalty: 0 });
     }
   }
+
+  for (const r of live?.reasons ?? []) {
+    score = Math.max(0, score - r.penalty);
+    reasons.push(r);
+    if (r.direction === "warning" && base.reasons.every((x) => x.direction === "good")) confidence = "Medium";
+  }
   reasons.sort((a, b) => b.penalty - a.penalty);
+  const shown = reasons.slice(0, 2);
+  // A live-data warning is always shown, even if two "good" checks moved the score more
+  const hiddenWarning = live?.reasons.find((r) => r.direction === "warning" && !shown.includes(r));
+  if (hiddenWarning && shown.some((r) => r.direction === "good")) {
+    shown[shown.findLastIndex((r) => r.direction === "good")] = hiddenWarning;
+  }
   return {
     status: "scored",
     score,
     confidence,
-    reasons: reasons.slice(0, 2),
+    reasons: shown,
     engagementRate: Math.round(((c.avgLikes + c.avgComments) / c.followers) * 100 * 100) / 100, // %, 2 decimals
     biggest30DayGrowth: growth ?? 0,
   };
@@ -116,10 +135,17 @@ export const NICHE_MISMATCH_CAP = 35; // Brand Fit for a creator outside your ni
 
 export type FitPart = { label: string; points: number; max: number; note: string; counted: boolean };
 
-// Share of the creator's audience in the brand's chosen place (null = place is "anywhere")
-export function locationShare(c: Creator, b: Brief): number | null {
+// The brand's chosen place in lower case ("" = anywhere or all of India)
+const chosenPlace = (b: Brief) => {
   const place = b.location.trim().toLowerCase();
-  if (b.locationMode === "anywhere" || !place || /\bindia\b/.test(place)) return null;
+  return b.locationMode === "anywhere" || !place || /\bindia\b/.test(place) ? "" : place;
+};
+
+// Share of the creator's audience in the brand's chosen place
+// (null = place is "anywhere", or the audience's cities aren't known)
+export function locationShare(c: Creator, b: Brief): number | null {
+  const place = chosenPlace(b);
+  if (!place || !c.audienceTopCities) return null;
   const inAudience = c.audienceTopCities?.find((x) => place.includes(x.city.toLowerCase()) || x.city.toLowerCase().includes(place));
   if (inAudience) return inAudience.pct;
   if (place.includes(c.state.toLowerCase())) return c.audienceTopCities?.[0]?.pct ?? 30; // brand chose the creator's state
@@ -150,7 +176,22 @@ export function brandFit(c: Creator, b: Brief): { score: number; parts: FitPart[
   }
 
   const share = locationShare(c, b);
-  if (share === null) {
+  const place = chosenPlace(b);
+  if (place && !c.audienceTopCities) {
+    // Audience cities aren't public: only the creator's own city (if shown) is a weak signal
+    const based = c.city && (place.includes(c.city.toLowerCase()) || c.city.toLowerCase().includes(place));
+    if (!c.city) {
+      parts.push({ label: "Location", points: 0, max: 20, note: "Audience location not available, and the creator's city isn't shown", counted: false });
+    } else {
+      parts.push({
+        label: "Location",
+        points: based ? 10 : 0,
+        max: 20,
+        note: `Creator is based in ${c.city} (audience location not available)`,
+        counted: true,
+      });
+    }
+  } else if (share === null) {
     parts.push({ label: "Location", points: 20, max: 20, note: b.locationMode === "anywhere" ? "You chose anywhere" : `You chose ${b.location}`, counted: true });
   } else {
     parts.push({ label: "Location", points: Math.round(20 * clamp01(share / 30)), max: 20, note: `${share}% of their audience is in ${b.location} (full marks at 30%)`, counted: true });
@@ -167,6 +208,8 @@ export function brandFit(c: Creator, b: Brief): { score: number; parts: FitPart[
   const budget = Number(b.budget.replace(/,/g, "")) || 0;
   if (!budget) {
     parts.push({ label: "Budget", points: 15, max: 15, note: "No budget given", counted: true });
+  } else if (c.ratePerPost === null) {
+    parts.push({ label: "Budget", points: 0, max: 15, note: "Rate per post not available (creators don't publish it)", counted: false });
   } else {
     const ratio = c.ratePerPost / budget;
     parts.push({
@@ -235,7 +278,8 @@ export function expectedReturn(c: Creator, auth: Authenticity, fitScore: number,
 
 export function cost(c: Creator) {
   const engaged = c.avgLikes + c.avgComments;
-  return { ratePerPost: c.ratePerPost, perEngaged: engaged > 0 ? Math.round((c.ratePerPost / engaged) * 100) / 100 : null };
+  const rate = c.ratePerPost;
+  return { ratePerPost: rate, perEngaged: rate !== null && engaged > 0 ? Math.round((rate / engaged) * 100) / 100 : null };
 }
 
 // ---------- Red flags ----------
@@ -247,7 +291,7 @@ export function redFlags(c: Creator, b: Brief, auth: Authenticity): string[] {
   }
   if (c.postsPerMonth < 2) flags.push(`Posts rarely (${c.postsPerMonth} a month).`);
   const budget = Number(b.budget.replace(/,/g, "")) || 0;
-  if (budget && c.ratePerPost > budget) flags.push(`Rate ₹${fmt(c.ratePerPost)} is above your ₹${fmt(budget)} budget.`);
+  if (budget && c.ratePerPost !== null && c.ratePerPost > budget) flags.push(`Rate ₹${fmt(c.ratePerPost)} is above your ₹${fmt(budget)} budget.`);
   const share = locationShare(c, b);
   if (share !== null && share < 10) flags.push(`Only ${share}% of their audience is in ${b.location}.`);
   return flags;
@@ -259,8 +303,9 @@ export function redFlags(c: Creator, b: Brief, auth: Authenticity): string[] {
 export function whyWePicked(c: Creator, fit: { parts: FitPart[] }, ret: ExpectedReturn, auth: Authenticity): string {
   const bits: string[] = [];
   const niche = fit.parts.find((p) => p.label === "Niche");
-  if (niche && niche.points === niche.max) bits.push(`${c.subNiche.toLowerCase()} creator in ${c.city}`);
-  else bits.push(`${c.niche.toLowerCase()} creator in ${c.city}`);
+  const where = c.city ? ` in ${c.city}` : "";
+  if (niche && niche.points === niche.max) bits.push(`${c.subNiche.toLowerCase()} creator${where}`);
+  else bits.push(`${c.niche.toLowerCase()} creator${where}`);
   const age = fit.parts.find((p) => p.label === "Audience age" && p.counted && p.points >= 14);
   if (age) bits.push(age.note.split(" (")[0].replace("% of their audience is", "% of followers are"));
   const loc = fit.parts.find((p) => p.label === "Location" && p.counted && p.max === 20 && p.note.includes("% of their audience"));

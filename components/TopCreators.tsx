@@ -1,14 +1,16 @@
 "use client";
 
-// "Your top 10 creators": the 10 demo creators best suited to the brand's brief.
+// "Your top 10 creators": the 10 creators best suited to the brand's brief, from demo data
+// or real public Instagram data (see lib/creatorSource.ts).
 // All scoring is plain code (lib/creatorScores.ts, lib/ranking.ts); no AI, no API key.
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motionMs, prefersReducedMotion } from "@/components/motion";
 import Logo from "@/components/Logo";
 import CreatorDetail from "@/components/CreatorDetail";
-import { getCreators, SOURCE_LABEL, SOURCE_NOTE, type Creator } from "@/lib/creatorSource";
+import { demoCreators, getCreators, SOURCE_LABEL, SOURCE_NOTE, SourceError, type Creator, type CreatorList, type SourceStage } from "@/lib/creatorSource";
 import { GOAL_LABEL, goalFromBrief, type Goal, type Level } from "@/lib/creatorScores";
 import { topCreators, type Scored } from "@/lib/ranking";
+import { hashtagsFor, searchKey } from "@/lib/searchTerms";
 import type { Brief } from "@/lib/brief";
 import {
   Avatar, GOAL_ICON, GOAL_TAG, IconAlert, IconCheck, IconInfo, IconStar, LEVEL_STYLE, ScoreDial, TONE_BG, TONE_TEXT, toneFor,
@@ -18,6 +20,29 @@ export const compact = (n: number) => new Intl.NumberFormat("en-IN", { notation:
 export const rupees = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 export { LEVEL_STYLE };
 
+export const collectedOn = (iso: string) => new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+// The label every card carries, so demo and real data are never confused
+export const sourceLine = (c: Creator) =>
+  c.source === "live" && c.collectedAt ? `Live data from Instagram, collected on ${collectedOn(c.collectedAt)}` : "Demo data · not a real person";
+
+const SEARCH_TIMEOUT_MS = 130_000; // the server stops at 110 s; this catches a stuck connection
+
+const STAGE_TEXT: Record<SourceStage, { title: string; detail: (b: Brief) => string }> = {
+  finding: { title: "Finding creators", detail: (b) => `Looking at recent public posts under ${hashtagsFor(b).map((h) => `#${h}`).join(", ")}.` },
+  checking: { title: "Checking posts", detail: () => "Reading up to 50 public profiles and their latest 12 posts." },
+  scoring: { title: "Scoring", detail: () => "Working out authenticity and brand fit from what was collected." },
+};
+
+// What the person sees when the live search doesn't work
+const ERROR_TEXT: Record<string, string> = {
+  no_token: "Live data isn't set up: there's no Apify token on the server.",
+  bad_token: "Apify didn't accept the token on the server, so live data couldn't be collected.",
+  no_credits: "The Apify account has run out of credits, so live data couldn't be collected.",
+  timeout: "Collecting live data took longer than 2 minutes, so it was stopped.",
+  empty: "Instagram returned no public creators for this search.",
+  failed: "Something went wrong while collecting live data.",
+};
+
 export function authBadge(s: Scored) {
   const score = s.auth.status === "scored" ? s.auth.score : null;
   const tone = toneFor(score);
@@ -25,19 +50,46 @@ export function authBadge(s: Scored) {
 }
 
 export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { brief: Brief; onEditBrief: () => void; onOpenChecker: () => void }) {
-  const [creators, setCreators] = useState<Creator[] | null>(null);
+  const [data, setData] = useState<CreatorList | null>(null);
+  const [stage, setStage] = useState<SourceStage | null>(null);
+  const [failure, setFailure] = useState<{ reason: string; message: string } | null>(null);
+  const [attempt, setAttempt] = useState(0);
   const [goal, setGoal] = useState<Goal>(goalFromBrief(brief));
   const [openId, setOpenId] = useState<string | null>(null);
 
   const [loaderDone, setLoaderDone] = useState(false);
+  const key = searchKey(brief);
 
   useEffect(() => {
-    getCreators().then(setCreators); // the data source can be swapped in lib/creatorSource.ts
+    const controller = new AbortController();
+    let timedOut = false;
+    const stop = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, SEARCH_TIMEOUT_MS);
+    setData(null);
+    setFailure(null);
+    setStage(null);
+    getCreators(brief, setStage, controller.signal) // the source is picked in lib/creatorSource.ts
+      .then(setData)
+      .catch((e) => {
+        if (timedOut) setFailure({ reason: "timeout", message: "No reply within 2 minutes" });
+        else if (!controller.signal.aborted) setFailure(e instanceof SourceError ? { reason: e.reason, message: e.message } : { reason: "failed", message: String(e) });
+      })
+      .finally(() => clearTimeout(stop));
     // "Scanning creators…" shows for at least --motion-loader-min so it feels intentional
+    setLoaderDone(false);
     const t = setTimeout(() => setLoaderDone(true), motionMs("--motion-loader-min", 1200));
-    return () => clearTimeout(t);
-  }, []);
+    return () => {
+      clearTimeout(t);
+      clearTimeout(stop);
+      controller.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-run only when the search itself changes
+  }, [key, attempt]);
 
+  const creators = data?.creators ?? null;
+  const source = data?.source ?? "demo";
   const computed = useMemo(() => (creators ? topCreators(creators, brief, goal) : null), [creators, brief, goal]);
   const list = loaderDone ? computed : null;
   const briefGoal = goalFromBrief(brief);
@@ -76,9 +128,11 @@ export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { bri
         <div className="mx-auto w-full max-w-5xl px-4 pb-8 pt-6 text-ink">
           <div className="flex items-center justify-between gap-3">
             <Logo />
-            <span className="cg-pill border border-check/20 bg-check-bg text-check" title={SOURCE_NOTE}>
-              <IconInfo size={13} /> {SOURCE_LABEL}
-            </span>
+            {data && (
+              <span className="cg-pill border border-check/20 bg-check-bg text-check" title={SOURCE_NOTE[source]}>
+                <IconInfo size={13} /> {SOURCE_LABEL[source]}
+              </span>
+            )}
           </div>
           <div className="mt-8 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -88,7 +142,13 @@ export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { bri
                 {brief.locationMode === "anywhere" ? "anywhere" : brief.location}
                 {brief.budget ? ` · up to ${rupees(Number(brief.budget.replace(/,/g, "")))} per creator` : ""}
               </p>
-              <p className="mt-1 text-xs text-ink-muted">{SOURCE_NOTE} Scores show how the method works.</p>
+              {data && (
+                <p className="mt-1 text-xs text-ink-muted">
+                  {source === "live"
+                    ? `${SOURCE_NOTE.live} Collected on ${collectedOn(data.collectedAt!)}${data.cached ? " (saved search, refreshed every 24 hours)" : ""} from ${data.hashtags.map((h) => `#${h}`).join(", ")}.`
+                    : `${SOURCE_NOTE.demo} Scores show how the method works.`}
+                </p>
+              )}
             </div>
             <button type="button" onClick={onEditBrief} className="cg-btn-secondary text-sm">
               Edit brief
@@ -130,8 +190,25 @@ export default function TopCreators({ brief, onEditBrief, onOpenChecker }: { bri
           </p>
         )}
 
-        {!list ? (
-          <ScanningLoader />
+        {failure ? (
+          <div className="cg-card mt-6 p-6 sm:p-8" role="alert">
+            <p className="flex items-center gap-2 font-display text-xl font-bold text-bad">
+              <IconAlert /> Live creator data isn&apos;t available right now
+            </p>
+            <p className="mt-2 text-ink-soft">{ERROR_TEXT[failure.reason] ?? ERROR_TEXT.failed}</p>
+            <p className="mt-1 text-xs text-ink-muted">Details: {failure.message}</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <button type="button" onClick={() => { setFailure(null); setData(demoCreators()); }} className="cg-btn-primary">
+                Continue with demo data
+              </button>
+              <button type="button" onClick={() => setAttempt((n) => n + 1)} className="cg-btn-secondary">
+                Try again
+              </button>
+            </div>
+            <p className="mt-3 text-xs text-ink-muted">Demo creators are made up and every card is labelled &quot;Demo data&quot;.</p>
+          </div>
+        ) : !list ? (
+          <ScanningLoader stage={stage} brief={brief} />
         ) : list.top.length === 0 ? (
           <div className="cg-card mt-6 p-8 text-center">
             <p className="font-display text-xl font-bold">No creators to show yet</p>
@@ -196,11 +273,12 @@ function CreatorCard({ rank, s, goal, onOpen, liRef }: { rank: number; s: Scored
           </div>
           <p className="truncate font-display text-lg font-bold">@{c.handle}</p>
           <p className="text-sm text-ink-soft">
-            {c.subNiche} ({c.niche}) · {c.city}
+            {c.subNiche} ({c.niche}){c.city ? ` · ${c.city}` : ""}
           </p>
           <p className="text-sm text-ink-soft">
             <strong className="text-ink">{compact(c.followers)}</strong> followers · {c.platform}
           </p>
+          <p className="mt-0.5 text-xs text-ink-muted">{sourceLine(c)}</p>
         </div>
         <span className={`cg-pill shrink-0 ${GOAL_TAG[s.ret.bestFor]} ${s.ret.bestFor === goal ? "ring-2 ring-current/30" : ""}`} title="What this creator is strongest at">
           <BestIcon size={13} /> Best for {GOAL_LABEL[s.ret.bestFor]}
@@ -246,8 +324,14 @@ function CreatorCard({ rank, s, goal, onOpen, liRef }: { rank: number; s: Scored
       </p>
 
       <p className="mt-4 text-sm">
-        <strong className="font-display text-base">{rupees(s.cost.ratePerPost)}</strong> <span className="text-ink-soft">per post</span>
-        {s.cost.perEngaged !== null && <span className="text-ink-soft"> · about {rupees(s.cost.perEngaged)} per engaged follower</span>}
+        {s.cost.ratePerPost === null ? (
+          <span className="text-ink-soft">Rate per post: Not available (creators don&apos;t publish it)</span>
+        ) : (
+          <>
+            <strong className="font-display text-base">{rupees(s.cost.ratePerPost)}</strong> <span className="text-ink-soft">per post</span>
+            {s.cost.perEngaged !== null && <span className="text-ink-soft"> · about {rupees(s.cost.perEngaged)} per engaged follower</span>}
+          </>
+        )}
       </p>
 
       {s.flags.length > 0 && (
@@ -275,19 +359,35 @@ function CreatorCard({ rank, s, goal, onOpen, liRef }: { rank: number; s: Scored
   );
 }
 
-// "Scanning creators…": a light line sweeps over placeholder cards while the list is prepared
-function ScanningLoader() {
+// "Scanning creators…": a light line sweeps over placeholder cards while the list is prepared.
+// For live data it names the real step the server is on.
+function ScanningLoader({ stage, brief }: { stage: SourceStage | null; brief: Brief }) {
+  const steps: SourceStage[] = ["finding", "checking", "scoring"];
   return (
     <div className="mt-6" role="status" aria-live="polite">
+      {stage && (
+        <ol className="mb-3 flex flex-wrap gap-2 text-xs">
+          {steps.map((s, i) => {
+            const now = steps.indexOf(stage);
+            return (
+              <li key={s} className={`cg-pill ${i < now ? "bg-good-bg text-good" : i === now ? "bg-lavender text-fit" : "bg-white text-ink-muted ring-1 ring-line"}`}>
+                {i < now ? <IconCheck size={12} /> : null} {STAGE_TEXT[s].title}
+              </li>
+            );
+          })}
+        </ol>
+      )}
       <p className="flex items-center gap-2 font-display text-lg font-bold">
-        Scanning creators
+        {stage ? STAGE_TEXT[stage].title : "Scanning creators"}
         <span aria-hidden className="inline-flex gap-1">
           {[0, 1, 2].map((i) => (
             <span key={i} className="cg-dot inline-block h-1.5 w-1.5 rounded-full bg-brand-purple" style={{ animationDelay: `${i * 0.2}s` }} />
           ))}
         </span>
       </p>
-      <p className="text-sm text-ink-soft">Checking engagement, comments and growth for 100 demo creators.</p>
+      <p className="text-sm text-ink-soft">
+        {stage ? `${STAGE_TEXT[stage].detail(brief)} This can take up to 2 minutes.` : "Checking engagement, comments and growth."}
+      </p>
       <div className="relative mt-4 overflow-hidden rounded-[22px]">
         <ul className="grid gap-5 md:grid-cols-2" aria-hidden>
           {Array.from({ length: 4 }, (_, i) => (

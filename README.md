@@ -158,6 +158,24 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 | AI skips or duplicates a creator | Standard sentence kept for that creator, with a note |
 | AI slow (over 15 s), down, or no API key | A yellow banner: "AI wording unavailable… Scores are not affected." |
 
+## Real Instagram creators (Apify)
+
+Set `DATA_SOURCE=apify` and `APIFY_TOKEN` in `.env.local` to build the top 10 from real public Instagram profiles instead of the demo creators. Apify is called from the server only, and no Instagram login or cookies are used.
+
+1. **Find creators:** the brief becomes up to 4 hashtags (a skincare brand in Mumbai → `#mumbaiskincare`, `#skincaremumbai`, `#mumbaibeautyblogger`, `#skincareindia`). Apify's Instagram Hashtag Scraper reads up to 40 recent posts per hashtag (160 at most).
+2. **Check posts:** the accounts posting most under those hashtags (at most 50) go to Apify's Instagram Profile Scraper, which returns each public profile with its latest 12 posts. Private accounts, accounts under 1,000 followers and shops or brands are left out.
+3. **Comments (off by default):** with `APIFY_COMMENTS=on`, 10 comments on 2 posts of the best 30 creators are read to check comment quality.
+4. **Score:** `lib/fromInstagram.ts` turns the raw data into the same creator record the scoring uses. `lib/liveSignals.ts` adds two checks for real data: one post with far more likes than the rest, and following far more accounts than follow back.
+
+| Can't be measured from public data | What the app does |
+|---|---|
+| Audience age and cities | "Not available", not counted in Brand Fit. Location uses only the creator's own city, if shown |
+| Follower history | The growth check is skipped |
+| Rate per post, past campaigns | "Not available"; budget isn't counted; sales are estimated from engagement |
+| Join date | "Not available" |
+
+**Limits and cost:** the whole search stops at 110 seconds; each step has a cost cap. One search costs about $0.55–0.60 on Apify's Free plan ($5 of credit a month, so about 8 searches), or about $2.10 with comments on. Results are cached for 24 hours in a key-value store on your Apify account, and older records are deleted. If Apify fails, runs out of credits or finds nobody, the screen says so and offers the demo data, clearly labelled. Every card says either "Live data from Instagram, collected on <date>" or "Demo data".
+
 ### Known limitations (be upfront with judges)
 - **The sample data is synthetic.** The 6 "fake" creators were planted, so the sample's match number shows that the method works, not that it's proven on real campaigns.
 - **The thresholds are reasoned starting points,** not calibrated on real Indian creator data. They're easy to tune in `SETTINGS`.
@@ -195,7 +213,7 @@ You need **Node.js 20 or newer** and **git**.
    ```
 
 ### Deploy to Vercel
-Import the GitHub repo in Vercel, then add `GEMINI_API_KEY` under **Project → Settings → Environment Variables**.
+Import the GitHub repo in Vercel, then add `GEMINI_API_KEY` under **Project → Settings → Environment Variables**. For real Instagram creators, also add `DATA_SOURCE=apify` and `APIFY_TOKEN`.
 
 ## Project map
 
@@ -213,4 +231,7 @@ Import the GitHub repo in Vercel, then add `GEMINI_API_KEY` under **Project → 
 | `lib/checkAi.ts` | Checks Gemini's sentences before they're shown |
 | `lib/predict.ts` | The score–sales match number |
 | `lib/checks.test.ts` | Automatic checks for the 3 tests |
+| `lib/creatorSource.ts` | The only place that decides where creators come from (`DATA_SOURCE`) |
+| `app/api/creators/route.ts`, `lib/apifySource.ts`, `lib/apify.ts` | The live Instagram search on the server: hashtags → profiles → scores, with limits and the 24-hour cache |
+| `lib/searchTerms.ts`, `lib/fromInstagram.ts`, `lib/liveSignals.ts` | Brief → hashtags, raw data → creator record, extra checks for real data (tests in `lib/live.test.ts`) |
 | `samples/` | Sample creators, sales, and broken files |

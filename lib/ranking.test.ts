@@ -88,7 +88,7 @@ describe("filters", () => {
   it("keeps creators within budget unless it says why", () => {
     const b = brief("fitness, small budget");
     for (const s of topCreators(creators, b, "fit").top) {
-      if (s.creator.ratePerPost > 5000 * 1.25) expect(s.warning).toContain("over budget");
+      if ((s.creator.ratePerPost ?? 0) > 5000 * 1.25) expect(s.warning).toContain("over budget");
     }
   });
 

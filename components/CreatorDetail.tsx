@@ -5,13 +5,14 @@ import { useEffect, type ReactNode } from "react";
 import { GOAL_LABEL, type Goal } from "@/lib/creatorScores";
 import { GOAL_WEIGHTS, type Scored } from "@/lib/ranking";
 import type { Brief } from "@/lib/brief";
-import { authBadge, compact, rupees } from "@/components/TopCreators";
+import { authBadge, compact, rupees, sourceLine } from "@/components/TopCreators";
 import {
   Avatar, GOAL_ICON, IconAlert, IconCheck, IconInfo, LEVEL_STYLE, Meter, ScoreDial, TONE_TEXT, toneFor,
 } from "@/components/ui";
 
 export default function CreatorDetail({ s, goal, brief, onClose }: { s: Scored; goal: Goal; brief: Brief; onClose: () => void }) {
   const c = s.creator;
+  const live = c.live;
   const w = GOAL_WEIGHTS[goal];
   const auth = authBadge(s);
   const authScore = s.auth.status === "scored" ? s.auth.score : 50;
@@ -39,11 +40,16 @@ export default function CreatorDetail({ s, goal, brief, onClose }: { s: Scored; 
           <div className="flex items-start gap-3">
             <Avatar handle={c.handle} niche={c.niche} size={52} />
             <div className="min-w-0 flex-1">
-              <span className="cg-pill border border-check/20 bg-check-bg text-check">Demo data · not a real person</span>
+              <span className="cg-pill border border-check/20 bg-check-bg text-check">{sourceLine(c)}</span>
               <h2 className="mt-1 truncate text-2xl font-extrabold">@{c.handle}</h2>
               <p className="text-sm text-ink-soft">
-                {c.subNiche} ({c.niche}) · {c.city}, {c.state} · {c.platform}
+                {c.subNiche} ({c.niche}){c.city ? ` · ${c.city}${c.state ? `, ${c.state}` : ""}` : ""} · {c.platform}
               </p>
+              {live && (
+                <a href={live.profileUrl} target="_blank" rel="noopener noreferrer" className="cg-link text-sm">
+                  Open the live profile on Instagram ↗
+                </a>
+              )}
             </div>
             <button type="button" onClick={onClose} className="cg-btn-secondary shrink-0 text-sm">
               Close
@@ -113,13 +119,17 @@ export default function CreatorDetail({ s, goal, brief, onClose }: { s: Scored; 
               <Signal label="Engagement rate" value={c.followers ? `${er.toFixed(2)}%` : "—"} note="Likes and comments per post, as a share of followers">
                 <Meter value={Math.min(er, 12)} max={12} />
               </Signal>
-              <Signal label="Comments per 100 likes" value={c.avgLikes ? commentsPer100.toFixed(1) : "—"} note="Real audiences talk back; bought likes don't">
+              <Signal label="Comments per 100 likes" value={c.avgLikes ? commentsPer100.toFixed(1) : "—"} note="Real audiences tend to talk back, not just like">
                 <Meter value={Math.min(commentsPer100, 10)} max={10} />
               </Signal>
               <Signal
                 label="Generic or repeated comments"
-                value={c.commentSample.checked ? `${c.commentSample.generic + c.commentSample.repeated} of ${c.commentSample.checked}` : "None available"}
-                note="Like “nice 🔥”; over 40% is a warning sign"
+                value={c.commentSample.checked ? `${c.commentSample.generic + c.commentSample.repeated} of ${c.commentSample.checked}` : "Not available"}
+                note={
+                  c.commentSample.checked || !live
+                    ? "Like “nice 🔥”, emoji-only or repeated; over 40% is a warning sign"
+                    : "Comments weren't collected for this search (to save Apify credits), so this isn't counted"
+                }
               >
                 <Meter value={fakeComments} tone={fakeComments > 40 ? "bad" : fakeComments > 25 ? "check" : "good"} />
               </Signal>
@@ -128,8 +138,18 @@ export default function CreatorDetail({ s, goal, brief, onClose }: { s: Scored; 
             <dl className="mt-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
               <Fact label="Followers" value={c.followers.toLocaleString("en-IN")} />
               <Fact label="Avg likes / comments" value={`${c.avgLikes.toLocaleString("en-IN")} / ${c.avgComments.toLocaleString("en-IN")}`} />
-              <Fact label="Days of data" value={`${c.daysOfData}`} />
+              <Fact label={live ? "Days covered by recent posts" : "Days of data"} value={`${c.daysOfData}`} />
             </dl>
+            {live && (
+              <dl className="mt-3 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
+                <Fact label="Following" value={live.following.toLocaleString("en-IN")} />
+                <Fact label="Total posts" value={live.postsCount.toLocaleString("en-IN")} />
+                <Fact label="Verified" value={live.verified ? "Yes" : "No"} />
+                <Fact label="Recent posts checked" value={`${live.postsChecked}`} note={live.hiddenLikePosts ? `${live.hiddenLikePosts} more have likes hidden` : "Pinned and under-a-day-old posts left out"} />
+                <Fact label="Last post" value={live.lastPostDaysAgo === null ? "Not available" : live.lastPostDaysAgo === 0 ? "Today" : `${live.lastPostDaysAgo} days ago`} />
+                <Fact label="Account age" value="Not available" note="Join date isn't in the public data we collect" />
+              </dl>
+            )}
             <Growth history={c.followerHistory} />
           </Section>
 
@@ -182,7 +202,9 @@ export default function CreatorDetail({ s, goal, brief, onClose }: { s: Scored; 
                 {brief.targetAge && <p className="text-xs text-ink-muted">Highlighted: your customers&apos; age.</p>}
               </div>
             ) : (
-              <p className="text-sm text-ink-soft">Audience age not available.</p>
+              <p className="text-sm text-ink-soft">
+                Audience age: Not available{live ? ". Instagram only shows this to the creator, so it isn't guessed or counted." : "."}
+              </p>
             )}
             <p className="mt-3 text-xs font-medium text-ink-muted">Top audience cities</p>
             <div className="mt-1 flex flex-wrap gap-1.5">
@@ -200,15 +222,22 @@ export default function CreatorDetail({ s, goal, brief, onClose }: { s: Scored; 
 
           <Section title="Cost and activity">
             <dl className="grid grid-cols-2 gap-3 text-sm">
-              <Fact label="Typical rate" value={`${rupees(c.ratePerPost)} per post`} />
+              <Fact label="Typical rate" value={c.ratePerPost === null ? "Not available" : `${rupees(c.ratePerPost)} per post`} note={c.ratePerPost === null ? "Creators don't publish rates; ask them" : undefined} />
               <Fact
                 label="Cost per engaged follower"
-                value={s.cost.perEngaged !== null ? `${rupees(s.cost.perEngaged)}` : "No engagement recorded"}
+                value={s.cost.perEngaged !== null ? `${rupees(s.cost.perEngaged)}` : c.ratePerPost === null ? "Not available" : "No engagement recorded"}
                 note={s.cost.perEngaged !== null ? "Rate ÷ likes and comments per post" : undefined}
               />
-              <Fact label="Posts per month" value={`${c.postsPerMonth}`} />
-              <Fact label="Past brand collaborations" value={c.pastBrands.length ? `${c.pastBrands.join(", ")} (demo)` : "None listed"} />
+              <Fact label="Posts per month" value={`${c.postsPerMonth}`} note={live ? "From the dates of their latest posts" : undefined} />
+              <Fact label="Past brand collaborations" value={live ? "Not available" : c.pastBrands.length ? `${c.pastBrands.join(", ")} (demo)` : "None listed"} />
             </dl>
+            {live && (live.bio || live.externalUrl) && (
+              <div className="mt-3 rounded-xl bg-page px-3 py-2 text-sm">
+                {live.fullName && <p className="font-medium">{live.fullName}</p>}
+                {live.bio && <p className="whitespace-pre-line text-ink-soft">{live.bio}</p>}
+                {live.externalUrl && <p className="mt-1 truncate text-xs text-ink-muted">Link in bio: {live.externalUrl}</p>}
+              </div>
+            )}
           </Section>
 
           <Section title="Red flags">
@@ -270,6 +299,9 @@ function Fact({ label, value, note }: { label: string; value: string; note?: str
 
 // Weekly followers over 90 days as a small line, so a sudden jump is easy to see
 function Growth({ history }: { history: number[] }) {
+  if (history.length === 0) {
+    return <p className="mt-4 text-xs text-ink-muted">Follower growth: Not available. Instagram doesn&apos;t share follower history publicly, so the growth check is skipped.</p>;
+  }
   if (history.length < 2) return <p className="mt-4 text-xs text-ink-muted">Follower history: only one data point.</p>;
   const lo = Math.min(...history), hi = Math.max(...history);
   const pts = history.map((v, i) => `${(i / (history.length - 1)) * 300},${56 - ((v - lo) / Math.max(1, hi - lo)) * 48 - 4}`).join(" ");

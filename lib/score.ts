@@ -28,6 +28,7 @@ export type Creator = {
   avgComments: number | null;
   growthPct: number | null;
   daysOfData?: number | null; // undefined = the file has no days column
+  noGrowthHistory?: boolean; // true = follower history isn't public (live Instagram data): skip the growth check
 };
 
 export type Direction = "good" | "warning";
@@ -77,7 +78,7 @@ export function tierFor(followers: number) {
 }
 
 export function notEnoughDataReason(c: Creator): string | null {
-  if (c.followers === null || c.avgLikes === null || c.avgComments === null || c.growthPct === null) {
+  if (c.followers === null || c.avgLikes === null || c.avgComments === null || (c.growthPct === null && !c.noGrowthHistory)) {
     return "Some numbers are blank";
   }
   if (c.followers < SETTINGS.minFollowers) {
@@ -102,7 +103,7 @@ export function scoreCreator(c: Creator): CreatorResult {
   const followers = c.followers!;
   const likes = c.avgLikes!;
   const comments = c.avgComments!;
-  const growth = c.growthPct!;
+  const growth = c.growthPct ?? 0;
   const tier = tierFor(followers);
 
   // Check 1: engagement rate compared with normal for this creator size
@@ -116,7 +117,7 @@ export function scoreCreator(c: Creator): CreatorResult {
       direction: "warning",
       penalty: outsidePenalty((tier.low - er) / (tier.low * 0.75)),
       evidence: engagementEvidence,
-      text: `Engagement is only ${er}%, below the ${range} normal for a ${tier.name} creator, a sign of fake or inactive followers.`,
+      text: `Engagement is only ${er}%, below the ${range} normal for a ${tier.name} creator, so signals look unusual (many followers may not be engaging).`,
     };
   } else if (er > tier.high) {
     engagement = {
@@ -124,7 +125,7 @@ export function scoreCreator(c: Creator): CreatorResult {
       direction: "warning",
       penalty: outsidePenalty((er - tier.high) / tier.high),
       evidence: engagementEvidence,
-      text: `Engagement is ${er}%, unusually high for a ${tier.name} creator (normal ${range}), a sign of bought likes or engagement groups.`,
+      text: `Engagement is ${er}%, unusually high for a ${tier.name} creator (normal ${range}), so signals look unusual (engagement may be boosted).`,
     };
   } else {
     // Inside normal: full marks in the middle of the range, a few points off near its edges
@@ -152,7 +153,7 @@ export function scoreCreator(c: Creator): CreatorResult {
       direction: "warning",
       penalty: outsidePenalty((minPct - commentPct) / (minPct * 0.8)),
       evidence: commentEvidence,
-      text: `Comments are only ${commentPct}% of likes (normal is ${minPct}% or more), a sign of bought likes.`,
+      text: `Comments are only ${commentPct}% of likes (normal is ${minPct}% or more), so signals look unusual (likes may be boosted).`,
     };
   } else if (commentPct < healthyPct) {
     commentsReason = {
@@ -183,7 +184,7 @@ export function scoreCreator(c: Creator): CreatorResult {
       direction: "warning",
       penalty: outsidePenalty((growth - spike) / 30),
       evidence: growthEvidence,
-      text: `Followers jumped ${growth}% in 30 days while engagement stayed low, a sign of bought followers.`,
+      text: `Followers jumped ${growth}% in 30 days while engagement stayed low, so signals look unusual.`,
     };
   } else if (growth > spike) {
     growthReason = {
@@ -203,7 +204,8 @@ export function scoreCreator(c: Creator): CreatorResult {
     };
   }
 
-  const checks = [engagement, commentsReason, growthReason];
+  // No public follower history: the growth check is skipped, not guessed
+  const checks = c.noGrowthHistory ? [engagement, commentsReason] : [engagement, commentsReason, growthReason];
   const score = Math.max(0, 100 - checks.reduce((sum, r) => sum + r.penalty, 0));
 
   // Top 2 reasons = the 2 checks that moved the score most (stable order on ties)
@@ -212,7 +214,7 @@ export function scoreCreator(c: Creator): CreatorResult {
   // Confidence: do the 3 checks agree, and is any warning only borderline?
   const borderline = checks.some((r) => r.direction === "warning" && r.penalty < SETTINGS.mildWarningBelow);
   const warnings = checks.filter((r) => r.direction === "warning").length;
-  const confidence = borderline ? "Low" : warnings === 0 || warnings === 3 ? "High" : "Medium";
+  const confidence = borderline ? "Low" : warnings === 0 || warnings === checks.length ? "High" : "Medium";
 
   const facts = [
     followers, likes, comments, growth, er, commentPct, score,

@@ -42,7 +42,7 @@ export function scoreAll(creators: Creator[], b: Brief, goal: Goal): Scored[] {
     const combined = Math.round(w.sales * ret.sales.score + w.reach * ret.reach.score + w.fit * fit.score + w.auth * authScore);
 
     const outside: string[] = [];
-    if (budget && creator.ratePerPost > budget * OVER_BUDGET) outside.push("over budget");
+    if (budget && creator.ratePerPost !== null && creator.ratePerPost > budget * OVER_BUDGET) outside.push("over budget");
     const share = locationShare(creator, b);
     if (share !== null && share < OUTSIDE_LOCATION_PCT && !b.location.toLowerCase().includes(creator.city.toLowerCase())) outside.push("outside your location");
     if ((b.platform === "Instagram" || b.platform === "YouTube") && creator.platform !== b.platform) outside.push(`on ${creator.platform}, not ${b.platform}`);
