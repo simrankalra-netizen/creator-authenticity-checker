@@ -4,7 +4,7 @@ import { ApiError, GoogleGenAI, ThinkingLevel } from "@google/genai";
 import { z } from "zod";
 
 // Change the model here. Check the current names at ai.google.dev/gemini-api/docs/models
-export const GEMINI_MODEL = "gemini-3.8-flash";
+export const GEMINI_MODEL = "gemini-3.5-flash-lite";
 
 export type GeminiFailure = "no_key" | "bad_key" | "timeout" | "bad_reply" | "api_error";
 

@@ -132,7 +132,7 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 
 - **Next.js (App Router, TypeScript):** one project holds both the screen and the small server route that keeps the API key secret, and it deploys to Vercel with no setup. TypeScript catches mistakes before they reach the screen.
 - **Plain rules for scoring:** they're predictable, explainable to a judge, and testable. A brand can see exactly why a creator lost points.
-- **Gemini 3.8 Flash (`gemini-3.8-flash`) through the official `@google/genai` package** (the model name is one setting in `lib/gemini.ts`):
+- **Gemini 3.5 Flash-Lite (`gemini-3.5-flash-lite`) through the official `@google/genai` package** (the model name is one setting in `lib/gemini.ts`):
   - Fast enough to word 30 creators in a single call.
   - Supports structured JSON output, so the reply can be checked automatically.
   - Minimal thinking level keeps replies quick and cheap.
