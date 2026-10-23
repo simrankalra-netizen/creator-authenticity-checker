@@ -135,7 +135,7 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 - **Gemini 3.8 Flash (`gemini-3.8-flash`) through the official `@google/genai` package** (the model name is one setting in `lib/gemini.ts`):
   - Fast enough to word 30 creators in a single call.
   - Supports structured JSON output, so the reply can be checked automatically.
-  - Low thinking level keeps replies quick and cheap.
+  - Minimal thinking level keeps replies quick and cheap.
 - **PapaParse:** a reliable CSV reader that handles quotes, blank lines and odd spacing.
 - **Vitest:** fast automatic checks for all 3 tests (`npm test`).
 - **Tailwind CSS:** comes with Next.js and gives a clean screen without writing a separate stylesheet.

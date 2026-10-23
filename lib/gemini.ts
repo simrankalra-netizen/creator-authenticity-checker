@@ -34,7 +34,7 @@ export async function askGeminiJson<T extends z.ZodType>(
         systemInstruction: options.system,
         responseMimeType: "application/json",
         responseJsonSchema: z.toJSONSchema(options.schema),
-        thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
+        thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL }, // rewording needs no reasoning; keeps replies fast
         abortSignal: signal,
       },
     });
