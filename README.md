@@ -6,7 +6,7 @@ A one-screen web app that helps a small brand decide, in minutes, whether an inf
 
 A short onboarding (phone check, brand details, an influencer brief) comes first. Then you upload a CSV of creators and each one gets an **authenticity score (0–100)**, a **confidence level** and **2 plain-language reasons**. Upload past campaign sales and you see the scores next to real orders, plus **one number** showing how well the scores predicted sales.
 
-Hackathon MVP. Built with Next.js, deployable to Vercel. Uses the Claude API only to reword reasons.
+Hackathon MVP. Built with Next.js, deployable to Vercel. Uses the Gemini API only to reword reasons.
 
 ---
 
@@ -33,7 +33,7 @@ When the app opens, it asks one question at a time (Step N of 6, with Back on ev
 1. **Phone number:** a country code selector (default India +91). Only valid mobile numbers are accepted.
 2. **Verification code:** "Resend code" unlocks after 30 seconds. A wrong or expired code shows a clear message and never moves you forward.
 3. **Brand name.**
-4. **Brand website:** the server reads the page, and Claude summarises what the brand sells and who to, using only the page's text. You confirm or edit it. If the page can't be read, or it's an Instagram link (Instagram blocks automated reading), you type a short description instead. A summary is never invented.
+4. **Brand website:** the server reads the page, and Gemini summarises what the brand sells and who to, using only the page's text. You confirm or edit it. If the page can't be read, or it's an Instagram link (Instagram blocks automated reading), you type a short description instead. A summary is never invented.
 5. **Brand niche:** fashion, beauty, food, fitness, tech, home, or other (free text).
 6. **Influencer brief:** niche, location, main goal, follower range, budget (optional) and platform.
 
@@ -67,7 +67,7 @@ Then **"Your brief is ready"** lists every answer, each with an Edit button, and
 In run order, the scoring **logic runs before the AI**. The AI only receives what the code already decided, and the code checks the AI's reply before anything is shown.
 
 ```
- INPUT                 LOGIC (plain code)                 AI (Claude)              LOGIC (plain code)         ACTION / OUTPUT
+ INPUT                 LOGIC (plain code)                 AI (Gemini)             LOGIC (plain code)         ACTION / OUTPUT
  creators.csv  ──►  read + validate CSV  ──►  score,   ──►  reword the 2       ──►  check every AI     ──►  table: score, confidence,
  sales.csv          (lib/parseCsv.ts)         confidence,   chosen reasons          sentence             2 reasons (+ numbers),
  (in browser)                                 2 reasons     (app/api/explain)       (lib/checkAi.ts)      orders, match number
@@ -83,8 +83,8 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 
 ### 2. AI: rewording only
 - **One call per upload**, from a server route (`app/api/explain/route.ts`), so the API key never reaches the browser.
-- **What Claude receives:** each creator's handle, size tier, score, and the 2 reasons the code chose (with their numbers and a draft sentence).
-- **What Claude is asked:** rewrite each reason as one short, plain sentence, using only the numbers given, and label it a good sign or a warning.
+- **What Gemini receives:** each creator's handle, size tier, score, and the 2 reasons the code chose (with their numbers and a draft sentence).
+- **What Gemini is asked:** rewrite each reason as one short, plain sentence, using only the numbers given, and label it a good sign or a warning.
 
 ### 3. Logic: plain code
 - **Validation:** every problem in a file is collected, and any problem rejects the whole file.
@@ -102,7 +102,7 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 
 ### 4. Action
 - **Bad file:** a red error box names the exact problem, and no table appears.
-- **Good file:** the table appears straight away with standard wording. Claude's wording replaces each sentence when it arrives and passes the checks.
+- **Good file:** the table appears straight away with standard wording. Gemini's wording replaces each sentence when it arrives and passes the checks.
 - **Sales file:** adds an Orders column and the headline match number.
 
 ### 5. Output
@@ -121,7 +121,7 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 | Score, confidence, "Not enough data" | Code | Same input always gives the same answer, it runs in milliseconds, and it can't invent numbers |
 | Choosing the 2 reasons | Code | The reasons must match the actual score |
 | Score–sales match number | Code | It's maths, not judgement |
-| Wording the reasons | **AI (Claude)** | Plain, size-aware sentences read better than fixed templates. The tests pass without it; if it's off, only the wording is plainer |
+| Wording the reasons | **AI (Gemini)** | Plain, size-aware sentences read better than fixed templates. The tests pass without it; if it's off, only the wording is plainer |
 | Gathering the numbers | **Human** | No live platform connections (out of scope) |
 | Deciding whether to pay a creator | **Human** | The score is a warning light; "check carefully" scores need a human look |
 | Checking "Not enough data" creators | **Human** | The app refuses to guess |
@@ -132,10 +132,10 @@ In run order, the scoring **logic runs before the AI**. The AI only receives wha
 
 - **Next.js (App Router, TypeScript):** one project holds both the screen and the small server route that keeps the API key secret, and it deploys to Vercel with no setup. TypeScript catches mistakes before they reach the screen.
 - **Plain rules for scoring:** they're predictable, explainable to a judge, and testable. A brand can see exactly why a creator lost points.
-- **Claude Sonnet 5.5 (`claude-sonnet-5-5`) through the official `@anthropic-ai/sdk`:**
+- **Gemini 3.8 Flash (`gemini-3.8-flash`) through the official `@google/genai` package** (the model name is one setting in `lib/gemini.ts`):
   - Fast enough to word 30 creators in a single call.
   - Supports structured JSON output, so the reply can be checked automatically.
-  - Uses server-side fallback, so a declined request is retried on another model.
+  - Low thinking level keeps replies quick and cheap.
 - **PapaParse:** a reliable CSV reader that handles quotes, blank lines and odd spacing.
 - **Vitest:** fast automatic checks for all 3 tests (`npm test`).
 - **Tailwind CSS:** comes with Next.js and gives a clean screen without writing a separate stylesheet.
@@ -179,7 +179,7 @@ You need **Node.js 20 or newer** and **git**.
    ```bash
    npm install
    ```
-2. **(Optional) Add your Claude API key** for AI wording. Copy `.env.example` to a new file called `.env.local`, then paste your key after `ANTHROPIC_API_KEY=`. Get a key at console.anthropic.com. `.env.local` is ignored by git, so it never gets committed. Without a key, the app still works with standard wording, and Step 4 always asks you to type your brand description. Also set `OTP_COOKIE_SECRET` to any long random string (the command is in `.env.example`). Leave `SMS_MODE=demo` and sign in with code **123456**.
+2. **(Optional) Add your Gemini API key** for AI wording. Copy `.env.example` to a new file called `.env.local`, then paste your key after `GEMINI_API_KEY=`. Get a free key at aistudio.google.com (Get API key). `.env.local` is ignored by git, so it never gets committed. Without a key, the app still works with standard wording, and Step 4 always asks you to type your brand description. Also set `OTP_COOKIE_SECRET` to any long random string (the command is in `.env.example`). Leave `SMS_MODE=demo` and sign in with code **123456**.
 3. Start the app:
    ```bash
    npm run dev
@@ -195,7 +195,7 @@ You need **Node.js 20 or newer** and **git**.
    ```
 
 ### Deploy to Vercel
-Import the GitHub repo in Vercel, then add `ANTHROPIC_API_KEY` under **Project → Settings → Environment Variables**.
+Import the GitHub repo in Vercel, then add `GEMINI_API_KEY` under **Project → Settings → Environment Variables**.
 
 ## Project map
 
@@ -205,12 +205,12 @@ Import the GitHub repo in Vercel, then add `ANTHROPIC_API_KEY` under **Project �
 | `components/Onboarding.tsx` | The 6 onboarding steps and "Your brief is ready" |
 | `components/CreatorChecker.tsx` | The creator authenticity screen |
 | `app/api/otp/send`, `app/api/otp/verify` | Send and check verification codes (demo mode by default) |
-| `app/api/brand-summary/route.ts` | Reads the brand website and asks Claude for a summary |
+| `app/api/brand-profile/route.ts` | Reads the brand website and asks Gemini for a Brand Profile (switched off) |
 | `lib/otp.ts`, `lib/phone.ts`, `lib/readPage.ts`, `lib/brief.ts` | Code checks, phone checks, safe website reading, saved answers |
-| `app/api/explain/route.ts` | The only Claude call |
+| `app/api/explain/route.ts` | Asks Gemini to reword the reasons |
 | `lib/parseCsv.ts` | Reads and validates CSVs, and accepts common column names |
 | `lib/score.ts` | Score, confidence, reasons, "Not enough data", and `SETTINGS` |
-| `lib/checkAi.ts` | Checks Claude's sentences before they're shown |
+| `lib/checkAi.ts` | Checks Gemini's sentences before they're shown |
 | `lib/predict.ts` | The score–sales match number |
 | `lib/checks.test.ts` | Automatic checks for the 3 tests |
 | `samples/` | Sample creators, sales, and broken files |

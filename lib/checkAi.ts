@@ -1,4 +1,4 @@
-// Checks Claude's rewording before it's shown. Anything that fails keeps the
+// Checks Gemini's rewording before it's shown. Anything that fails keeps the
 // template sentence, plus a note saying why the AI wording was rejected.
 import type { Direction, ScoredCreator } from "./score";
 

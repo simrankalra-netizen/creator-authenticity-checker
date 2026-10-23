@@ -1,9 +1,8 @@
-// The only place Claude is called. It runs on the server, so the API key
-// (from .env.local) never reaches the browser. Claude only rewords reasons
+// Gemini rewords the reasons on the CSV checker. It runs on the server, so the
+// API key (from .env.local) never reaches the browser. Gemini only rewords reasons
 // that the code already chose; it never sees or changes how scores are made.
-import Anthropic from "@anthropic-ai/sdk";
-import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
+import { askGeminiJson, GeminiError, hasGeminiKey } from "@/lib/gemini";
 
 const ReplySchema = z.object({
   creators: z.array(
@@ -32,7 +31,7 @@ Rules:
 - Return every creator exactly once, with the handle exactly as given.`;
 
 export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!hasGeminiKey()) {
     return Response.json({ error: "No API key set in .env.local" }, { status: 503 });
   }
   const { creators } = (await request.json()) as { creators: InputCreator[] };
@@ -40,32 +39,17 @@ export async function POST(request: Request) {
     return Response.json({ creators: [] });
   }
 
-  const client = new Anthropic({ timeout: 15_000, maxRetries: 0 });
   try {
-    const response = await client.beta.messages.parse({
-      model: "claude-sonnet-5-5",
-      max_tokens: 16000,
-      output_config: { effort: "low", format: betaZodOutputFormat(ReplySchema) },
-      // If Claude declines, the API retries on a fallback model automatically.
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
+    const reply = await askGeminiJson({
       system: SYSTEM,
-      messages: [{ role: "user", content: JSON.stringify(creators, null, 1) }],
+      prompt: JSON.stringify(creators, null, 1),
+      schema: ReplySchema,
+      timeoutMs: 15_000,
     });
-    if (response.stop_reason === "refusal" || !response.parsed_output) {
-      return Response.json({ error: "Claude didn't return usable wording" }, { status: 502 });
-    }
-    return Response.json(response.parsed_output);
+    return Response.json(reply);
   } catch (error) {
-    if (error instanceof Anthropic.AuthenticationError) {
-      return Response.json({ error: "The API key in .env.local was rejected" }, { status: 502 });
-    }
-    if (error instanceof Anthropic.APIConnectionTimeoutError) {
-      return Response.json({ error: "Claude took longer than 15 seconds" }, { status: 504 });
-    }
-    if (error instanceof Anthropic.APIError) {
-      return Response.json({ error: `Claude API error ${error.status ?? ""}`.trim() }, { status: 502 });
-    }
-    return Response.json({ error: "Couldn't reach Claude" }, { status: 502 });
+    const message = error instanceof GeminiError ? error.message : "Couldn't reach Gemini";
+    const status = error instanceof GeminiError && error.reason === "timeout" ? 504 : 502;
+    return Response.json({ error: message }, { status });
   }
 }

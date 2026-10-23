@@ -1,5 +1,5 @@
 // The Brand Profile: 9 facts about a brand, each with evidence and confidence.
-// Claude fills it in; the checks here make sure nothing is invented.
+// Gemini fills it in; the checks here make sure nothing is invented.
 import { priceSummary, type Price, type SitePage } from "./prices";
 
 export const NOT_CLEAR = "Not clear from the website";
@@ -34,7 +34,7 @@ export type BrandProfile = {
   fields: Record<FieldKey, ProfileField>;
 };
 
-// What Claude returns for each field before the checks
+// What Gemini returns for each field before the checks
 export type RawField = { value: string; evidence_page: string; evidence_quote: string; confidence: Confidence; clear: boolean };
 
 const THIN_TEXT_CHARS = 1_500;
@@ -76,7 +76,7 @@ export function quoteFound(quote: string, pages: SitePage[], pageLabel: string) 
 
 const notClear = (why: string): ProfileField => ({ value: NOT_CLEAR, evidence: why, confidence: "low", clear: false });
 
-// Turns Claude's answer into a checked profile. Anything without real evidence becomes "Not clear".
+// Turns Gemini's answer into a checked profile. Anything without real evidence becomes "Not clear".
 export function checkProfile(
   raw: Record<FieldKey, RawField>,
   pages: SitePage[],
