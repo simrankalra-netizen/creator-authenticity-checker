@@ -183,6 +183,7 @@
 @keyframes cg-orbit { to { transform: rotate(360deg); } }
 @keyframes cg-counter-orbit { to { transform: rotate(-360deg); } }
 @keyframes cg-glide { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(46px, 26px); } }
+@keyframes cg-write { 0% { transform: translate(-58px, -58px); } 30% { transform: translate(0, -58px); } 35% { transform: translate(-58px, -36px); } 63% { transform: translate(-6px, -36px); } 68% { transform: translate(-58px, -14px); } 95%, 100% { transform: translate(-2px, -14px); } }
 @keyframes cg-confetti { 0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; } 100% { transform: translate3d(var(--dx, 0), 105vh, 0) rotate(var(--spin, 540deg)); opacity: 0.9; } }
 
 .cg-fade { animation: cg-fade var(--motion-slow) var(--ease-out) both; }
@@ -203,6 +204,7 @@
 .cg-orbit { transform-box: view-box; transform-origin: 100px 100px; animation: cg-orbit 16s linear infinite; }
 .cg-counter-orbit { transform-box: fill-box; transform-origin: center; animation: cg-counter-orbit 16s linear infinite; }
 .cg-glide { animation: cg-glide 5s var(--ease-in-out) infinite; }
+.cg-write { animation: cg-write 2.6s var(--ease-in-out) both; }
 .cg-confetti-piece { position: absolute; top: 0; animation: cg-confetti var(--motion-confetti) var(--ease-out) both; }
 .cg-progress-bar { transition: width var(--motion-slow) var(--ease-out); }
 .cg-skeleton {
@@ -214,7 +216,7 @@
 @media (prefers-reduced-motion: reduce) {
   .cg-step-in, .cg-rise, .cg-sheet, .cg-pop { animation: cg-fade var(--motion-base) linear both; }
   .cg-float, .cg-drift, .cg-gradient-shift, .cg-glow, .cg-dot, .cg-scan, .cg-sway, .cg-twinkle,
-  .cg-orbit, .cg-counter-orbit, .cg-glide, .cg-skeleton, .cg-draw, .cg-dial { animation: none; }
+  .cg-orbit, .cg-counter-orbit, .cg-glide, .cg-write, .cg-skeleton, .cg-draw, .cg-dial { animation: none; }
   .cg-confetti-piece { display: none; }
   .cg-card-hover, .cg-btn-primary, .cg-progress-bar { transition: none; }
 }

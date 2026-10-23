@@ -35,6 +35,7 @@ export type Brief = {
   followerRangeSuggested: boolean; // follower range was pre-filled from the profile
   niche: string;
   nicheOther: string;
+  nicheSuggested: string; // the niche pre-selected from the description ("" = none, or the user chose their own)
   influencerNiche: string;
   targetAge: string; // optional: the brand's customers' age range, e.g. "25-34" ("" = not given)
   locationMode: "anywhere" | "specific";
@@ -63,6 +64,7 @@ export const EMPTY_BRIEF: Brief = {
   followerRangeSuggested: false,
   niche: "",
   nicheOther: "",
+  nicheSuggested: "",
   influencerNiche: "",
   targetAge: "",
   locationMode: "anywhere",

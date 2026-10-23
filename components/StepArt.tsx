@@ -129,6 +129,36 @@ export function SearchArt() {
   );
 }
 
+// Step 4: a notepad; a pen writes three lines, one after another (once, when the step opens)
+export function WriteArt() {
+  const lines = [
+    { y: 82, w: 70, delay: 0.2 },
+    { y: 104, w: 58, delay: 1.0 },
+    { y: 126, w: 64, delay: 1.8 },
+  ];
+  return (
+    <Frame label="A notepad where your brand story is being written">
+      <rect x="48" y="40" width="96" height="124" rx="12" fill="#fff" stroke={C.ink} strokeWidth="5" />
+      <rect x="70" y="32" width="52" height="16" rx="6" fill={C.purple} />
+      <rect x="62" y="60" width="44" height="7" rx="3.5" fill={C.lavender} />
+      {lines.map((l) => (
+        <line
+          key={l.y}
+          className="cg-draw"
+          x1="62" y1={l.y} x2={62 + l.w} y2={l.y}
+          stroke={C.teal} strokeWidth="6" strokeLinecap="round"
+          style={{ ["--len" as string]: l.w, animationDelay: `${l.delay}s` }}
+        />
+      ))}
+      <g className="cg-write">
+        <rect x="128" y="96" width="12" height="52" rx="4" fill={C.purple} transform="rotate(35 134 122)" />
+        <path d="M118 140 l6 12 l5 -9 z" fill={C.ink} />
+      </g>
+      <Sparkle x={156} y={58} s={9} color={C.lime} delay="0.4s" />
+    </Frame>
+  );
+}
+
 // Step 5: a price tag with slowly twinkling sparkles
 const Sparkle = ({ x, y, s, color, delay }: { x: number; y: number; s: number; color: string; delay: string }) => (
   <path

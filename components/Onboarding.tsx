@@ -11,8 +11,9 @@ import {
 import { COUNTRIES, checkPhone, dialCode } from "@/lib/phone";
 import { RESEND_WAIT_SECONDS } from "@/lib/otpSettings";
 import { WEBSITE_PROFILE_ENABLED } from "@/lib/features";
+import { looksLikeLink, suggestNicheFromText } from "@/lib/nicheSuggest";
 import Logo from "@/components/Logo";
-import { Confetti, DoneArt, PhoneArt, SearchArt, ShieldArt, StoreArt, TagArt, TargetArt } from "@/components/StepArt";
+import { Confetti, DoneArt, PhoneArt, ShieldArt, StoreArt, TagArt, TargetArt, WriteArt } from "@/components/StepArt";
 import { prefersReducedMotion } from "@/components/motion";
 import {
   NOT_CLEAR, PROFILE_FIELDS, nicheName, suggestFollowerRange, suggestNiche,
@@ -94,7 +95,7 @@ function StepIllustration({ brief }: { brief: Brief }) {
     case 1: return <PhoneArt />;
     case 2: return <ShieldArt verified={Boolean(brief.verifiedPhone) && brief.verifiedPhone === brief.phoneE164} />;
     case 3: return <StoreArt name={brief.brandName} />;
-    case 4: return <SearchArt />;
+    case 4: return <WriteArt />;
     case 5: return <TagArt />;
     default: return <TargetArt />;
   }
@@ -351,42 +352,98 @@ function BrandNameStep({ brief, update, next }: StepProps) {
   );
 }
 
-// ---------- Step 4 (while website reading is paused): website + typed description ----------
+// ---------- Step 4: describe your brand (required) + website link (optional, saved only) ----------
+
+const DESCRIPTION_MIN = 30;
+const DESCRIPTION_MAX = 600;
+const DESCRIPTION_EXAMPLES = [
+  { label: "Skincare for students", text: "We sell minimal, affordable skincare for college students in India. Gentle face wash, serum and sunscreen. Our vibe is clean and honest." },
+  { label: "Protein snacks", text: "We make high-protein snacks and bars for people who work out at home or go to the gym. Our vibe is energetic, fun and no-nonsense." },
+  { label: "Streetwear label", text: "We design oversized streetwear tees and hoodies for young men and women in Indian cities. Our vibe is bold, playful and loud." },
+];
 
 function BrandAboutStep({ brief, update, next }: StepProps) {
   const [error, setError] = useState("");
+  const length = brief.summary.trim().length;
+  const tooShort = length < DESCRIPTION_MIN;
+  const linkOk = looksLikeLink(brief.link);
+
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (tooShort) {
+      return setError(
+        length === 0
+          ? "Describe your brand to continue: what you sell, who it's for, and its vibe."
+          : `Add a little more: at least ${DESCRIPTION_MIN} characters (you have ${length}).`,
+      );
+    }
+    // Suggest a niche for Step 5, unless the user already picked one themselves
+    const suggestion = suggestNicheFromText(brief.summary);
+    const userPicked = brief.niche !== "" && brief.niche !== brief.nicheSuggested;
+    const nichePatch = userPicked
+      ? {}
+      : { niche: suggestion?.niche ?? "", nicheSuggested: suggestion?.niche ?? "" };
+    next({ summary: brief.summary.trim(), summarySource: "manual", profile: null, link: brief.link.trim(), ...nichePatch });
+  }
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (brief.summary.trim().length < 10) return setError("Write a short sentence about what your brand sells and who buys it.");
-        next({ summary: brief.summary.trim(), summarySource: "manual", profile: null });
-      }}
-      noValidate
-    >
-      <Question title="Tell us about your brand." hint="A sentence or two: what you sell, and who buys it." />
-      <textarea
-        aria-label="About your brand"
-        rows={4}
-        placeholder="e.g. We sell ready-to-cook spice kits to busy young professionals in Indian cities."
-        value={brief.summary}
-        onChange={(e) => {
-          setError("");
-          update({ summary: e.target.value });
-        }}
-        className={`${inputClass} mt-4`}
-      />
-      <label className="mt-4 block text-sm font-medium" htmlFor="website">
-        Your website <span className="font-normal text-ink-muted">(optional)</span>
+    <form onSubmit={submit} noValidate>
+      <Question title="Tell us about your brand" hint="This helps us match you with the right creators." />
+      <div className="relative mt-4">
+        <textarea
+          aria-label="Describe your brand"
+          aria-describedby="description-count"
+          rows={6}
+          maxLength={DESCRIPTION_MAX}
+          placeholder="What do you sell? Who is it for? What is your brand's vibe? (for example: We sell minimal, affordable skincare for college students in India.)"
+          value={brief.summary}
+          onChange={(e) => {
+            setError("");
+            update({ summary: e.target.value });
+          }}
+          className={`${inputClass} mt-0 min-h-40 resize-y leading-relaxed`}
+        />
+      </div>
+      <div id="description-count" className="mt-1.5 flex items-center justify-between text-xs" aria-live="polite">
+        <span className={tooShort ? "text-ink-muted" : "font-medium text-good"}>
+          {tooShort ? `At least ${DESCRIPTION_MIN} characters` : "✓ Looks good"}
+        </span>
+        <span className={length >= DESCRIPTION_MAX ? "font-semibold text-check" : "text-ink-muted"}>
+          {length} / {DESCRIPTION_MAX}
+        </span>
+      </div>
+
+      <p className="mt-4 text-xs font-medium text-ink-muted">Stuck? Start from an example and edit it:</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {DESCRIPTION_EXAMPLES.map((ex) => (
+          <button
+            key={ex.label}
+            type="button"
+            onClick={() => {
+              setError("");
+              update({ summary: ex.text });
+            }}
+            className="rounded-full border border-line bg-lavender/60 px-3 py-1.5 text-sm text-fit transition-colors hover:border-brand-purple hover:bg-lavender"
+          >
+            ✨ {ex.label}
+          </button>
+        ))}
+      </div>
+
+      <label className="mt-6 block text-sm font-medium" htmlFor="website">
+        Website link <span className="font-normal text-ink-muted">(optional)</span>
       </label>
       <input
         id="website"
-        placeholder="e.g. masalabox.in"
+        type="url"
+        inputMode="url"
+        placeholder="yourbrand.in"
         value={brief.link}
         onChange={(e) => update({ link: e.target.value })}
-        className={inputClass}
+        className={`${inputClass} py-2.5 text-base`}
       />
-      <p className="mt-1 text-xs text-ink-muted">We save it for later. Reading websites automatically is paused for now.</p>
+      {!linkOk && <p className="mt-1 text-xs text-ink-muted">That doesn&apos;t look like a web address, but you can still continue.</p>}
+
       <ErrorText>{error}</ErrorText>
       <Continue />
     </form>
@@ -620,6 +677,16 @@ function NicheStep({ brief, update, next }: StepProps) {
       noValidate
     >
       <Question title="What is your brand's niche?" />
+      {brief.nicheSuggested && brief.niche === brief.nicheSuggested && (
+        <p className="cg-rise mt-3 rounded-xl bg-lavender px-3 py-2 text-sm text-fit">
+          ✨ Suggested from your description: <strong>{brief.nicheSuggested}</strong>
+          {(() => {
+            const words = suggestNicheFromText(brief.summary)?.matched ?? [];
+            return words.length ? ` (you mentioned ${words.slice(0, 3).map((w) => `“${w}”`).join(", ")})` : "";
+          })()}
+          . Keep it or pick another.
+        </p>
+      )}
       {brief.profile && nicheName(brief.profile) && (
         <p className="mt-3 rounded-xl bg-lavender px-3 py-2 text-sm text-fit">
           Suggested from your Brand Profile: <strong>{brief.profile.fields.niche.value}</strong>. Confirm it or pick another.
@@ -627,7 +694,17 @@ function NicheStep({ brief, update, next }: StepProps) {
       )}
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
         {NICHES.map((n) => (
-          <Choice key={n} name="niche" value={n} checked={brief.niche === n} onChange={(v) => { setError(""); update({ niche: v }); }}>
+          <Choice
+            key={n}
+            name="niche"
+            value={n}
+            checked={brief.niche === n}
+            onChange={(v) => {
+              setError("");
+              // Picking a different niche makes it the user's own choice, so it's never overwritten later
+              update({ niche: v, nicheSuggested: v === brief.nicheSuggested ? brief.nicheSuggested : "" });
+            }}
+          >
             {n}
           </Choice>
         ))}
